@@ -1,14 +1,14 @@
-import Styles from './MenuMobile.module.css';
+import styles from './MenuMobile.module.css';
 import Link  from 'react-router-dom';
 import Image from 'next/image';
 
 export default function HeaderMob() {
     return (
-        <header className={Styles.header}>
-            <nav className={Styles.nav}>
+        <header className={styles.header}>
+            <nav className={styles.nav}>
                 <Link href="#">
                     <Image
-                        className={Styles.img}
+                        className={styles.img}
                         src="/symbols/roupas.svg"
                         alt="Produtos"
                         width={40}   
@@ -19,7 +19,7 @@ export default function HeaderMob() {
 
                 <Link href="#">
                     <Image
-                        className={Styles.img}
+                        className={styles.img}
                         src="/symbols/Pasta.svg"
                         alt="Categorias"
                         width={40}
@@ -29,7 +29,7 @@ export default function HeaderMob() {
 
                 <Link href="#">
                     <Image
-                        className={Styles.img}
+                        className={styles.img}
                         src="/symbols/Sacola.svg"
                         alt="Sacola"
                         width={40}
