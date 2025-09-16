@@ -1,13 +1,22 @@
-import Image from "next/image";
-import styles from "./page.module.css";
 import Signin from "./Components/Signin";
-import Sacola from "./Components/Sacola";
+import MenuMob from "./Components/MenuMobile";
+import HeaderDesk from "./Components/HeaderDesk";
+import styles from './page.module.css';
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className={styles.page}>
+    <>  
+      <div className={styles.mobile}>
+        <MenuMob/>  
+        
+      </div>
+
+      <div className={styles.desktop}>
+        <HeaderDesk/>
+      </div>
+
       <Signin/>
-      <Sacola/>
-    </div>
+      
+    </>
   );
 }

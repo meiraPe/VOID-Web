@@ -72,7 +72,7 @@ export default function Signin() {
                 </div>
 
                 <div className={styles.mockups}>
-                    <Image src="/placeholders/mockup1.png" alt="App Mockup 1" width={300} height={180} priority/>
+                    <Image src="/placeholders/mockup1.png" alt="App Mockup 1" width={300} height={190} priority/>
                 </div>
             </footer>
         </div>
