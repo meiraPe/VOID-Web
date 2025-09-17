@@ -4,6 +4,7 @@ import HeaderDesk from "./Components/HeaderDesk";
 import styles from './page.module.css';
 import Sacola from "./Components/Sacola";
 import Home from "./Components/Homepage"
+import Footer from "./Components/Footer";
 
 export default function Page() {
   return (
@@ -23,6 +24,7 @@ export default function Page() {
 
       <Sacola/>
       
+      <Footer/>
     </>
   );
 }

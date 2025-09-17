@@ -24,10 +24,8 @@
 
     /* Gradiente index */
   --Gradient-Index: linear-gradient(
-    to bottom,
+    to top,
     rgba(6, 11, 18, 0) 0%,
-    rgba(6, 11, 18, 0.25) 25%,
-    rgba(6, 11, 18, 0.5) 50%,
     rgba(6, 11, 18, 1) 100%
   );
 
