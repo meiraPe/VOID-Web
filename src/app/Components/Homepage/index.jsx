@@ -10,6 +10,9 @@ export default function Home() {
     <div className={styles.container}>
       
       {/* Header Home Mobile */}
+
+      <header className={styles.headerGradient}></header>
+
       <header className={styles.headerMobile}>
 
         <div className={styles.right}>
@@ -17,15 +20,19 @@ export default function Home() {
             className={styles.logo}
             src="/logos/pngBRANCO.png"
             alt="Logo"
-            width={100}
-            height={50}
+            width={120}  
+            height={60}
+            priority
+            quality={100} 
+            style={{ objectFit: "contain" }} 
+            unoptimized
           />
           </div>
 
           <div className={styles.left}>
             <div className={styles.searchBox}>
                 <Image
-                  src="/symbols/Search.svg"
+                  src="/symbols/searchWhite.svg"
                   alt="Buscar"
                   width={18}
                   height={18}
@@ -74,21 +81,33 @@ export default function Home() {
           <Image
               src="/placeholders/bannerHomeMobile.jpg"
               alt="Banner Home"
-            width={600}
-              height={650}
+              width={450}
+              height={450}
               priority
-              className={styles.imageBanner}
+              quality={100}
+              style={{ objectFit: "cover" }}
+              unoptimized
             />
           </div>
 
-        <div className={styles.textBox}>
-          <h1> NIKE TOTAL 90 <br/> REISSUE <br/> BRAZIL 2004 </h1>
-          <p> Icônica, Atemporal </p>
-          <button className={styles.shopNowBtn}>
-            <Link href="/products">Ver Mais</Link>
-            <Image src="/symbols/next.png" alt="Seta para direita" width={20} height={20} />
-          </button>
-        </div> 
+        <div className={styles.textOverlay}>
+
+            <h1 className={styles.bannerTitle}>
+              NIKE TOTAL 90 <br /> REISSUE <br /> BRAZIL 2004
+            </h1>
+            <p className={styles.bannerSubtitle}>Icônica, Atemporal</p>
+
+            <button className={styles.shopNowBtn}>
+              <Link href="/products">Ver Mais</Link>
+              <Image
+                src="/symbols/next.png"
+                alt="Seta para direita"
+                width={20}
+                height={20}
+              />
+            </button>
+            
+          </div>
 
       </div>
 
