@@ -38,7 +38,7 @@ export default function Sacola() {
                     {/* Produtos */}
                     <div className={styles.produtos}>
                         <div className={styles.card}>
-                            <Image className={styles.logo} src="/produtos/CamisaBranca.png" alt="Camisa-Branca" width={110} height={110} />   
+                            <Image className={styles.logo} src="/produtos/CamisaBranca.png" alt="Camisa-Branca" width={130} height={130} />   
 
                             <div className={styles.detalhes}>
                                 <h2>Camiseta Cold Blanks<br></br> Heavy Oversized Off </h2>
@@ -57,7 +57,7 @@ export default function Sacola() {
                                 <div className={styles.price}>
                                     <p>R$</p>
                                     <h2>89,00</h2>
-                                </div>
+                                </div> 
 
                                 <h1 className={styles.pedido}>PEDIDO #00001</h1>
 
@@ -83,7 +83,7 @@ export default function Sacola() {
                     {/* Produtos */}
                     <div className={styles.produtos}>
                         <div className={styles.card}>
-                            <Image className={styles.logo} src="/produtos/CamisaBranca.png" alt="Camisa-Branca" width={110} height={110} />   
+                            <Image className={styles.logo} src="/produtos/CamisaBranca.png" alt="Camisa-Branca" width={130} height={130} />   
 
                             <div className={styles.detalhes}>
                                 <h2>Camiseta Cold Blanks<br></br> Heavy Oversized Off </h2>
