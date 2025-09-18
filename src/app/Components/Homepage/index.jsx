@@ -56,7 +56,7 @@ export default function Home() {
           <Image
               src="/placeholders/bannerHome.jpg"
               alt="Banner Home"
-            width={1800}
+              width={1800}
               height={650}
               priority
               className={styles.imageBanner}
@@ -74,24 +74,21 @@ export default function Home() {
       </div>
 
       {/* Banner Mobile */}
-
       <div className={styles.bannerMobile}>
-
         <div className={styles.boxBanner}>  
           <Image
-              src="/placeholders/bannerHomeMobile.jpg"
-              alt="Banner Home"
-              width={450}
-              height={450}
-              priority
-              quality={100}
-              style={{ objectFit: "cover" }}
-              unoptimized
-            />
-          </div>
+            src="/placeholders/bannerHomeMobile.jpg"
+            alt="Banner Home"
+            width={700}
+            height={700}
+            priority
+            quality={100}
+            style={{ objectFit: "cover" }}
+            unoptimized
+            className={styles.imageBanner}
+          />
 
-        <div className={styles.textOverlay}>
-
+          <div className={styles.textOverlay}>
             <h1 className={styles.bannerTitle}>
               NIKE TOTAL 90 <br /> REISSUE <br /> BRAZIL 2004
             </h1>
@@ -106,9 +103,8 @@ export default function Home() {
                 height={20}
               />
             </button>
-            
           </div>
-
+        </div>
       </div>
 
       {/* Marcas */}
