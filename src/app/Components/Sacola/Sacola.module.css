@@ -160,8 +160,8 @@
 }
 
 .pedido {
-    font-size: 0.8rem;
-    font-weight: 400;
+    font-size: 0.7rem;
+    font-weight: 500;
     color: #000;
     margin-bottom: 0.5rem;
     display: flex ;
@@ -227,14 +227,14 @@
 
 .price p {
   font-size: 0.9rem;
-  font-weight: 400;
+  font-weight: 500;
   color: #303030;
 }
 
 .price h2 {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #0f0f0f;
+  color: #1d1d1d;
 }
 
 .payment {
@@ -344,8 +344,8 @@
 }
 
 .pedido2 {
-    font-size: 0.8rem;
-    font-weight: 400;
+    font-size: 0.7rem;
+    font-weight: 500;
     color: #000;
     margin-bottom: 0.5rem;
     display: flex ;
@@ -411,14 +411,14 @@
 
 .price2 p {
   font-size: 0.9rem;
-  font-weight: 400;
+  font-weight: 500;
   color: #303030;
 }
 
 .price2 h2 {
   font-size: 1.2rem;
   font-weight: 700;
-    color: #0f0f0f;
+  color: #1d1d1d;
 ;
 }
 

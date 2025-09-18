@@ -21,8 +21,23 @@ export default function Footer() {
 
           <div className={styles.download}>
             <h2>BAIXE O APP VØID</h2>
-            <img className={styles.img1} src="/placeholders/googleplay.png" alt="Google Play" />
-            <img className={styles.img1} src="/placeholders/appstore.png" alt="App Store" />
+            <Image className={styles.img1} 
+            src="/placeholders/googleplay.png" 
+            alt="Google Play"
+            width={120}  
+            height={60} 
+            priority
+            style={{ objectFit: "contain" }} 
+            unoptimized/>
+
+            <Image className={styles.img1} 
+            src="/placeholders/appstore.png" 
+            alt="App Store"
+            width={120}  
+            height={60}
+            priority
+            style={{ objectFit: "contain" }} 
+            unoptimized/>
           </div>
         </div>
 
@@ -33,7 +48,7 @@ export default function Footer() {
           <p>Atendimento e Suporte</p>
           <p>Trocas e Devoluções</p>
           <p>Termos de Uso</p>
-          <img className={styles.img2} src="/reclameaqui.png" alt="Reclame Aqui" />
+          <img className={styles.img2} src="#" alt="Reclame Aqui" />
         </div>
 
         {/* Grupo 3 - Sobre */}
@@ -49,19 +64,19 @@ export default function Footer() {
         <div className={styles.group4}>
           <h2>SOCIAL</h2>
           <div className={styles.socialIcons}>
-            <img className={styles.img4} src="/instagram.png" alt="Instagram" />
-            <img className={styles.img4} src="/facebook.png" alt="Facebook" />
-            <img className={styles.img4} src="/twitter.png" alt="Twitter" />
-            <img className={styles.img4} src="/tiktok.png" alt="TikTok" />
+            <img className={styles.img4} src="#" alt="Instagram" />
+            <img className={styles.img4} src="#" alt="Facebook" />
+            <img className={styles.img4} src="#" alt="Twitter" />
+            <img className={styles.img4} src="#" alt="TikTok" />
           </div>
 
           <h2>FORMAS DE PAGAMENTO</h2>
           <div className={styles.payments}>
-            <img className={styles.img5} src="/visa.png" alt="Visa" />
-            <img className={styles.img5} src="/mastercard.png" alt="MasterCard" />
-            <img className={styles.img5} src="/elo.png" alt="Elo" />
-            <img className={styles.img5} src="/amex.png" alt="Amex" />
-            <img className={styles.img5} src="/pix.png" alt="Pix" />
+            <img className={styles.img5} src="#" alt="Visa" />
+            <img className={styles.img5} src="#" alt="MasterCard" />
+            <img className={styles.img5} src="#" alt="Elo" />
+            <img className={styles.img5} src="#" alt="Amex" />
+            <img className={styles.img5} src="#" alt="Pix" />
           </div>
         </div>
       </div>
@@ -69,7 +84,7 @@ export default function Footer() {
       {/* Rodapé inferior */}
       <div className={styles.bottom}>
         <div className={styles.lang}>
-          <img src="/brasil.png" alt="Português - BR" />
+          <img src="#" alt="Português - BR" />
           <span>Português - BR</span>
         </div>
         <p>

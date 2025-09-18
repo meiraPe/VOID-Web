@@ -34,19 +34,6 @@
   margin-top: 20px;
 }
 
-.img1 {
-  width: 140px;
-  margin: 6px 0;
-  cursor: pointer;
-}
-
-/* ================= AJUDA ================= */
-.img2 {
-  width: 120px;
-  margin-top: 15px;
-  cursor: pointer;
-}
-
 /* ================= SOCIAL ================= */
 .socialIcons {
   display: flex;
@@ -54,16 +41,6 @@
   margin: 10px 0 20px 0;
 }
 
-.img4 {
-  width: 28px;
-  height: auto;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.img4:hover {
-  transform: scale(1.2);
-}
 
 /* ================= PAGAMENTOS ================= */
 .payments {
@@ -71,11 +48,6 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
-}
-
-.img5 {
-  width: 50px;
-  height: auto;
 }
 
 /* ================= BOTTOM ================= */
