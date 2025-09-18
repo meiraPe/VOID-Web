@@ -51,7 +51,7 @@ export default function Sacola() {
 
                             <div className={styles.detalhes}>
                                 <h2>Camiseta Cold Blanks<br />Heavy Oversized Off</h2>
-                                <p>Cor: Bege</p>
+                                <p>Bege</p>
                                 <div className={styles.size}>
                                     <span>P</span>
                                 </div>
@@ -70,8 +70,9 @@ export default function Sacola() {
                                 <p className={styles.pedido}>PEDIDO #00001</p>
 
                                 <div className={styles.actions}>
-                                    <button className={styles.cancelBtn}>CONTINUAR COMPRA</button>
                                     <Link href="/checkout">
+                                        <button className={styles.cancelBtn}>CONTINUAR COMPRA
+                                        </button>
                                         <Image src="/symbols/nav-arrow-right.svg" alt="Continuar" width={20} height={20} />
                                     </Link>
                                 </div>
@@ -88,8 +89,8 @@ export default function Sacola() {
                         <div className={styles.line}></div>
                     </div>
 
-                    <div className={styles.produtos}>
-                        <div className={styles.card}>
+                    <div className={styles.produtos2}>
+                        <div className={styles.card2}>
                             <Image 
                                 src="/produtos/CamisaPreta.png" 
                                 alt="Camisa Preta" 
@@ -97,28 +98,28 @@ export default function Sacola() {
                                 height={130} 
                             />   
 
-                            <div className={styles.detalhes}>
+                            <div className={styles.detalhes2}>
                                 <h2>Camiseta Cold Blanks<br />Heavy Oversized Off</h2>
-                                <p>Cor: Preto</p>
-                                <div className={styles.size}>
+                                <p>Preto</p>
+                                <div className={styles.size2}>
                                     <span>GG</span>
                                 </div>
                             </div>
 
-                            <div className={styles.payment}>
+                            <div className={styles.payment2}>
                                 <div className={styles.infopaid}>
                                     <h3>PAGO</h3>
                                 </div>
 
-                                <div className={styles.price}>
+                                <div className={styles.price2}>
                                     <p>R$</p>
                                     <h2>89,00</h2>
                                 </div>
 
-                                <p className={styles.pedido}>PEDIDO #00002</p>
+                                <p className={styles.pedido2}>PEDIDO #00002</p>
 
-                                <div className={styles.actions}>
-                                    <button className={styles.cancelBtn}>CONTINUAR COMPRA</button>
+                                <div className={styles.actions2}>
+                                    <button className={styles.cancelBtn2}>MONITORAR COMPRA</button>
                                     <Link href="/checkout">
                                         <Image src="/symbols/nav-arrow-right.svg" alt="Continuar" width={20} height={20} />
                                     </Link>

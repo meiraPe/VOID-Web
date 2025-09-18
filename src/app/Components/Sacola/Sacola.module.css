@@ -35,6 +35,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-bottom: 50px;
 }
 
 .pendente {
@@ -117,8 +118,7 @@
   }
 
   .actions:hover {
-    transform: scale(1.1);
-    transition: all 0.5s ;
+  text-decoration: underline; /* aparece suavemente */
   }
 }
 
@@ -147,6 +147,12 @@
   width: 10rem;
 }
 
+.detalhes p {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #333;
+}
+
 .detalhes h2 {
   font-size: 0.8rem;
   font-weight: 500;
@@ -170,7 +176,7 @@
   display: flex; justify-content: center; align-items: center;
 }
 
-.size h1 {
+.size  {
   font-size: 0.9rem;
   font-weight: 600;
   color: #333;
@@ -200,7 +206,7 @@
 }
 
 
-.infopay h2 {
+.infopay h3 {
   background: #1E90FF;
   width: 5rem;
   height: 1rem;
@@ -228,7 +234,7 @@
 .price h2 {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #000;
+  color: #0f0f0f;
 }
 
 .payment {
@@ -244,6 +250,9 @@
   justify-content: center; /* centraliza horizontal */
   gap: 0.1rem; /* mais espaço entre botão e seta */
   width: 100%; /* ocupa toda a largura do card */
+  text-decoration: none;
+  transition: all 0.3s ease; /* define a suavidade */
+  margin-top: 5px;
 }
 
 .cancelBtn {
@@ -259,7 +268,191 @@
 .actions a {
   margin: 0;
   padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 
 
+
+/* PAGO */
+
+
+.produtos2 {
+  display: flex;
+  flex-wrap: wrap; /* permite que os itens se movam para a próxima linha */
+  gap: 1.5rem; /* espaço entre os cards */
+  padding: 1rem;
+  font-family: poppins;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+@media (min-width: 1024px) {
+  .produtos2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-between;
+  }
+
+  /* Se tiver apenas 1 card, centraliza */
+  .produtos2 > :only-child {
+    grid-column: 1 / -1; /* faz o card ocupar todas as colunas */
+    justify-self: center; /* centraliza na grid */
+  }
+
+  .actions2:hover {
+    transform: scale(1.1);
+    transition: all 0.5s ;
+  }
+}
+
+
+.card2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.detalhes2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: 10rem;
+}
+
+.detalhes2 p {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.detalhes2 h2 {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.pedido2 {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #000;
+    margin-bottom: 0.5rem;
+    display: flex ;
+    justify-content: flex-end;
+}
+
+.size2 {
+  background: #f2f2f2;
+  border-radius: 6px;
+  padding: 10px;
+  width: 15px; height: 15px;
+  display: flex; justify-content: center; align-items: center;
+}
+
+.size2 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.infopaid {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* ou flex-start, se quiser grudar na esquerda */
+  justify-content: flex-end; /* não deixa centralizado */
+  min-width: 150px;
+  margin: 0;
+  padding: 0; /* garante que não tenha espaço interno */
+}
+
+.price2,
+.actions2 {
+  margin: 0;
+  padding: 0;
+}
+
+.price2 p,
+.price2 h2,
+.actions2 * {
+  margin: 0; /* zera margens internas de textos/botões */
+  padding: 0;
+}
+
+
+.infopaid h3 {
+  background: #01830cc9;
+  width: 5rem;
+  height: 1rem;
+  color: white;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  
+}
+
+.price2 {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 0.3rem;
+}
+
+.price2 p {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #303030;
+}
+
+.price2 h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+    color: #0f0f0f;
+;
+}
+
+.payment2 {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  width: 10rem;
+}
+
+.actions2 {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centraliza horizontal */
+  gap: 0.1rem; /* mais espaço entre botão e seta */
+  width: 100%; /* ocupa toda a largura do card */
+  margin-top: 5px;
+}
+
+.cancelBtn2 {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  text-align: center; /* garante texto centralizado */
+}
+
+.actions2 a {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
