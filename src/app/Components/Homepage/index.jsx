@@ -4,8 +4,52 @@ import styles from './Homepage.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useEffect, useRef } from 'react';
 
 export default function Home() {
+
+  const brandsRef = useRef(null);
+
+  useEffect(() => {
+  const el = brandsRef.current;
+  if (!el) return;
+
+  let isDown = false;
+  let startX = 0;
+  let scrollLeft = 0;
+
+  function onPointerDown(e) {
+    isDown = true;
+    el.classList.add('is-dragging');
+    startX = e.clientX;
+    scrollLeft = el.scrollLeft;
+    e.preventDefault();
+  }
+
+  function onPointerMove(e) {
+    if (!isDown) return;
+    const x = e.clientX;
+    const walk = startX - x; 
+    el.scrollLeft = scrollLeft + walk;
+  }
+
+  function onPointerUp() {
+    isDown = false;
+    el.classList.remove('is-dragging');
+  }
+
+  el.addEventListener('pointerdown', onPointerDown);
+  window.addEventListener('pointermove', onPointerMove);
+  window.addEventListener('pointerup', onPointerUp);
+
+  return () => {
+    el.removeEventListener('pointerdown', onPointerDown);
+    window.removeEventListener('pointermove', onPointerMove);
+    window.removeEventListener('pointerup', onPointerUp);
+  };
+}, []);
+
+
   return(
     <div className={styles.container}>
       
@@ -110,36 +154,85 @@ export default function Home() {
       </div>
 
       {/* Marcas */}
-      <div className={styles.brands}>
-        <Image
-          src="/symbols/adidas.svg"
-          alt="Adidas"
-          width={180}
-          height={80}
-          className={styles.brandLogo}
-        />
-        <Image
-          src="/symbols/nike.svg" 
-          alt="Nike"
-          width={180}
-          height={80}
-          className={styles.brandLogo}
-        />
-        <Image
-          src="/symbols/bape.svg" 
-          alt="Nike"
-          width={180}
-          height={80}
-          className={styles.brandLogo}
-        />
-        <Image
-          src="/symbols/newbalance.svg" 
-          alt="Nike"
-          width={180}
-          height={80}
-          className={styles.brandLogo}
-        />
-      </div>
+    <section className={styles.brandsSection}>
+
+        <div className={styles.brands}>
+
+         <div className={styles.brandItem}> 
+            <Image src="/marcas/nike.svg" 
+            alt="Nike" 
+            width={180} 
+            height={80} 
+            className={styles.brandLogo}
+            />
+          </div>
+
+         <div className={styles.brandItem}> 
+            <Image src="/marcas/adidas.svg" 
+            alt="Adidas" 
+            width={180} 
+            height={80} 
+            className={styles.brandLogo}
+            />
+          </div>
+
+         <div className={styles.brandItem}> 
+            <Image src="/marcas/newbalance.svg" 
+            alt="New Balance" 
+            width={180} 
+            height={80} 
+            className={styles.brandLogo}
+            />
+          </div>
+
+         <div className={styles.brandItem}> 
+            <Image src="/marcas/jordan.svg" 
+            alt="Jordan" 
+            width={180} 
+            height={80} 
+            className={styles.brandLogo}
+            />
+          </div>
+
+         <div className={styles.brandItem}> 
+            <Image src="/marcas/bape.svg" 
+            alt="Bape" 
+            width={180} 
+            height={80} 
+            className={styles.brandLogo}
+            />
+          </div>
+
+         <div className={styles.brandItem}> 
+            <Image src="/marcas/supreme.svg" 
+            alt="Supreme" 
+            width={180} 
+            height={80} 
+            className={styles.brandLogo}
+            />
+          </div>
+
+         <div className={styles.brandItem}> 
+            <Image src="/marcas/offwhite.svg" 
+            alt="Off White" 
+            width={180} 
+            height={80} 
+            className={styles.brandLogo}
+            />
+          </div>
+
+         <div className={styles.brandItem}> 
+            <Image src="/marcas/louisvuitton.svg" 
+            alt="Louis Vuitton" 
+            width={180} 
+            height={80} 
+            className={styles.brandLogo}
+            />
+          </div>
+
+        </div>
+
+    </section>
 
       {/* Sneakers em Destaque Section */}
       <div className={styles.featuredSection}>

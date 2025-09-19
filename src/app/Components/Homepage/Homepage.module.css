@@ -133,15 +133,35 @@
 
 /* Marcas */
 
+.brandsSection {
+  margin: 2rem 0;
+}
+
+/* Marcas Carrossel */
+
 .brands {
-  width: 100%;
-  padding: 1.5rem 2rem;
-  display: flex;  
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  touch-action: pan-x;  /* permite arrastar no mobile */
+  padding: 0 1rem;
+}
+
+.brands::-webkit-scrollbar { display: none; }
+.brands { -ms-overflow-style: none; scrollbar-width: none; }
+
+.brandItem {
+  flex: 0 0 auto;       /* impede encolher */
+  min-width: 120px;     /* largura mínima do card */
+  scroll-snap-align: start;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0rem;
-  overflow-x: auto;
-  scrollbar-width: none; 
+}
+
+.brandLogo:hover {
+  transform: scale(1.05);
 }
 
 /* Destaques */
