@@ -131,38 +131,41 @@
   background: #243b5c; /* leve variação no hover */
 }
 
-/* Marcas */
-
+/* Sessão de Marcas */
 .brandsSection {
   margin: 2rem 0;
+  padding: 1rem 0;
+  overflow-x: auto;          /* 👈 habilita rolagem se não couber em telas muito pequenas */
 }
 
-/* Marcas Carrossel */
-
+/* Container das marcas */
 .brands {
   display: flex;
+  flex-wrap: nowrap;         /* 👈 tudo em uma linha só */
+  justify-content: space-between;
+  align-items: center;
   gap: 1rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  touch-action: pan-x;  /* permite arrastar no mobile */
-  padding: 0 1rem;
 }
 
-.brands::-webkit-scrollbar { display: none; }
-.brands { -ms-overflow-style: none; scrollbar-width: none; }
-
+/* Cada item */
 .brandItem {
-  flex: 0 0 auto;       /* impede encolher */
-  min-width: 120px;     /* largura mínima do card */
-  scroll-snap-align: start;
+  flex: 0 0 auto;            /* mantém largura fixa */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* Logos */
+.brandLogo {
+  width: 80px;               /* 👈 tamanho reduzido p/ caber no mobile */
+  height: auto;
+  transition: transform 0.2s ease;
+}
+
 .brandLogo:hover {
   transform: scale(1.05);
 }
+
 
 /* Destaques */
 

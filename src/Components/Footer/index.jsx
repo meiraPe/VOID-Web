@@ -48,7 +48,14 @@ export default function Footer() {
           <p>Atendimento e Suporte</p>
           <p>Trocas e Devoluções</p>
           <p>Termos de Uso</p>
-          <img className={styles.img2} src="#" alt="Reclame Aqui" />
+          <Image className={styles.img2}
+          src="logos/ReclameAQUI.png"
+          alt="reclameAQUI"
+          width={120}  
+          height={60}
+          priority
+          style={{ objectFit: "contain" }} 
+          unoptimized/>
         </div>
 
         {/* Grupo 3 - Sobre */}
@@ -64,19 +71,91 @@ export default function Footer() {
         <div className={styles.group4}>
           <h2>SOCIAL</h2>
           <div className={styles.socialIcons}>
-            <img className={styles.img4} src="#" alt="Instagram" />
-            <img className={styles.img4} src="#" alt="Facebook" />
-            <img className={styles.img4} src="#" alt="Twitter" />
-            <img className={styles.img4} src="#" alt="TikTok" />
+            <Image className={styles.img4} 
+            src="#" 
+            alt="Instagram" 
+            width={120}  
+            height={60}
+            priority
+            style={{ objectFit: "contain" }} 
+            unoptimized/>
+
+            <Image className={styles.img4} 
+            src="symbols/facebook.png" 
+            alt="Facebook" 
+            width={120}  
+            height={60}
+            priority
+            style={{ objectFit: "contain" }} 
+            unoptimized/>
+
+            <Image className={styles.img4} 
+            src="#" 
+            alt="Twitter" 
+            width={120}  
+            height={60}
+            priority
+            style={{ objectFit: "contain" }} 
+            unoptimized/>
+
+            <Image className={styles.img4} 
+            src="#" 
+            alt="Tiktok" 
+            width={120}  
+            height={60}
+            priority
+            style={{ objectFit: "contain" }} 
+            unoptimized/>
+
           </div>
 
           <h2>FORMAS DE PAGAMENTO</h2>
           <div className={styles.payments}>
-            <img className={styles.img5} src="#" alt="Visa" />
-            <img className={styles.img5} src="#" alt="MasterCard" />
-            <img className={styles.img5} src="#" alt="Elo" />
-            <img className={styles.img5} src="#" alt="Amex" />
-            <img className={styles.img5} src="#" alt="Pix" />
+            <Image className={styles.img5} 
+            src="#" 
+            alt="Visa" 
+            width={30}  
+            height={30}
+            priority
+            style={{ objectFit: "contain" }} 
+            unoptimized/>
+            
+            <Image className={styles.img5} 
+            src="#" 
+            alt="MasterCard"
+            width={30}  
+            height={30}
+            priority
+            style={{ objectFit: "contain" }} 
+            unoptimized/>
+            
+            <Image className={styles.img5} 
+            src="#" 
+            alt="Elo"
+            width={30}  
+            height={30}
+            priority
+            style={{ objectFit: "contain" }} 
+            unoptimized/>
+            
+            <Image className={styles.img5}
+            src="#" 
+            alt="Amex"
+            width={30}  
+            height={30}
+            priority
+            style={{ objectFit: "contain" }} 
+            unoptimized/>
+            
+            <Image className={styles.img5} 
+            src="#" 
+            alt="Pix"
+            width={30}  
+            height={30}
+            priority
+            style={{ objectFit: "contain" }} 
+            unoptimized/>
+
           </div>
         </div>
       </div>
@@ -84,7 +163,15 @@ export default function Footer() {
       {/* Rodapé inferior */}
       <div className={styles.bottom}>
         <div className={styles.lang}>
-          <img src="#" alt="Português - BR" />
+          <Image 
+          src="#" 
+          alt="Português - BR" 
+          width={60}  
+          height={60}
+          priority
+          style={{ objectFit: "contain" }} 
+          unoptimized/>
+          
           <span>Português - BR</span>
         </div>
         <p>

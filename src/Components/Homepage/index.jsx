@@ -3,53 +3,8 @@
 import styles from './Homepage.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useEffect, useRef } from 'react';
 
 export default function Home() {
-
-  const brandsRef = useRef(null);
-
-  useEffect(() => {
-  const el = brandsRef.current;
-  if (!el) return;
-
-  let isDown = false;
-  let startX = 0;
-  let scrollLeft = 0;
-
-  function onPointerDown(e) {
-    isDown = true;
-    el.classList.add('is-dragging');
-    startX = e.clientX;
-    scrollLeft = el.scrollLeft;
-    e.preventDefault();
-  }
-
-  function onPointerMove(e) {
-    if (!isDown) return;
-    const x = e.clientX;
-    const walk = startX - x; 
-    el.scrollLeft = scrollLeft + walk;
-  }
-
-  function onPointerUp() {
-    isDown = false;
-    el.classList.remove('is-dragging');
-  }
-
-  el.addEventListener('pointerdown', onPointerDown);
-  window.addEventListener('pointermove', onPointerMove);
-  window.addEventListener('pointerup', onPointerUp);
-
-  return () => {
-    el.removeEventListener('pointerdown', onPointerDown);
-    window.removeEventListener('pointermove', onPointerMove);
-    window.removeEventListener('pointerup', onPointerUp);
-  };
-}, []);
-
-
   return(
     <div className={styles.container}>
       
