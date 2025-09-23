@@ -1,31 +1,23 @@
-import Signin from "./Components/Signin";
-import MenuMob from "./Components/MenuMobile";
-import HeaderDesk from "./Components/HeaderDesk";
-import styles from './page.module.css';
-import Sacola from "./Components/Sacola";
-import Home from "./Components/Homepage"
-import Footer from "./Components/Footer";
+import MenuMob from "../Components/MenuMobile";
+import HeaderDesk from "../Components/HeaderDesk";
+import styles from "./page.module.css";
+import Home from "../Components/Homepage";
+import Footer from "../Components/Footer";
 
 export default function Page() {
   return (
-    <>  
+    <>
       <div className={styles.mobile}>
-        <MenuMob/>  
-        
+        <MenuMob />
       </div>
 
       <div className={styles.desktop}>
-        <HeaderDesk/>
+        <HeaderDesk />
       </div>
 
-      <Home/>
+      <Home />
 
-      <Signin/>
-
-      <Sacola/>
-      
-      <Footer/>
+      <Footer />
     </>
   );
 }
-
