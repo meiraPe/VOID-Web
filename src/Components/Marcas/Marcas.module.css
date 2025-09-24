@@ -1,0 +1,34 @@
+/* Sessão de Marcas */
+.brandsSection {
+  margin: 2rem 0;
+  padding: 1rem 0;
+  overflow-x: auto;          /* 👈 habilita rolagem se não couber em telas muito pequenas */
+}
+
+/* Container das marcas */
+.brands {
+  display: flex;
+  flex-wrap: nowrap;         /* 👈 tudo em uma linha só */
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Cada item */
+.brandItem {
+  flex: 0 0 auto;            /* mantém largura fixa */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logos */
+.brandLogo {
+  width: 80px;               /* 👈 tamanho reduzido p/ caber no mobile */
+  height: auto;
+  transition: transform 0.2s ease;
+}
+
+.brandLogo:hover {
+  transform: scale(1.05);
+}

@@ -131,40 +131,7 @@
   background: #243b5c; /* leve variação no hover */
 }
 
-/* Sessão de Marcas */
-.brandsSection {
-  margin: 2rem 0;
-  padding: 1rem 0;
-  overflow-x: auto;          /* 👈 habilita rolagem se não couber em telas muito pequenas */
-}
 
-/* Container das marcas */
-.brands {
-  display: flex;
-  flex-wrap: nowrap;         /* 👈 tudo em uma linha só */
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-}
-
-/* Cada item */
-.brandItem {
-  flex: 0 0 auto;            /* mantém largura fixa */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Logos */
-.brandLogo {
-  width: 80px;               /* 👈 tamanho reduzido p/ caber no mobile */
-  height: auto;
-  transition: transform 0.2s ease;
-}
-
-.brandLogo:hover {
-  transform: scale(1.05);
-}
 
 
 /* Destaques */
@@ -186,56 +153,4 @@
   color: #243b5c;
 }
 
-.productsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 1rem;
-  width: 100%;
-  margin-top: 1.5rem;
-}
 
-.productCard {
-  font-family: var(--title);
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 0.5rem;  
-  display: flex; 
-  align-items: center;
-  gap: 0.7rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease;
-}
-
-.productCard:hover {
-  transform: translateY(-3px);
-}
-
-.productImage {
-  width: 90px;   
-  height: auto;
-  object-fit: contain;
-  flex-shrink: 0; 
-}
-
-.productInfo {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 0.5rem;
-  gap: 0rem;
-}
-
-.productBrand {
- font-size: 0.85rem;
-  color: #7e7e7e;
-  font-weight: 100;
-  line-height: 0.9; 
-  margin: 0; 
-}
-
-.productName {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #111;
-  line-height: 1.1;
-}

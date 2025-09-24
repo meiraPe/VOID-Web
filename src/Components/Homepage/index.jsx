@@ -3,6 +3,8 @@
 import styles from './Homepage.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import Marcas from '@/Components/Marcas';
+import Sneakers from '../Sneakers';
 
 export default function Home() {
   return(
@@ -109,85 +111,14 @@ export default function Home() {
       </div>
 
       {/* Marcas */}
-    <section className={styles.brandsSection}>
-
-        <div className={styles.brands}>
-
-         <div className={styles.brandItem}> 
-            <Image src="/marcas/nike.svg" 
-            alt="Nike" 
-            width={180} 
-            height={80} 
-            className={styles.brandLogo}
-            />
-          </div>
-
-         <div className={styles.brandItem}> 
-            <Image src="/marcas/adidas.svg" 
-            alt="Adidas" 
-            width={180} 
-            height={80} 
-            className={styles.brandLogo}
-            />
-          </div>
-
-         <div className={styles.brandItem}> 
-            <Image src="/marcas/newbalance.svg" 
-            alt="New Balance" 
-            width={180} 
-            height={80} 
-            className={styles.brandLogo}
-            />
-          </div>
-
-         <div className={styles.brandItem}> 
-            <Image src="/marcas/jordan.svg" 
-            alt="Jordan" 
-            width={180} 
-            height={80} 
-            className={styles.brandLogo}
-            />
-          </div>
-
-         <div className={styles.brandItem}> 
-            <Image src="/marcas/bape.svg" 
-            alt="Bape" 
-            width={180} 
-            height={80} 
-            className={styles.brandLogo}
-            />
-          </div>
-
-         <div className={styles.brandItem}> 
-            <Image src="/marcas/supreme.svg" 
-            alt="Supreme" 
-            width={180} 
-            height={80} 
-            className={styles.brandLogo}
-            />
-          </div>
-
-         <div className={styles.brandItem}> 
-            <Image src="/marcas/offwhite.svg" 
-            alt="Off White" 
-            width={180} 
-            height={80} 
-            className={styles.brandLogo}
-            />
-          </div>
-
-         <div className={styles.brandItem}> 
-            <Image src="/marcas/louisvuitton.svg" 
-            alt="Louis Vuitton" 
-            width={180} 
-            height={80} 
-            className={styles.brandLogo}
-            />
-          </div>
-
-        </div>
-
-    </section>
+      <Marcas imagemUrl="/marcas/nike.svg" />
+      <Marcas imagemUrl="/marcas/adidas.svg" />
+      <Marcas imagemUrl="/marcas/newbalance.svg" />
+      <Marcas imagemUrl="/marcas/jordan.svg" />
+      <Marcas imagemUrl="/marcas/bape.svg" />
+      <Marcas imagemUrl="/marcas/offwhite.svg" />
+      <Marcas imagemUrl="/marcas/supreme.svg" />
+      <Marcas imagemUrl="/marcas/louisvuitton.svg" />
 
       {/* Sneakers em Destaque Section */}
       <div className={styles.featuredSection}>
@@ -196,101 +127,15 @@ export default function Home() {
         <h2 className={styles.sectionTitle}><span>Sneakers</span> em Destaque</h2>
 
         {/* Products Grid */}
-        <div className={styles.productsGrid}>
+        
+        <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
+        <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
+        <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
+        <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
+        <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
+        <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
 
-          <div className={styles.productCard}>
-            <Image
-              src="/produtos/shoxIcon.jpg"
-              alt="Sneaker 1"
-              width={120}
-              height={60}
-              className={styles.productImage}
-            />
-
-            <div className={styles.productInfo}>
-              <span className={styles.productBrand}>NIKE</span>
-              <h3 className={styles.productName}>SHOX TL "SUNRISE"</h3>
-            </div>
-          </div>
-          
-          <div className={styles.productCard}>
-            <Image
-              src="/produtos/shoxIcon.jpg"
-              alt="Sneaker 1"
-              width={120}
-              height={60}
-              className={styles.productImage}
-            />
-
-            <div className={styles.productInfo}>
-              <span className={styles.productBrand}>NIKE</span>
-              <h3 className={styles.productName}>SHOX TL "SUNRISE"</h3>
-            </div>
-          </div>
-
-          <div className={styles.productCard}>
-            <Image
-              src="/produtos/shoxIcon.jpg"
-              alt="Sneaker 1"
-              width={120}
-              height={60}
-              className={styles.productImage}
-            />
-
-            <div className={styles.productInfo}>
-              <span className={styles.productBrand}>NIKE</span>
-              <h3 className={styles.productName}>SHOX TL "SUNRISE"</h3>
-            </div>
-          </div>
-
-          <div className={styles.productCard}>
-            <Image
-              src="/produtos/shoxIcon.jpg"
-              alt="Sneaker 1"
-              width={120}
-              height={60}
-              className={styles.productImage}
-            />
-
-            <div className={styles.productInfo}>
-              <span className={styles.productBrand}>NIKE</span>
-              <h3 className={styles.productName}>SHOX TL "SUNRISE"</h3>
-            </div>
-          </div>
-
-          <div className={styles.productCard}>
-            <Image
-              src="/produtos/shoxIcon.jpg"
-              alt="Sneaker 1"
-              width={120}
-              height={60}
-              className={styles.productImage}
-            />
-
-            <div className={styles.productInfo}>
-              <span className={styles.productBrand}>NIKE</span>
-              <h3 className={styles.productName}>SHOX TL "SUNRISE"</h3>
-            </div>
-          </div>
-
-          <div className={styles.productCard}>
-            <Image
-              src="/produtos/shoxIcon.jpg"
-              alt="Sneaker 1"
-              width={120}
-              height={60}
-              className={styles.productImage}
-            />
-
-            <div className={styles.productInfo}>
-              <span className={styles.productBrand}>NIKE</span>
-              <h3 className={styles.productName}>SHOX TL "SUNRISE"</h3>
-            </div>
-          </div>
-          
-        </div>
-
-        </div>
+       </div>
 
     </div>
   )
