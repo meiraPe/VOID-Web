@@ -4,7 +4,6 @@ import styles from './Sneakers.module.css';
 
 export default function Sneakers({ imagem1Url, marca, nome }) {
   return (
-    <div className={styles.productsGrid}>
       <div className={styles.productCard}>
         <Image
           src={imagem1Url}
@@ -19,6 +18,5 @@ export default function Sneakers({ imagem1Url, marca, nome }) {
           <h3 className={styles.productName}>{nome}</h3>
         </div>
       </div>
-    </div>
   );
 }

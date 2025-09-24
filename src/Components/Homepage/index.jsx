@@ -111,14 +111,14 @@ export default function Home() {
       </div>
 
       {/* Marcas */}
-      <Marcas imagemUrl="/marcas/nike.svg" />
-      <Marcas imagemUrl="/marcas/adidas.svg" />
-      <Marcas imagemUrl="/marcas/newbalance.svg" />
-      <Marcas imagemUrl="/marcas/jordan.svg" />
-      <Marcas imagemUrl="/marcas/bape.svg" />
-      <Marcas imagemUrl="/marcas/offwhite.svg" />
-      <Marcas imagemUrl="/marcas/supreme.svg" />
-      <Marcas imagemUrl="/marcas/louisvuitton.svg" />
+      <section className={styles.brandsSection}>
+        <Marcas imagemUrl="/marcas/nike.svg" />
+        <Marcas imagemUrl="/marcas/adidas.svg" />
+        <Marcas imagemUrl="/marcas/newbalance.svg" />
+        <Marcas imagemUrl="/marcas/jordan.svg" />
+        <Marcas imagemUrl="/marcas/bape.svg" />
+        <Marcas imagemUrl="/marcas/supreme.svg" />
+      </section>
 
       {/* Sneakers em Destaque Section */}
       <div className={styles.featuredSection}>
@@ -127,13 +127,21 @@ export default function Home() {
         <h2 className={styles.sectionTitle}><span>Sneakers</span> em Destaque</h2>
 
         {/* Products Grid */}
-        
-        <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
-        <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
-        <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
-        <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
-        <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
-        <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
+        <section className={styles.productsGrid}>
+          
+          <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
+          
+          <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
+
+          <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
+
+          <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
+
+          <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
+
+          <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
+
+        </section>
 
        </div>
 

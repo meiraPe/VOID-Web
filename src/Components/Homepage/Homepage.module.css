@@ -131,7 +131,25 @@
   background: #243b5c; /* leve variação no hover */
 }
 
+/* Marcas */
 
+.brandsSection {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: auto; 
+  flex-wrap: nowrap; 
+  gap: 0; 
+  scrollbar-width: none;  
+}
+
+.brandsSection::-webkit-scrollbar {
+  display: none; 
+}
+
+.brandItem {
+  flex: 0 0 auto; 
+}
 
 
 /* Destaques */
@@ -153,4 +171,10 @@
   color: #243b5c;
 }
 
-
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 1rem;
+  width: 100%;
+  margin-top: 1.5rem;
+}

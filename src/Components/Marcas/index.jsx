@@ -3,9 +3,6 @@ import styles from "./Marcas.module.css";
 
 export default function Marcas({imagemUrl}) {
   return(
-    <div>
-    <section className={styles.brandsSection}>
-
         <div className={styles.brands}>
 
          <div className={styles.brandItem}> 
@@ -16,9 +13,7 @@ export default function Marcas({imagemUrl}) {
             className={styles.brandLogo}
             />
           </div>
-          
+
         </div>
-    </section>
-    </div>
   )
 }
