@@ -5,8 +5,30 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Marcas from '@/Components/Marcas';
 import Sneakers from '../Sneakers';
+import { useMarcaStore } from '../../stores/setMarcaStore.js'
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const { marcas, setMarcas } = useMarcaStore()
+
+  useEffect(() => {
+    async function listMarcas() {
+      try {
+        const response = await fetch('http://localhost:3333/marcas');
+        if (response.ok) {
+          const data = await response.json();
+          
+          setMarcas(data);
+        } else {
+          console.log('Erro ao listar marcas');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    listMarcas();
+  }, []);
+
   return(
     <div className={styles.container}>
       
@@ -112,12 +134,12 @@ export default function Home() {
 
       {/* Marcas */}
       <section className={styles.brandsSection}>
-        <Marcas imagemUrl="/marcas/nike.svg" />
-        <Marcas imagemUrl="/marcas/adidas.svg" />
-        <Marcas imagemUrl="/marcas/newbalance.svg" />
-        <Marcas imagemUrl="/marcas/jordan.svg" />
-        <Marcas imagemUrl="/marcas/bape.svg" />
-        <Marcas imagemUrl="/marcas/supreme.svg" />
+        {marcas.map(marca => (
+        <Marcas
+          key={marca.id}
+          imagemUrl={marca.imagemUrl}
+        />
+      ))}
       </section>
 
       {/* Sneakers em Destaque Section */}
