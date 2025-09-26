@@ -5,19 +5,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Marcas from '@/Components/Marcas';
 import Sneakers from '../Sneakers';
-import { useMarcaStore } from '../../stores/setMarcaStore.js'
-import { useEffect, useState } from 'react';
+import { useMarcaStore } from '../../stores/useMarcaStore.js';
+import { useProdutoStore } from '../../stores/useProdutoStore.js';
+import { useEffect } from 'react';
 
 export default function Home() {
-  const { marcas, setMarcas } = useMarcaStore()
+  const { marcas, setMarcas } = useMarcaStore();
+  const { produtos, setProdutos } = useProdutoStore();
 
+  // Marcas
   useEffect(() => {
     async function listMarcas() {
       try {
         const response = await fetch('http://localhost:3333/marcas');
         if (response.ok) {
           const data = await response.json();
-          
           setMarcas(data);
         } else {
           console.log('Erro ao listar marcas');
@@ -27,78 +29,91 @@ export default function Home() {
       }
     }
     listMarcas();
-  }, []);
+  }, [setMarcas]);
 
-  return(
+  // Produtos
+  useEffect(() => {
+    async function listProdutos() {
+      try {
+        const response = await fetch('http://localhost:3333/produtos');
+        if (response.ok) {
+          const data = await response.json();
+          setProdutos(data);
+        } else {
+          console.log('Erro ao listar produtos');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    listProdutos();
+  }, [setProdutos]);
+
+  return (
     <div className={styles.container}>
       
       {/* Header Home Mobile */}
-
       <header className={styles.headerGradient}></header>
 
       <header className={styles.headerMobile}>
-
         <div className={styles.right}>
           <Image
             className={styles.logo}
             src="/logos/pngBRANCO.png"
             alt="Logo"
-            width={120}  
+            width={120}
             height={60}
             priority
-            quality={100} 
-            style={{ objectFit: "contain" }} 
+            quality={100}
+            style={{ objectFit: "contain" }}
             unoptimized
           />
-          </div>
-
-          <div className={styles.left}>
-            <div className={styles.searchBox}>
-                <Image
-                  src="/symbols/searchWhite.svg"
-                  alt="Buscar"
-                  width={18}
-                  height={18}
-                  style={{ marginRight: "0.4rem" }}
-                />
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className={styles.searchInput}
-                />
-              </div>
-
         </div>
-        </header>
 
-      {/* Banner Desktop */}
-
-      <div className={styles.bannerDesktop}>
-
-        <div className={styles.boxBanner}>  
-          <Image
-              src="/placeholders/bannerHome.jpg"
-              alt="Banner Home"
-              width={1800}
-              height={650}
-              priority
-              className={styles.imageBanner}
+        <div className={styles.left}>
+          <div className={styles.searchBox}>
+            <Image
+              src="/symbols/searchWhite.svg"
+              alt="Buscar"
+              width={18}
+              height={18}
+              style={{ marginRight: "0.4rem" }}
+            />
+            <input
+              type="text"
+              placeholder="Search"
+              className={styles.searchInput}
             />
           </div>
+        </div>
+      </header>
+
+      {/* Banner Desktop */}
+      <div className={styles.bannerDesktop}>
+        <div className={styles.boxBanner}>
+          <Image
+            src="/placeholders/bannerHome.jpg"
+            alt="Banner Home"
+            width={1800}
+            height={650}
+            priority
+            className={styles.imageBanner}
+          />
+        </div>
 
         <div className={styles.textBox}>
-          <h1> NIKE TOTAL 90 <br/> REISSUE <br/> BRAZIL 2004 </h1>
-          <p> Icônica, Atemporal </p>
+          <h1>NIKE TOTAL 90 <br /> REISSUE <br /> BRAZIL 2004</h1>
+          <p>Icônica, Atemporal</p>
           <button className={styles.shopNowBtn}>
             <Link href="/products">Ver Mais</Link>
             <Image src="/symbols/next.png" alt="Seta para direita" width={20} height={20} />
           </button>
-        </div> 
+        </div>
       </div>
 
       {/* Banner Mobile */}
       <div className={styles.bannerMobile}>
-        <div className={styles.boxBanner}>  
+        <div className={styles.boxBanner}>
           <Image
             src="/placeholders/bannerHomeMobile.jpg"
             alt="Banner Home"
@@ -134,39 +149,32 @@ export default function Home() {
 
       {/* Marcas */}
       <section className={styles.brandsSection}>
-        {marcas.map(marca => (
-        <Marcas
-          key={marca.id}
-          imagemUrl={marca.imagemUrl}
-        />
-      ))}
+        {marcas.map((marca) => (
+          <Marcas
+            key={marca.id}
+            imagemUrl={marca.imagemUrl}
+          />
+        ))}
       </section>
 
       {/* Sneakers em Destaque Section */}
       <div className={styles.featuredSection}>
-
-        {/* Title */}
-        <h2 className={styles.sectionTitle}><span>Sneakers</span> em Destaque</h2>
+        <h2 className={styles.sectionTitle}>
+          <span>Sneakers</span> em Destaque
+        </h2>
 
         {/* Products Grid */}
         <section className={styles.productsGrid}>
-          
-          <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
-          
-          <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
-
-          <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
-
-          <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
-
-          <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
-
-          <Sneakers imagem1Url="/produtos/shoxIcon.jpg" marca="NIKE" nome='SHOX TL "SUNRISE"' />
-
+          {produtos.map((produto) => (
+            <Sneakers
+              key={produto.id}
+              imagem1Url={produto.imagem1Url}
+              marca={produto.marca?.nome || ""}
+              nome={produto.nome}
+            />
+          ))}
         </section>
-
-       </div>
-
+      </div>
     </div>
-  )
+  );
 }
