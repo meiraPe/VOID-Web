@@ -49,7 +49,7 @@ export default function Footer() {
           <p>Trocas e Devoluções</p>
           <p>Termos de Uso</p>
           <Image className={styles.img2}
-          src="logos/ReclameAQUI.png"
+          src="symbols/reclame.png"
           alt="reclameAQUI"
           width={120}  
           height={60}
@@ -72,9 +72,9 @@ export default function Footer() {
           <h2>SOCIAL</h2>
           <div className={styles.socialIcons}>
             <Image className={styles.img4} 
-            src="#" 
+            src="symbols/instagram.webp" 
             alt="Instagram" 
-            width={120}  
+            width={100}  
             height={60}
             priority
             style={{ objectFit: "contain" }} 
@@ -83,14 +83,14 @@ export default function Footer() {
             <Image className={styles.img4} 
             src="symbols/facebook.png" 
             alt="Facebook" 
-            width={120}  
+            width={100}  
             height={60}
             priority
             style={{ objectFit: "contain" }} 
             unoptimized/>
 
             <Image className={styles.img4} 
-            src="#" 
+            src="symbols/twitter.png" 
             alt="Twitter" 
             width={120}  
             height={60}
@@ -99,9 +99,9 @@ export default function Footer() {
             unoptimized/>
 
             <Image className={styles.img4} 
-            src="#" 
+            src="symbols/Tiktok.png" 
             alt="Tiktok" 
-            width={120}  
+            width={100}  
             height={60}
             priority
             style={{ objectFit: "contain" }} 
