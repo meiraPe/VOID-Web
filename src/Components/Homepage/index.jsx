@@ -181,8 +181,20 @@ export default function Home() {
               nome={produto.nome}
             />
           ))}
-        </section>
+      </section>
       </div>
+
+      {/* Rodapé */}
+      <footer className={styles.footer}>
+        <h2>COMPRE E VENDA COM MAIOR COMODIDADE</h2>
+        <div className={styles.stores}>
+          <Link href="#"><Image src="/placeholders/googleplay.png" alt="Google Play" width={140} height={42} /></Link>
+          <Link href="#"><Image src="/placeholders/appstore.png" alt="Apple Store" width={140} height={42} /></Link>
+        </div>
+        <div className={styles.mockups}>
+          <Image src="/placeholders/mockup1.png" alt="App Mockup 1" width={300} height={190} priority />
+        </div>
+      </footer>
     </div>
   );
 }

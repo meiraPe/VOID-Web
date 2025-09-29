@@ -8,16 +8,17 @@ export default function Page() {
   return (
     <>
       <div className={styles.mobile}>
+        <Home />
         <MenuMob />
       </div>
 
       <div className={styles.desktop}>
         <HeaderDesk />
+        <Home />
+        <Footer />
       </div>
 
-      <Home />
-
-      <Footer />
+      
     </>
   );
 }
