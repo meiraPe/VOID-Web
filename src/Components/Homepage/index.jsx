@@ -92,10 +92,10 @@ export default function Home() {
       <div className={styles.bannerDesktop}>
         <div className={styles.boxBanner}>
           <Image
-            src="/placeholders/bannerHome.jpg"
+            src="/placeholders/bannerHomeDesktop.jpg"
             alt="Banner Home"
             width={1800}
-            height={650}
+            height={550}
             priority
             className={styles.imageBanner}
           />
@@ -104,10 +104,18 @@ export default function Home() {
         <div className={styles.textBox}>
           <h1>NIKE TOTAL 90 <br /> REISSUE <br /> BRAZIL 2004</h1>
           <p>Icônica, Atemporal</p>
-          <button className={styles.shopNowBtn}>
-            <Link href="/products">Ver Mais</Link>
-            <Image src="/symbols/next.png" alt="Seta para direita" width={20} height={20} />
-          </button>
+
+          <Link href="/products">
+              <button className={styles.shopNowBtn}>
+                Ver Mais
+                <Image
+                  src="/symbols/arrow-right-white.svg"
+                  alt="Seta para direita"
+                  width={30}
+                  height={30}
+                />
+              </button>
+            </Link>
         </div>
       </div>
 
