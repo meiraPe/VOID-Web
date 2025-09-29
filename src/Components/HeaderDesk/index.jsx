@@ -65,7 +65,12 @@ export default function HeaderDesk() {
               className={styles.searchInput}
             />
           </div>
-          <Image
+          <Image 
+            onClick={(e) => {
+            e.preventDefault(); // evita reload da página
+            setShowBox(!showBox);
+          }}
+            style={{ color: "blue", cursor: "pointer" }}
             className={styles.profileImg}
             src="/symbols/Profile.svg"
             alt="Perfil"

@@ -1,0 +1,88 @@
+.header {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.leftGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.backBtn {
+  border: none;
+  background: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.315);
+}
+
+.title {
+  font-family: Bebas Neue; 
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.infolinks h2  {
+    color: #000;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.infolinks a {
+    text-decoration: none;
+}
+
+.link {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-left: 4%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.info1 {
+    display: flex;
+    flex-direction: column;
+    border-bottom: #000 1px solid;
+    margin-top: 1%;
+}
+
+.info2 {
+    display: flex;
+    flex-direction: column;
+    border-bottom: #000 1px solid;
+    margin-top: 1%;
+}
+
+.info3 {
+    display: flex;
+    flex-direction: column;
+    border-bottom: #000 1px solid;
+    margin-top: 1%;
+}
+
+.info4 {
+    display: flex;
+    flex-direction: column;
+    border-bottom: #000 1px solid;
+    margin-top: 1%;
+}
+
+.info1 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1%;
+}

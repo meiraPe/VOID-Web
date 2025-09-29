@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Void - Login",
+  title: "VOID",
   description: "",
   icons: {
     icon: "/logos/logoPRETO.png",

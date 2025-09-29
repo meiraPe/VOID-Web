@@ -64,7 +64,6 @@ export default function Home() {
             width={120}
             height={60}
             priority
-            quality={100}
             style={{ objectFit: "contain" }}
             unoptimized
           />
