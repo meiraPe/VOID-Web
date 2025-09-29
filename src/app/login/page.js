@@ -12,13 +12,16 @@ export default function Page() {
       <MenuMob />
       </div>
 
+      <Login />
+
       <div className={styles.desktop}>
         <HeaderDesk />
+        <Footer/>
       </div>
       
-      <Login />
       
-      <Footer/>
+      
+      
     </>
   );
 }

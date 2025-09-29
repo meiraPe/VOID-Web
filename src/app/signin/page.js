@@ -9,14 +9,18 @@ export default function Page() {
     <>
       <div className={styles.mobile}>
         <MenuMob />
+        <Signin />
       </div>
 
       <div className={styles.desktop}>
         <HeaderDesk />
+
+        <Signin />
+
         <Footer/>
       </div>
 
-      <Signin />
+      
 
       
     </>

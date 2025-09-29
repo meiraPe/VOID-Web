@@ -2,6 +2,10 @@
   display: block;
 }
 
+.Footer {
+  display: none;
+}
+
 .desktop {
   display: none;
 }

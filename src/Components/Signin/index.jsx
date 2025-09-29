@@ -66,11 +66,12 @@ export default function Signin() {
         {/* Formulário */}
         <section className={styles.section}>
           <form onSubmit={handleSubmit} className={styles.form}>
-            <h1 className={styles.title}>Cadastre-se</h1>
             <p className={styles.subtitle}>
-              Preencha os campos abaixo para criar sua conta
+              Preencha todos os campos:
             </p>
 
+
+            
             <div className={styles.inputGroup}>
               <label htmlFor="nome">Nome completo</label>
               <input
@@ -117,6 +118,16 @@ export default function Signin() {
                 onChange={handleChange}
                 required
               />
+            </div>
+
+            {/* Termos */}
+            <div className={styles.termsBox}>
+              <div className={styles.terms}>
+                <input type="checkbox" id="terms" />
+                <label htmlFor="terms">
+                  Você concorda com os <b>Termos de Uso</b> e <b>Políticas de privacidade</b> da Void?
+                </label>
+              </div>
             </div>
 
             <button type="submit" className={styles.submitBtn}>
