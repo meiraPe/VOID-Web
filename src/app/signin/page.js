@@ -9,6 +9,7 @@ export default function Page() {
     <>
       <div className={styles.mobile}>
         <MenuMob />
+
         <Signin />
       </div>
 
@@ -19,10 +20,6 @@ export default function Page() {
 
         <Footer/>
       </div>
-
-      
-
-      
     </>
   );
 }

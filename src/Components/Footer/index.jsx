@@ -75,7 +75,7 @@ export default function Footer() {
             src="symbols/instagram.webp" 
             alt="Instagram" 
             width={100}  
-            height={60}
+            height={30}
             priority
             style={{ objectFit: "contain" }} 
             unoptimized/>
@@ -84,7 +84,7 @@ export default function Footer() {
             src="symbols/facebook.png" 
             alt="Facebook" 
             width={100}  
-            height={60}
+            height={30}
             priority
             style={{ objectFit: "contain" }} 
             unoptimized/>
@@ -93,7 +93,7 @@ export default function Footer() {
             src="symbols/twitter.png" 
             alt="Twitter" 
             width={120}  
-            height={60}
+            height={30}
             priority
             style={{ objectFit: "contain" }} 
             unoptimized/>
@@ -102,7 +102,7 @@ export default function Footer() {
             src="symbols/Tiktok.png" 
             alt="Tiktok" 
             width={100}  
-            height={60}
+            height={30}
             priority
             style={{ objectFit: "contain" }} 
             unoptimized/>

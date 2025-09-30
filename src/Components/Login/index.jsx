@@ -113,7 +113,7 @@ export default function Login() {
         <Image src="/placeholders/bannerSignin.jpg" alt="Banner Signin" width={400} height={400} priority />
       </div>
 
-      {/* Rodapé */}
+      {/* Rodapé Mobile */}
       <footer className={styles.footer}>
         <h2>COMPRE E VENDA COM MAIOR COMODIDADE</h2>
         <div className={styles.stores}>
