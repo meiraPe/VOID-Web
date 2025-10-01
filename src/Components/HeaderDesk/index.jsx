@@ -3,11 +3,13 @@
 import styles from "./HeaderDesk.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function HeaderDesk() {
   const [showMenu, setShowMenu] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [showBox, setShowBox] = useState(false);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +25,16 @@ export default function HeaderDesk() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+   useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setShowBox(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <header
       className={`${styles.header} ${showMenu ? styles.visible : styles.hidden}`}
@@ -34,13 +46,14 @@ export default function HeaderDesk() {
       {/* Logo  + Nav */}
       <div className={styles.left}>  
       
+      <Link href="/" className={styles.logo}>  
         <Image
-          className={styles.logo}
           src="/logos/pngBRANCO.png"
           alt="Logo"
           width={100}
-          height={80}
+          height={40}
         />
+      </Link>
 
         <nav className={styles.nav}>
           <Link href="/marcas">Marcas</Link>
@@ -77,6 +90,16 @@ export default function HeaderDesk() {
             width={30}
             height={30}
           />
+
+          {/* Dropdown */}
+            {showBox && (
+              <div className={styles.dropdown}>
+                <Link href="/login">Entrar</Link>
+                <Link href="/signin">Criar Conta</Link>
+                <Link href="/notifications">Notificações</Link>
+                <button className={styles.logoutBtn}>Sair</button>
+              </div>
+            )}
         </div>
         </div>
     </header>

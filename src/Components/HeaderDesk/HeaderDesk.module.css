@@ -1,3 +1,6 @@
+/* =========================
+   HEADER PRINCIPAL
+========================= */
 .header {
   position: fixed;
   top: 1rem;    
@@ -27,7 +30,7 @@
 }
 
 .visible {
-   opacity: 1;
+  opacity: 1;
   transform: translate(-50%, 0);
 }
 
@@ -36,7 +39,9 @@
   transform: translate(-50%, -120%);
 }
 
-/* logo */
+/* =========================
+   LOGO
+========================= */
 .logo {
   padding: 0.2rem 0;
   height: auto;
@@ -44,7 +49,9 @@
   cursor: pointer;
 }
 
-/* links do menu */
+/* =========================
+   MENU DE NAVEGAÇÃO
+========================= */
 .nav {
   display: flex;
   gap: 1.5rem;
@@ -70,7 +77,9 @@
   gap: 2rem;
 }
 
-/* barra de busca + ícone */
+/* =========================
+   BARRA DE BUSCA + PERFIL
+========================= */
 .right {
   display: flex;
   align-items: center;
@@ -86,13 +95,19 @@
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
 }
 
-
 .searchInput {
   border: none;
   outline: none;
   font-size: 0.9rem;
   color: #333;
   width: 150px;
+}
+
+/* =========================
+   PERFIL + DROPDOWN
+========================= */
+.profileWrapper {
+  position: relative;
 }
 
 .profileImg {
@@ -107,7 +122,67 @@
   opacity: 0.7;
 }
 
-/* esconder no mobile */
+/* Menu suspenso */
+.dropdown {
+  font-family: var(--text);
+  position: absolute;
+  top: 120%; /* abaixo do ícone */
+  right: 0;
+  background: #fff;
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  padding: 0.8rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  min-width: 180px;
+  z-index: 2000;
+  animation: fadeDown 0.25s ease;
+}
+
+.dropdown a {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.dropdown a:hover {
+  color: #0d1a2b;
+}
+
+.logoutBtn {
+  background: none;
+  border: none;
+  color: #c00;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+}
+
+.logoutBtn:hover {
+  color: #a00;
+}
+
+/* Animação de entrada */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
 @media (max-width: 767px) {
   .header {
     display: none;

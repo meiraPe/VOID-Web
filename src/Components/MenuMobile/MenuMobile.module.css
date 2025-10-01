@@ -35,6 +35,157 @@
   transform: translateY(0);
 }
 
+.profileWrapper {
+  position: relative;
+}
+
+.dropup {
+  font-family: var(--text);
+  position: absolute;
+  bottom: 180%;
+  right: 0;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.15);
+  padding: 0.8rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  min-width: 100px;
+  z-index: 2000;
+}
+
+.dropup a {
+  color: #080f18;
+}
+
+/* Entrada */
+.opening {
+  animation: fadeUpIn 0.25s ease forwards;
+}
+
+/* Saída */
+.closing {
+  animation: fadeUpOut 0.25s ease forwards;
+}
+
+@keyframes fadeUpIn {
+  from {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUpOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+}
+
+/* === Menu principal fixo (mobile) === */
+.menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #080f18;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.8rem 0;
+}
+
+/* === Ícones === */
+.img {
+  width: 25px;
+  height: 25px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+}
+
+.img:hover {
+  opacity: 1;
+}
+
+/* === Mostrar/Esconder menu === */
+.hidden {
+  transform: translateY(100%);
+}
+
+.visible {
+  transform: translateY(0);
+}
+
+/* === Profile + Dropup === */
+.profileWrapper {
+  position: relative;
+}
+
+.dropup {
+  position: absolute;
+  bottom: 180%;
+  right: 0;
+  min-width: 130px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  padding: 0.8rem 1rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15);
+
+  font-family: var(--text);
+  z-index: 2000;
+}
+
+/* Links do Dropup */
+.dropup a {
+  text-decoration: none;
+  color: #080f18;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.dropup a:hover {
+  color: #1a2a3a;
+}
+
+/* Botão de logout */
+.logoutBtn {
+  all: unset;
+  cursor: pointer;
+  text-align: left;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #c62828;
+
+  transition: color 0.2s ease;
+}
+
+.logoutBtn:hover {
+  color: #e53935;
+}
+
+
 @media (min-width: 768px) {
   .header {
     display: none;

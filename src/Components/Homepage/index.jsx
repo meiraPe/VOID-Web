@@ -104,7 +104,7 @@ export default function Home() {
           <h1>NIKE TOTAL 90 <br /> REISSUE <br /> BRAZIL 2004</h1>
           <p>Icônica, Atemporal</p>
 
-          <Link href="/products">
+          <Link href="/marcas">
               <button className={styles.shopNowBtn}>
                 Ver Mais
                 <Image
