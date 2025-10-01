@@ -18,10 +18,6 @@ export default function Page() {
         <HeaderDesk />
         <Footer/>
       </div>
-      
-      
-      
-      
     </>
   );
 }
