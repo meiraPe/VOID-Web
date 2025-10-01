@@ -25,7 +25,7 @@ export default function HeaderDesk() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-   useEffect(() => {
+  useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setShowBox(false);
@@ -39,28 +39,24 @@ export default function HeaderDesk() {
     <header
       className={`${styles.header} ${showMenu ? styles.visible : styles.hidden}`}
     >
-    
-    <div className={styles.inner}>
-        
+      <div className={styles.inner}>
+        {/* Logo + Nav */}
+        <div className={styles.left}>
+          <Link href="/" className={styles.logo}>
+            <Image
+              src="/logos/pngBRANCO.png"
+              alt="Logo"
+              width={100}
+              height={40}
+            />
+          </Link>
 
-      {/* Logo  + Nav */}
-      <div className={styles.left}>  
-      
-      <Link href="/" className={styles.logo}>  
-        <Image
-          src="/logos/pngBRANCO.png"
-          alt="Logo"
-          width={100}
-          height={40}
-        />
-      </Link>
-
-        <nav className={styles.nav}>
-          <Link href="/marcas">Marcas</Link>
-          <Link href="/categorias">Categorias</Link>
-          <Link href="/sacola">Sacola</Link>
-        </nav>
-      </div>
+          <nav className={styles.nav}>
+            <Link href="/marcas">Marcas</Link>
+            <Link href="/categorias">Categorias</Link>
+            <Link href="/sacola">Sacola</Link>
+          </nav>
+        </div>
 
         {/* Busca + Perfil */}
         <div className={styles.right}>
@@ -78,11 +74,11 @@ export default function HeaderDesk() {
               className={styles.searchInput}
             />
           </div>
-          <Image 
+          <Image
             onClick={(e) => {
-            e.preventDefault(); // evita reload da página
-            setShowBox(!showBox);
-          }}
+              e.preventDefault(); // evita reload da página
+              setShowBox(!showBox);
+            }}
             style={{ color: "blue", cursor: "pointer" }}
             className={styles.profileImg}
             src="/symbols/Profile.svg"
@@ -92,16 +88,16 @@ export default function HeaderDesk() {
           />
 
           {/* Dropdown */}
-            {showBox && (
-              <div className={styles.dropdown}>
-                <Link href="/login">Entrar</Link>
-                <Link href="/signin">Criar Conta</Link>
-                <Link href="/notifications">Notificações</Link>
-                <button className={styles.logoutBtn}>Sair</button>
-              </div>
-            )}
+          {showBox && (
+            <div className={styles.dropdown}>
+              <Link href="/login">Entrar</Link>
+              <Link href="/signin">Criar Conta</Link>
+              <Link href="/notifications">Notificações</Link>
+              <button className={styles.logoutBtn}>Sair</button>
+            </div>
+          )}
         </div>
-        </div>
+      </div>
     </header>
   );
 }

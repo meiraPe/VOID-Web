@@ -181,6 +181,25 @@
 }
 
 /* =========================
+   CATEGORIES PANEL
+========================= */
+.categoriesPanel {
+  display: none;
+}
+
+.closeBtn {
+  display: none;
+}
+
+.title {
+  display: none;
+}
+
+.list {
+  display: none;
+}
+
+/* =========================
    RESPONSIVIDADE
 ========================= */
 @media (max-width: 767px) {

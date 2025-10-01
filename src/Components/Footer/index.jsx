@@ -27,7 +27,7 @@ export default function Footer() {
             width={120}  
             height={60} 
             priority
-            style={{ objectFit: "contain" }} 
+            style={{ objectFit: "contain", marginRight: "16px" }} 
             unoptimized/>
 
             <Image className={styles.img1} 
@@ -74,7 +74,7 @@ export default function Footer() {
             <Image className={styles.img4} 
             src="symbols/instagram.webp" 
             alt="Instagram" 
-            width={100}  
+            width={60}  
             height={30}
             priority
             style={{ objectFit: "contain" }} 
@@ -83,7 +83,7 @@ export default function Footer() {
             <Image className={styles.img4} 
             src="symbols/facebook.png" 
             alt="Facebook" 
-            width={100}  
+            width={60}  
             height={30}
             priority
             style={{ objectFit: "contain" }} 
@@ -92,16 +92,16 @@ export default function Footer() {
             <Image className={styles.img4} 
             src="symbols/twitter.png" 
             alt="Twitter" 
-            width={120}  
+            width={60}  
             height={30}
             priority
-            style={{ objectFit: "contain" }} 
+            style={{ objectFit: "contain"}} 
             unoptimized/>
 
             <Image className={styles.img4} 
             src="symbols/Tiktok.png" 
             alt="Tiktok" 
-            width={100}  
+            width={60}  
             height={30}
             priority
             style={{ objectFit: "contain" }} 
@@ -112,48 +112,49 @@ export default function Footer() {
           <h2>FORMAS DE PAGAMENTO</h2>
           <div className={styles.payments}>
             <Image className={styles.img5} 
-            src="#" 
+            src="symbols/visa.png" 
             alt="Visa" 
             width={30}  
             height={30}
             priority
-            style={{ objectFit: "contain" }} 
+            style={{ objectFit: "contain", borderRadius: "8px" }} 
             unoptimized/>
             
             <Image className={styles.img5} 
-            src="#" 
+            src="symbols/mastercard.jpg" 
             alt="MasterCard"
-            width={30}  
+            width={45}  
             height={30}
             priority
-            style={{ objectFit: "contain" }} 
+            style={{ objectFit: "contain", borderRadius: "8px" }} 
             unoptimized/>
             
             <Image className={styles.img5} 
-            src="#" 
+            src="symbols/elo.jpg" 
             alt="Elo"
             width={30}  
             height={30}
+            
             priority
-            style={{ objectFit: "contain" }} 
+            style={{ objectFit: "contain",  borderRadius: "8px" }} 
             unoptimized/>
             
             <Image className={styles.img5}
-            src="#" 
+            src="symbols/amex.png" 
             alt="Amex"
-            width={30}  
+            width={45}  
             height={30}
             priority
-            style={{ objectFit: "contain" }} 
+            style={{ objectFit: "contain", borderRadius: "8px"}} 
             unoptimized/>
             
             <Image className={styles.img5} 
-            src="#" 
+            src="symbols/pix.png" 
             alt="Pix"
             width={30}  
             height={30}
             priority
-            style={{ objectFit: "contain" }} 
+            style={{ objectFit: "contain", borderRadius: "8px" }} 
             unoptimized/>
 
           </div>
@@ -164,7 +165,7 @@ export default function Footer() {
       <div className={styles.bottom}>
         <div className={styles.lang}>
           <Image 
-          src="#" 
+          src="symbols/brasil.jpg" 
           alt="Português - BR" 
           width={60}  
           height={60}
