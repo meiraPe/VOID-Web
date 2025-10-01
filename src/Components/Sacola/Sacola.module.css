@@ -65,7 +65,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin: 2rem 0;
+  margin:  0;
   padding: 0.5rem;
 }
 
@@ -289,10 +289,10 @@
   }
 
   .container {
-    align-items: center;  /* Mantém os cards centralizados */
+    align-items: center;  
     justify-content: center;
     position: relative;   /* Importante para o header absoluto se basear neste container */
-    padding-top: 6rem; /* mantém espaço do topo se necessário */
+    padding-top: 8rem; /* mantém espaço do topo se necessário */
   }
 
   

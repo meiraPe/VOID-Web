@@ -135,18 +135,6 @@ export default function Sacola() {
 
       </section>
 
-      {/* Rodapé Mobile */}
-      <footer className={styles.footer}>
-        <h2>COMPRE E VENDA COM MAIOR COMODIDADE</h2>
-        <div className={styles.storeLinks}>
-          <Link href="#"><Image src="/placeholders/googleplay.png" alt="Google Play" width={140} height={42} /></Link>
-          <Link href="#"><Image src="/placeholders/appstore.png" alt="Apple Store" width={140} height={42} /></Link>
-        </div>
-        <div className={styles.appMockups}>
-          <Image src="/placeholders/mockup1.png" alt="App Mockup 1" width={300} height={190} priority />
-        </div>
-      </footer>
-
     </div>
   );
 }
