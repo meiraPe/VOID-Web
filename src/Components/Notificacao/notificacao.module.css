@@ -1,0 +1,118 @@
+/* =========================
+   HEADERS
+========================= */
+.headerMobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2rem;
+  margin-top: 10%;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.backButton {
+  border: none;
+  background: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.315);
+}
+
+.headerDesktop {
+  display: none;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.headerTitle {
+  font-family: var(--title);
+  font-weight: 500;
+  font-size: 1.8rem;
+  text-align: center;
+  color: #0d1a2b;
+}
+
+.notcontainer {
+    font-family: poppins;
+}
+
+.semmsg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.semmsg h1 {
+    color: #686565;
+}
+
+.notcards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    width: 90%;
+    height: 10%;
+    background: #fcfcfc;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+
+
+}
+
+.cardSeparator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+    gap: 20px;
+
+}
+
+.cardSeparator h2 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-size: 16px;
+}
+
+.cardAction {
+    margin-right: 10px;
+}
+
+.cardNew {
+    border-radius: 0 20px 20px 20px;
+    background: #fcfcfc;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    padding: 15px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    font-family: poppins;
+}
+
