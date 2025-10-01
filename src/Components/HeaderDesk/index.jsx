@@ -92,7 +92,7 @@ export default function HeaderDesk() {
             <div className={styles.dropdown}>
               <Link href="/login">Entrar</Link>
               <Link href="/signin">Criar Conta</Link>
-              <Link href="/notifications">Notificações</Link>
+              <Link href="/notificacao">Notificações</Link>
               <button className={styles.logoutBtn}>Sair</button>
             </div>
           )}
