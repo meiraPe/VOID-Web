@@ -37,7 +37,7 @@ export default function Sacola() {
         <div className={styles.sectionPending}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionDivider}></div>
-            <h1>COMPRAS PENDENTES</h1>
+            <h1>ITENS DA SACOLA</h1>
             <div className={styles.sectionDivider}></div>
           </div>
 
@@ -79,6 +79,9 @@ export default function Sacola() {
                 </div>
               </div>
             </div>
+
+
+
           </div>
         </div>
 
@@ -86,7 +89,7 @@ export default function Sacola() {
         <div className={styles.sectionPaid}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionDivider}></div>
-            <h1>COMPRAS PAGAS</h1>
+            <h1>COMPRAS EFETUADAS</h1>
             <div className={styles.sectionDivider}></div>
           </div>
 

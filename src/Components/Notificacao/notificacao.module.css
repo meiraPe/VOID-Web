@@ -47,6 +47,7 @@
     font-family: poppins;
 }
 
+/* Mensagem de sem notificações */
 .semmsg {
     display: flex;
     flex-direction: column;
@@ -104,6 +105,7 @@
     margin-right: 10px;
 }
 
+/* Card transition */
 .cardNew {
     border-radius: 0 20px 20px 20px;
     background: #fcfcfc;

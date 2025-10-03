@@ -69,10 +69,6 @@ export default function Notificacao() {
             </div>
 
 
-
-
-
-
                 <div
                 style={{
                     padding: "1rem",
