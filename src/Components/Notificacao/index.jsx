@@ -13,7 +13,7 @@ export default function Notificacao() {
     <>
     <div className={styles.container}>
 
-      {/* Header Mobile */}
+{/* Header Mobile */}
       <header className={styles.headerMobile}>
         <div className={styles.headerLeft}>
           <button className={styles.backButton} onClick={() => router.back()}>
