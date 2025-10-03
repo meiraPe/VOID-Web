@@ -9,6 +9,7 @@ export default function HeaderDesk() {
   const [showMenu, setShowMenu] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showBox, setShowBox] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -35,69 +36,135 @@ export default function HeaderDesk() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutsideSidebar = (e) => {
+      if (e.target.classList.contains(styles.sidebarOverlay)) {
+        setShowSidebar(false);
+      }
+    };
+
+    const handleEscapeKey = (e) => {
+      if (e.key === "Escape") {
+        setShowSidebar(false);
+      }
+    };
+
+    if (showSidebar) {
+      document.addEventListener("mousedown", handleClickOutsideSidebar);
+      document.addEventListener("keydown", handleEscapeKey);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutsideSidebar);
+      document.removeEventListener("keydown", handleEscapeKey);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideSidebar);
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, [showSidebar]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (showSidebar) {
+        setShowSidebar(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [showSidebar]);
+
   return (
-    <header
-      className={`${styles.header} ${showMenu ? styles.visible : styles.hidden}`}
-    >
-      <div className={styles.inner}>
-        {/* Logo + Nav */}
-        <div className={styles.left}>
-          <Link href="/" className={styles.logo}>
-            <Image
-              src="/logos/pngBRANCO.png"
-              alt="Logo"
-              width={100}
-              height={40}
-            />
-          </Link>
+    <>
+      <header
+        className={`${styles.header} ${showMenu ? styles.visible : styles.hidden}`}
+      >
+        <div className={styles.inner}>
+          {/* Logo + Nav */}
+          <div className={styles.left}>
+            <Link href="/" className={styles.logo}>
+              <Image
+                src="/logos/pngBRANCO.png"
+                alt="Logo"
+                width={100}
+                height={40}
+              />
+            </Link>
 
-          <nav className={styles.nav}>
-            <Link href="/marcas">Marcas</Link>
-            <Link href="/categorias">Categorias</Link>
-            <Link href="/sacola">Sacola</Link>
-          </nav>
-        </div>
-
-        {/* Busca + Perfil */}
-        <div className={styles.right}>
-          <div className={styles.searchBox}>
-            <Image
-              src="/symbols/Search.svg"
-              alt="Buscar"
-              width={18}
-              height={18}
-              style={{ marginRight: "0.4rem" }}
-            />
-            <input
-              type="text"
-              placeholder="Search"
-              className={styles.searchInput}
-            />
+            <nav className={styles.nav}>
+              <Link href="/marcas">Marcas</Link>
+              <Link
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowSidebar((prev) => !prev); // Toggle sidebar
+                }}
+              >
+                Categorias
+              </Link>
+              <Link href="/sacola">Sacola</Link>
+            </nav>
           </div>
-          <Image
-            onClick={(e) => {
-              e.preventDefault(); // evita reload da página
-              setShowBox(!showBox);
-            }}
-            style={{ color: "blue", cursor: "pointer" }}
-            className={styles.profileImg}
-            src="/symbols/Profile.svg"
-            alt="Perfil"
-            width={30}
-            height={30}
-          />
 
-          {/* Dropdown */}
-          {showBox && (
-            <div className={styles.dropdown}>
-              <Link href="/login">Entrar</Link>
-              <Link href="/signin">Criar Conta</Link>
-              <Link href="/notificacao">Notificações</Link>
-              <button className={styles.logoutBtn}>Sair</button>
+          {/* Busca + Perfil */}
+          <div className={styles.right}>
+            <div className={styles.searchBox}>
+              <Image
+                src="/symbols/Search.svg"
+                alt="Buscar"
+                width={18}
+                height={18}
+                style={{ marginRight: "0.4rem" }}
+              />
+              <input
+                type="text"
+                placeholder="Search"
+                className={styles.searchInput}
+              />
             </div>
-          )}
+            <Image
+              onClick={(e) => {
+                e.preventDefault();
+                setShowBox(!showBox);
+              }}
+              style={{ color: "blue", cursor: "pointer" }}
+              className={styles.profileImg}
+              src="/symbols/Profile.svg"
+              alt="Perfil"
+              width={30}
+              height={30}
+            />
+
+            {/* Dropdown */}
+            {showBox && (
+              <div className={styles.dropdown}>
+                <Link href="/login">Entrar</Link>
+                <Link href="/signin">Criar Conta</Link>
+                <Link href="/notificacao">Notificações</Link>
+                <button className={styles.logoutBtn}>Sair</button>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* Sidebar Overlay */}
+      {showSidebar && <div className={styles.sidebarOverlay}></div>}
+
+      {/* Sidebar */}
+      {showSidebar && (
+        <div className={`${styles.sidebar} ${showSidebar ? styles.open : ""}`}>
+          <button className={styles.closeBtn} onClick={() => setShowSidebar(false)}>
+            Fechar
+          </button>
+          <ul>
+            <li>Roupas</li>
+            <li>Tênis</li>
+            <li>Acessórios</li>
+            <li>Promoções</li>
+          </ul>
+        </div>
+      )}
+    </>
   );
 }
