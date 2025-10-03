@@ -91,18 +91,18 @@ export default function Home() {
       <div className={styles.bannerDesktop}>
         <div className={styles.boxBanner}>
           <Image
-            src="/placeholders/bannerHomeDesktop.jpg"
+            src="/placeholders/bannerHomeDesktop.png"
             alt="Banner Home"
-            width={1800}
-            height={550}
+            width={1920}
+            height={750}
+            quality={100}
             priority
             className={styles.imageBanner}
           />
         </div>
 
         <div className={styles.textBox}>
-          <h1>NIKE TOTAL 90 <br /> REISSUE <br /> BRAZIL 2004</h1>
-          <p>Icônica, Atemporal</p>
+          <h1>OS MELHORES<br /> PRODUTOS VOCÊ <br/> ENCONTRA AQUI!</h1>
 
           <Link href="/marcas">
               <button className={styles.shopNowBtn}>
@@ -122,10 +122,10 @@ export default function Home() {
       <div className={styles.bannerMobile}>
         <div className={styles.boxBanner}>
           <Image
-            src="/placeholders/bannerHomeMobile.jpg"
+            src="/placeholders/bannerHomeMobile.png"
             alt="Banner Home"
-            width={450}
-            height={450}
+            width={650}
+            height={650}
             priority
             quality={100}
             style={{ objectFit: "cover" }}
@@ -135,10 +135,8 @@ export default function Home() {
 
           <div className={styles.textOverlay}>
             <h1 className={styles.bannerTitle}>
-              NIKE TOTAL 90 <br /> REISSUE <br /> BRAZIL 2004
+              OS MELHORES<br /> PRODUTOS VOCÊ <br/> ENCONTRA AQUI!
             </h1>
-            <p className={styles.bannerSubtitle}>Icônica, Atemporal</p>
-
             <Link href="/products">
               <button className={styles.shopNowBtn}>
                 Ver Mais
