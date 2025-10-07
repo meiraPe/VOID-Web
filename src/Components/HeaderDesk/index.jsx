@@ -157,12 +157,49 @@ export default function HeaderDesk() {
           <button className={styles.closeBtn} onClick={() => setShowSidebar(false)}>
             Fechar
           </button>
-          <ul>
-            <li>Roupas</li>
-            <li>Tênis</li>
-            <li>Acessórios</li>
-            <li>Promoções</li>
-          </ul>
+
+          <div className={styles.part}>
+            <div className={styles.close}><h1>SNEAKERS</h1>
+            <li>
+    <img
+      src="/symbols/usuario/x-circle.svg"
+      alt=""
+      style={{ cursor: "pointer" }}
+      onClick={() => setShowSidebar(false)}
+    />
+  </li></div>
+
+            <ul>
+              <li>Tênis</li>
+            </ul>
+          </div>
+
+          <div className={styles.part}>
+            <h1>VESTUÁRIO</h1>
+            <ul>
+              <li>Camiseta</li>
+              <li>Calça</li>
+              <li>Boné</li>
+              <li>Moletom</li>
+              <li>Bermuda</li>
+              <li>Corta Vento</li>
+              <li>Meia</li>
+            </ul>
+          </div>
+
+          <div className={styles.part}>
+            <h1>ACESSÓRIOS</h1>
+            <ul>
+              <li>Mochila</li>
+              <li>Chaveiro</li>
+              <li>Relógio</li>
+              <li>Carteira</li>
+              <li>Óculos</li>
+              <li>Anel</li>
+              <li>Colar</li>
+            </ul>
+          </div>
+        
         </div>
       )}
     </>
