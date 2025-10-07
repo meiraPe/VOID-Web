@@ -282,3 +282,54 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.sidebarMarcas {
+  position: fixed;
+  top: 0;
+  left: -300px; 
+  width: 300px;
+  height: 100vh; 
+  background-color: rgba(255, 255, 255, 0.767);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  padding: 1rem;
+  color: black;
+  font-family: "poppins", sans-serif;
+  transition: transform 0.5s ease; /* tempo e suavidade da animação */
+    overflow: scroll;
+  scrollbar-color: #333 rgba(255, 255, 255, 0);
+  scrollbar-width: thin;
+}
+
+.sidebarMarcas ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebarMarcas.open {
+  left: 0; /* Slide into view */
+}
+
+.sidebarMarcas a {
+  color: #333;
+}
+
+.sidebarMarcas a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+  color: black;
+}
+
+.sidebar a {
+  color: #333;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+  color: black;
+}
