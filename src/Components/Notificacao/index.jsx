@@ -55,22 +55,27 @@ export default function Notificacao() {
 
             </div>
 
-            <div className={styles.card}>
 
-                <div className={styles.cardSeparator}>
+
+
+            <div className={styles.card}>
+            
+              <div className={styles.cardSeparator}>
                 <Image src="/produtos/CamisaBranca.png" alt="CamisaBranca" width={50} height={50} />
                 <h2>Estará chegando em breve</h2>
-                </div>
+              </div>
 
             
-                <a className={styles.cardAction} href="#" onClick={(e) => { e.preventDefault(); setShowBox(!showBox); }} style={{ color: "blue", cursor: "pointer" }}>
-                    <Image src="/symbols/usuario/list.svg" alt='Png' width={30} height={30} />
-                </a>
+              <a className={styles.cardAction} href="#" onClick={(e) => { e.preventDefault(); setShowBox(!showBox); }} style={{ color: "blue", cursor: "pointer" }}>
+              <Image src="/symbols/usuario/list.svg" alt='Png' width={30} height={30} />
+
+
+              </a>
 
             </div>
 
 
-                <div
+            <div
                 style={{
                     padding: "1rem",
                     borderRadius: "0 20px 20px 20px",
@@ -90,12 +95,10 @@ export default function Notificacao() {
                     </ul> 
                         
                 )}
-                </div>
+            </div>
 
             
         </div>
-
-
     </div>
     </>
 

@@ -136,32 +136,3 @@
 
 }
 
-.cardBoxContainer {
-  margin-top: 8px;
-}
-
-.cardBox {
-  background-color: #0f1824;
-  border-radius: 12px;
-  border-top: 0.5px solid #2a2f40;
-  padding: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.cardBoxItem {
-  background: none;
-  border: none;
-  color: #9cf;
-  font-size: 14px;
-  text-align: left;
-  cursor: pointer;
-  padding: 6px 8px;
-  border-radius: 8px;
-  transition: background 0.2s ease;
-}
-
-.cardBoxItem:hover {
-  background: rgba(156, 204, 255, 0.1);
-}
