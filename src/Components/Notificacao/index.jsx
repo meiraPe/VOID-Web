@@ -56,8 +56,6 @@ export default function Notificacao() {
             </div>
 
 
-
-
             <div className={styles.card}>
             
               <div className={styles.cardSeparator}>
