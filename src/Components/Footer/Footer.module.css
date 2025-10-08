@@ -1,3 +1,31 @@
+/* Faz o footer ocupar só o que precisa */
+.footerContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto; /* importante para empurrar o footer pra baixo */
+}
+
+.Footer {
+  width: 100%;
+  background-color: #121212; /* ou a cor que tu quiser */
+  color: #fff;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Rodapé inferior */
+.bottom {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* Container principal da página precisa ter display flex e altura total */
+
+
 .Footer {
   background: #000;
   color: #fff;

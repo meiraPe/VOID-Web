@@ -9,6 +9,8 @@ export default function Footer() {
   const router = useRouter();
 
   return (
+
+    <div className={styles.footerContainer}>
     <footer className={styles.Footer}>
       <div className={styles.container}>
         {/* Grupo 1 - Contato e App */}
@@ -181,6 +183,7 @@ export default function Footer() {
         </p>
       </div>
     </footer>
+    </div>
   );
 }
 

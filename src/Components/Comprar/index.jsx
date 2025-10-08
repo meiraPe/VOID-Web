@@ -79,7 +79,7 @@ export default function Comprar({ slug }) {
         <div className={styles.imageBox}>
           <Image
             src={product.img}
-            alt={product.name}
+            alt={product.name}  
             width={300}
             height={250}
           />

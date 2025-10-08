@@ -22,7 +22,6 @@ export default function Notificacao() {
           </button>
           <span className={styles.headerTitle}>Notificação</span>
         </div>
-        <Image className={styles.logo} src="/logos/pngPRETO.png" alt="Void Logo" width={110} height={40} />
       </header>
 
       {/* Header Desktop */}
@@ -63,6 +62,7 @@ export default function Notificacao() {
                 <h2>Estará chegando em breve</h2>
                 </div>
 
+            
                 <a className={styles.cardAction} href="#" onClick={(e) => { e.preventDefault(); setShowBox(!showBox); }} style={{ color: "blue", cursor: "pointer" }}>
                     <Image src="/symbols/usuario/list.svg" alt='Png' width={30} height={30} />
                 </a>
