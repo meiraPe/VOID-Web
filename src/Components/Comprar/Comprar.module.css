@@ -8,8 +8,8 @@
   min-height: 100dvh;
   background: #f2f2f2;
   font-family: var(--text);
-  padding-inline: 2rem;
-  gap: 2rem;
+  padding-inline: 6rem;
+  gap: 1rem;
 }
 
 /* =========================
@@ -22,8 +22,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-top: -2rem;
-  margin-bottom: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;  
 }
 
 .leftGroup {
@@ -55,61 +55,80 @@
 /* =========================
    CONTEÚDO DO PRODUTO
 ========================= */
+
 .productBox {
-  flex: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 1rem;
   align-items: center;
   justify-content: center;
+  gap: 2rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  transition: 0.3s ease;
 }
 
 .imageBox {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
 .imageBox img {
-  max-width: 300px;
+  max-width: 320px;
   width: 100%;
   height: auto;
   object-fit: contain;
   border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.imageBox img:hover {
+  transform: scale(1.05);
 }
 
 .infoBox {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.2rem;
   text-align: center;
+  width: 100%;
 }
 
 .infoBox h1 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  color: #222;
+  color: #111;
+  letter-spacing: -0.02em;
 }
 
 .price {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #748CAB;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #222;
+  background: linear-gradient(90deg, #0f172a, #1e293b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .description {
-  font-size: 0.95rem;
-  line-height: 1.4;
+  font-size: 1rem;
+  line-height: 1.5;
   color: #555;
-  max-width: 320px;
+  max-width: 400px;
 }
 
+/* =========================
+   BOTÃO DE COMPRA
+========================= */
 .buyBtn {
-  background: #111;
+  background: linear-gradient(90deg, #0f172a, #1e293b);
   color: #fff;
   font-size: 1rem;
   font-weight: 600;
@@ -117,14 +136,16 @@
   border: none;
   border-radius: 0.8rem;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
+  margin-top: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .buyBtn:hover {
-  background: #333;
-  transform: scale(1.03);
+  transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
 @media (min-width: 768px) {
@@ -167,5 +188,135 @@
 
   .buyBtn {
     max-width: 250px;
+  }
+}
+
+/* =========================
+   POPUP DE COMPRA CONFIRMADA
+========================= */
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+  z-index: 999;
+}
+
+.popupBox {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: popIn 0.3s ease;
+  max-width: 320px;
+  width: 90%;
+}
+
+.popupBox h2 {
+  font-size: 1.5rem;
+  color: #111;
+  margin-top: 1rem;
+}
+
+.popupBox p {
+  margin-top: 0.5rem;
+  color: #555;
+  font-size: 1rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* =========================
+   SELETOR DE TAMANHO (refinado)
+========================= */
+.sizeSelector {
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+.sizeSelector h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.8rem;
+}
+
+.sizeGrid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.sizeBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 0.6rem;
+  border: 2px solid #ccc;
+  background: #f9f9f9;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #222;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.sizeBtn:hover {
+  border-color: #111;
+  background: #fff;
+  transform: scale(1.05);
+}
+
+.sizeBtn.active {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+  transform: scale(1.1);
+}
+
+.sizeBtn.unavailable {
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  background: #f0f0f0;
+}
+
+.errorMsg {
+  color: #d00;
+  font-size: 0.9rem;
+  margin-top: 0.6rem;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .sizeSelector {
+    text-align: left;
+  }
+
+  .sizeGrid {
+    justify-content: flex-start;
   }
 }
