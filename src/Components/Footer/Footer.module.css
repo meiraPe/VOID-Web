@@ -3,14 +3,18 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: auto; /* importante para empurrar o footer pra baixo */
+  margin-top: auto; /* Push footer to the bottom of the content */
+  position: relative; /* Allow it to scroll with the page */
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .Footer {
   width: 100%;
-  background-color: #121212; /* ou a cor que tu quiser */
+  background-color: #121212; /* Footer background color */
   color: #fff;
-  padding: 40px 20px;
+  padding: 20px; /* Adjust padding */
   display: flex;
   flex-direction: column;
   box-sizing: border-box;

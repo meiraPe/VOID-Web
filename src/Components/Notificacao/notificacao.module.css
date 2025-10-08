@@ -1,4 +1,3 @@
-
 /* =========================
    HEADERS
 ========================= */
@@ -164,4 +163,10 @@
 
 .cardBoxItem:hover {
   background: rgba(156, 204, 255, 0.1);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Allow the container to stretch and push the footer down */
 }
