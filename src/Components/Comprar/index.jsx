@@ -34,7 +34,6 @@ export default function Comprar({ slug }) {
             </button>
             <span className={styles.title}>Voltar</span>
           </div>
-          <Image className={styles.logo} src="/logos/pngPRETO.png" alt="Void Logo" width={110} height={40} />
         </header>
 
         {/* Header Desktop */}
