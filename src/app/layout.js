@@ -1,4 +1,5 @@
 import "./globals.css";
+import AuthGuard from "../Components/AuthGuard";
 
 export const metadata = {
   title: "VOID",
@@ -11,7 +12,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
-     <body>{children}</body>
+      <body>
+        <AuthGuard>{children}</AuthGuard>
+      </body>
     </html>
   );
 }
