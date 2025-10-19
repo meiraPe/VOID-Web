@@ -8,25 +8,54 @@ import { useRouter } from "next/navigation";
 
 export default function Login() {
   const router = useRouter();
-  const [form, setForm] = useState({
-    email: "",
-    senha: "",
-  });
+  const [form, setForm] = useState({ email: "", senha: "" });
+  const [popup, setPopup] = useState({ show: false, message: "", success: false });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login enviado:", form);
 
-    // futuro fetch:
-    // fetch("/api/login", {...})
+    try {
+      const res = await fetch("http://localhost:3333/usuarios/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        localStorage.setItem("token", data.token);
+        setPopup({ show: true, message: "Login realizado com sucesso!", success: true });
+
+        setTimeout(() => {
+          setPopup({ ...popup, show: false });
+          router.push("/");
+        }, 1000);
+      } else {
+        setPopup({ show: true, message: data.erro || "Email ou senha incorretos.", success: false });
+
+        setTimeout(() => setPopup({ ...popup, show: false }), 3000);
+      }
+    } catch (error) {
+      setPopup({ show: true, message: "Erro de conexão com o servidor.", success: false });
+      setTimeout(() => setPopup({ ...popup, show: false }), 3000);
+      console.error(error);
+    }
   };
 
   return (
     <div className={styles.container}>
+      {/* Popup */}
+      {popup.show && (
+        <div className={`${styles.popup} ${popup.success ? styles.success : styles.error}`}>
+          {popup.message}
+        </div>
+      )}
+
       <div className={styles.loginArea}>
         {/* Header Mobile */}
         <header className={styles.headerMobile}>
@@ -50,7 +79,6 @@ export default function Login() {
         {/* Formulário */}
         <section className={styles.section}>
           <form onSubmit={handleSubmit} className={styles.form}>
-
             <p className={styles.subtitle}>Logue com sua conta:</p>
 
             <div className={styles.inputGroup}>
@@ -79,8 +107,6 @@ export default function Login() {
               />
             </div>
 
-
-            {/* Termos */}
             <div className={styles.termsBox}>
               <div className={styles.terms}>
                 <input type="checkbox" id="terms" />
@@ -90,7 +116,6 @@ export default function Login() {
               </div>
             </div>
 
-            {/* Captcha fake */}
             <div className={styles.captcha}>
               <input type="checkbox" id="captcha" />
               <label htmlFor="captcha">Não sou um robô</label>
@@ -99,21 +124,17 @@ export default function Login() {
               </div>
             </div>
 
-            <button type="submit" className={styles.loginBtn}>
-              Entrar
-            </button>
+            <button type="submit" className={styles.loginBtn}>Entrar</button>
           </form>
 
           <Link href="/signin" className={styles.haveAccount}>Ainda não tenho cadastro</Link>
         </section>
       </div>
 
-      {/* Banner */}
       <div className={styles.banner}>
         <Image src="/placeholders/bannerSignin.jpg" alt="Banner Signin" width={400} height={400} priority />
       </div>
 
-      {/* Rodapé Mobile */}
       <footer className={styles.footer}>
         <h2>COMPRE E VENDA COM MAIOR COMODIDADE</h2>
         <div className={styles.stores}>

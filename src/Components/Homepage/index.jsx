@@ -8,10 +8,23 @@ import Sneakers from '../Sneakers';
 import { useMarcaStore } from '../../stores/useMarcaStore.js';
 import { useProdutoStore } from '../../stores/useProdutoStore.js';
 import { useEffect } from 'react';
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   const { marcas, setMarcas } = useMarcaStore();
   const { produtos, setProdutos } = useProdutoStore();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token == null) {
+      router.push("/login");
+    } else {
+      console.log("Usuário autenticado: ", token);
+    }
+  }, []);
 
   // Marcas
   useEffect(() => {

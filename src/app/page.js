@@ -17,8 +17,6 @@ export default function Page() {
         <Home />
         <Footer />
       </div>
-
-      
     </>
   );
 }
