@@ -324,3 +324,46 @@
   .logo { display: none; }
   .footer { display: none; }
 }
+
+.popup {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  color: #fff;
+  font-family: var(--text);
+  font-weight: 500;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  text-align: center;
+  animation: fadeIn 0.3s ease, fadeOut 0.3s ease 2.5s forwards;
+}
+
+.success {
+  background-color: #0d1a2b;
+}
+
+.error {
+  background-color: #f44336;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+}

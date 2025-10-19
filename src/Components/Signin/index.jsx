@@ -8,27 +8,64 @@ import { useRouter } from "next/navigation";
 
 export default function Signin() {
   const router = useRouter();
-  const [form, setForm] = useState({
-    nome: "",
-    email: "",
-    senha: "",
-    confirmar: "",
-  });
+
+  const [form, setForm] = useState({ nome: "", email: "", senha: "" });
+  const [popup, setPopup] = useState({ show: false, message: "", success: false });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Cadastro enviado:", form);
+
+    try {
+      const res = await fetch("http://localhost:3333/usuarios", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setPopup({
+          show: true,
+          message: "Usuário cadastrado com sucesso!",
+          success: true,
+        });
+        setTimeout(() => router.push("/login"), 2000);
+      } else {
+        setPopup({
+          show: true,
+          message: data.erro || "Erro ao cadastrar usuário.",
+          success: false,
+        });
+      }
+    } catch (error) {
+      setPopup({
+        show: true,
+        message: "Erro de conexão com o servidor.",
+        success: false,
+      });
+    }
   };
 
   return (
     <div className={styles.container}>
+      {/* Popup */}
+      {popup.show && (
+        <div
+          className={`${styles.popup} ${
+            popup.success ? styles.success : styles.error
+          }`}
+        >
+          {popup.message}
+        </div>
+      )}
+
       {/* Coluna esquerda - Área de cadastro */}
       <div className={styles.loginArea}>
-        {/* Header Mobile */}
         <header className={styles.headerMobile}>
           <div className={styles.leftGroup}>
             <button className={styles.backBtn} onClick={() => router.back()}>
@@ -50,7 +87,6 @@ export default function Signin() {
           />
         </header>
 
-        {/* Header Desktop */}
         <div className={styles.headerDesktop}>
           <button className={styles.backBtn} onClick={() => router.back()}>
             <Image
@@ -63,15 +99,10 @@ export default function Signin() {
           <h1 className={styles.title}>Sign-in</h1>
         </div>
 
-        {/* Formulário */}
         <section className={styles.section}>
           <form onSubmit={handleSubmit} className={styles.form}>
-            <p className={styles.subtitle}>
-              Preencha todos os campos:
-            </p>
+            <p className={styles.subtitle}>Preencha todos os campos:</p>
 
-
-            
             <div className={styles.inputGroup}>
               <label htmlFor="nome">Nome completo</label>
               <input
@@ -108,24 +139,12 @@ export default function Signin() {
               />
             </div>
 
-            <div className={styles.inputGroup}>
-              <label htmlFor="confirmar">Confirmar senha</label>
-              <input
-                id="confirmar"
-                name="confirmar"
-                type="password"
-                value={form.confirmar}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            {/* Termos */}
             <div className={styles.termsBox}>
               <div className={styles.terms}>
-                <input type="checkbox" id="terms" />
+                <input type="checkbox" id="terms" required />
                 <label htmlFor="terms">
-                  Você concorda com os <b>Termos de Uso</b> e <b>Políticas de privacidade</b> da Void?
+                  Você concorda com os <b>Termos de Uso</b> e{" "}
+                  <b>Políticas de privacidade</b> da Void?
                 </label>
               </div>
             </div>
@@ -141,7 +160,6 @@ export default function Signin() {
         </section>
       </div>
 
-      {/* Coluna direita - Banner */}
       <div className={styles.banner}>
         <Image
           src="/placeholders/bannerSignin.jpg"
@@ -152,7 +170,6 @@ export default function Signin() {
         />
       </div>
 
-      {/* Rodapé */}
       <footer className={styles.footer}>
         <h2>COMPRE E VENDA COM MAIOR COMODIDADE</h2>
         <div className={styles.stores}>
