@@ -113,7 +113,7 @@
   font-weight: 700;
   color: #222;
   background: linear-gradient(90deg, #0f172a, #1e293b);
- 
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -324,10 +324,15 @@
 .btnSacola {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: unset;
+  border-radius: unset;
 }
 
 .btnSacola p {
   font-family: var(--text);
+  font-size: 10px;
 }
 
 .btnSacola:hover {

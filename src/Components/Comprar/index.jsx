@@ -95,7 +95,7 @@ export default function Comprar({ slug }) {
           <div className={styles.sacola}>
                 <button className={styles.btnSacola}>
                     
-                    <Image className={styles.arrow} src="/symbols/usuario/shopping-bag.svg" alt="Sacola" width={20} height={20} />
+                    <Image className={styles.arrow} src="/symbols/usuario/shopping-bag.svg" alt="Sacola" width={25} height={25} />
                     <p>Adicionar a sacola</p>
 
                 </button>
