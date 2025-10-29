@@ -327,12 +327,13 @@
   align-items: center;
   justify-content: center;
   background-color: unset;
-  border-radius: unset;
+  border-radius: 10px;
+  gap: 5px;
 }
 
 .btnSacola p {
   font-family: var(--text);
-  font-size: 10px;
+  font-size: 20px;
 }
 
 .btnSacola:hover {
