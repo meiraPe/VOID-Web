@@ -7,7 +7,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Cartoes() {
-  const router = useRouter();
+    const router = useRouter();
+    const [showBox, setShowBox] = useState(false);
+    
   const [cards] = useState([
     { id: 1, number: "**** **** **** 1234", brand: "mastercard" },
     { id: 2, number: "**** **** **** 5432", brand: "mastercard" },
@@ -16,31 +18,30 @@ export default function Cartoes() {
 
   const handleBack = () => router.back();
 
-  return (
-    <div className={styles.container}>
-      {/* Header */}
-      <header className={styles.header}>
-        <div className={styles.leftGroup}>
-          <button className={styles.backBtn} onClick={handleBack}>
-            <Image
-              src="/symbols/nav-arrow-left.svg"
-              alt="Voltar"
-              width={22}
-              height={22}
-            />
-          </button>
-          <span className={styles.title}>Meus cartões</span>
-        </div>
 
-        <Image
-          className={styles.logo}
-          src="/logos/pngPRETO.png"
-          alt="Void Logo"
-          width={100}
-          height={35}
-        />
+  return (
+    <div className={styles.pageContainer}>
+    <div className={styles.headerContainer}>
+      <header className={styles.headerMobile}>
+        <div className={styles.headerLeft}>
+          <button className={styles.backButton} onClick={() => router.back()}>
+            <Image src="/symbols/nav-arrow-left.svg" alt="Voltar" width={20} height={20} />
+          </button>
+          <span className={styles.headerTitle}>Cartões</span>
+        </div>
       </header>
 
+      {/* Header Desktop */}
+      <div className={styles.headerDesktop}>
+        <button className={styles.backButton} onClick={() => router.back()}>
+          <Image src="/symbols/nav-arrow-left.svg" alt="Voltar" width={20} height={20} />
+        </button>
+        <h1 className={styles.headerTitle}>Cartões</h1>
+      </div>
+    </div>
+    
+
+    <div className={styles.container}>
       {/* Conteúdo principal */}
       <section className={styles.content}>
         <h2 className={styles.subtitle}>CARTÕES CADASTRADOS</h2>
@@ -67,7 +68,7 @@ export default function Cartoes() {
         <p className={styles.editText}>EDITAR CARTÕES CADASTRADOS</p>
 
         <button className={styles.addButton}>
-          Adicione um cartão novo +
+          ADICIONAR CARTÃO
         </button>
       </section>
 
@@ -103,5 +104,6 @@ export default function Cartoes() {
         </div>
       </footer>
     </div>
+  </div>
   );
 }
