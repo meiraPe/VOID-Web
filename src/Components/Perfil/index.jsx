@@ -131,7 +131,7 @@ export default function Perfil() {
                 className={styles.inputEditar}
               />
               <button onClick={handleSalvar} className={styles.saveButton}>
-                ✔️
+                ✓
               </button>
             </>
           ) : (
@@ -158,7 +158,7 @@ export default function Perfil() {
                 className={styles.inputEditar}
               />
               <button onClick={handleSalvar} className={styles.saveButton}>
-                ✔️
+                ✓
               </button>
             </>
           ) : (
@@ -186,7 +186,7 @@ export default function Perfil() {
                 placeholder="Nova senha"
               />
               <button onClick={handleSalvar} className={styles.saveButton}>
-                ✔️
+                ✓
               </button>
             </>
           ) : (
