@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Cartoes.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -45,17 +45,6 @@ export default function Cartoes() {
           {cards.map((card) => (
             <div key={card.id} className={styles.card}>
               <span className={styles.cardNumber}>{card.number}</span>
-              <Image
-                src={
-                  card.brand === "visa"
-                    ? "/symbols/visa-logo.png"
-                    : "/symbols/mastercard-logo.png"
-                }
-                alt={card.brand}
-                width={40}
-                height={40}
-                className={styles.cardIcon}
-              />
             </div>
           ))}
         </div>

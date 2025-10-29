@@ -9,7 +9,7 @@ export default function AuthGuard({ children }) {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const publicRoutes = ["/login", "/signin"];
+    const publicRoutes = ["/login", "/signin", '/cartoes', '/notificacao', '/perfil', '/comprar', '/marcas', '/usuario'];
 
     if (!token && !publicRoutes.includes(window.location.pathname)) {
       router.push("/login");
