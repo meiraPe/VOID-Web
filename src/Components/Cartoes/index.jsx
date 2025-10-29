@@ -53,8 +53,8 @@ export default function Cartoes() {
               <Image
                 src={
                   card.brand === "visa"
-                    ? "/symbols/visa-logo.png"
-                    : "/symbols/mastercard-logo.png"
+                    ? "/symbols/visa.png"
+                    : "/symbols/mastercard.jpg"
                 }
                 alt={card.brand}
                 width={45}
