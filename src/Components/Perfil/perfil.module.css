@@ -1,9 +1,63 @@
+
+/* =========================
+   HEADERS
+========================= */
+.headerMobile {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2rem;
+  margin-top: 7%; 
+}
+
+.headerContainer {
+  padding-inline: 2rem;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.backButton {
+  border: none;
+  background: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.315);
+}
+
+.headerDesktop {
+  display: none;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.headerTitle {
+  font-family: var(--title);
+  font-weight: 500;
+  font-size: 1.8rem;
+  text-align: center;
+  color: #0d1a2b;
+}
+
+
 .profileContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 2rem;
     font-family: 'Raleway', sans-serif;
+    margin-top: 20px;
+    margin-bottom: 30px;
   }
   
   .profilePicture {

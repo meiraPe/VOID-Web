@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import styles from './perfil.module.css';
 import { IonIcon } from '@ionic/react';
 import { personCircleOutline, createOutline } from 'ionicons/icons';
-
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 
 export default function Perfil() {
@@ -86,8 +87,31 @@ export default function Perfil() {
     }
   };
 
+  const router = useRouter();
+    const [showBox, setShowBox] = useState(false);
+  
 
   return (
+    <div>
+    <div className={styles.headerContainer}>
+      <header className={styles.headerMobile}>
+        <div className={styles.headerLeft}>
+          <button className={styles.backButton} onClick={() => router.back()}>
+            <Image src="/symbols/nav-arrow-left.svg" alt="Voltar" width={20} height={20} />
+          </button>
+          <span className={styles.headerTitle}>Perfil</span>
+        </div>
+      </header>
+
+      {/* Header Desktop */}
+      <div className={styles.headerDesktop}>
+        <button className={styles.backButton} onClick={() => router.back()}>
+          <Image src="/symbols/nav-arrow-left.svg" alt="Voltar" width={20} height={20} />
+        </button>
+        <h1 className={styles.headerTitle}>Perfil</h1>
+      </div>
+    </div>
+
     <div className={styles.profileContainer}>
       <div className={styles.profilePicture}>
         <IonIcon icon={personCircleOutline} className={styles.userIcon} />
@@ -182,6 +206,7 @@ export default function Perfil() {
           <strong>EXCLUIR CONTA</strong>
         </button>
       </div>
+    </div>
     </div>
   );
 }
