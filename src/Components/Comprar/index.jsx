@@ -92,6 +92,15 @@ export default function Comprar({ slug }) {
             Aproveite este produto exclusivo. <br/> Estoque limitado!
           </p>
 
+          <div className={styles.sacola}>
+                <button className={styles.btnSacola}>
+                    
+                    <Image className={styles.arrow} src="/symbols/usuario/shopping-bag.svg" alt="Sacola" width={20} height={20} />
+                    <p>Adicionar a sacola</p>
+
+                </button>
+          </div>
+
           {/* Seletor de tamanho */}
           <div className={styles.sizeSelector}>
             <h3>Selecione o tamanho:</h3>

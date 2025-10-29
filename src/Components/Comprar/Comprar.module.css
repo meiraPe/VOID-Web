@@ -113,7 +113,7 @@
   font-weight: 700;
   color: #222;
   background: linear-gradient(90deg, #0f172a, #1e293b);
-  -webkit-background-clip: text;
+ 
   -webkit-text-fill-color: transparent;
 }
 
@@ -319,4 +319,19 @@
   .sizeGrid {
     justify-content: flex-start;
   }
+}
+
+.btnSacola {
+  display: flex;
+  flex-direction: row;
+}
+
+.btnSacola p {
+  font-family: var(--text);
+}
+
+.btnSacola:hover {
+  transform: scale(1.5px);
+  transition: all 2s easy;
+  transition-delay: all 2s easy;
 }
