@@ -333,11 +333,12 @@
 
 .btnSacola p {
   font-family: var(--text);
-  font-size: 20px;
+  font-size: 12px;
 }
 
 .btnSacola:hover {
-  transform: scale(1.5px);
+  background-color: #ececec;
+  transform: scale(1.5);
   transition: all 2s easy;
   transition-delay: all 2s easy;
 }
