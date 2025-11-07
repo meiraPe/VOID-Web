@@ -1,146 +1,183 @@
-/* Container geral */
+/* =========================
+   BASE DA PÁGINA
+========================= */
 .pageContainer {
-    background: linear-gradient(to bottom, #fafafa 0%, #f3f3f3 100%);
-}
-
-.container {
+  background: linear-gradient(180deg, #fafafa 0%, #f3f3f3 100%);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 6.5rem 1.2rem 4rem; /* espaço para header flutuante global */
+  box-sizing: border-box;
+  transition: padding-top 0.3s ease;
+}
 
+.container {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-family: var(--text);
 }
 
-
 /* =========================
-   HEADERS
+   HEADER INTERNO
 ========================= */
 .headerMobile {
-  margin-top: 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
-  margin-bottom: 2rem;
-  margin-top: 7%; 
-}
-
-.headerContainer {
-  padding-inline: 2rem;
-}
-
-.headerLeft {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: flex-start;
+  margin-bottom: 1.8rem;
 }
 
 .backButton {
   border: none;
   background: #fff;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   cursor: pointer;
-  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.315);
+  transition: all 0.2s ease;
 }
 
-.headerDesktop {
-  display: none;
-  gap: 1rem;
-  margin-bottom: 2rem;
+.backButton:hover {
+  transform: translateY(-2px);
+  background: #f7f7f7;
 }
 
 .headerTitle {
   font-family: var(--title);
-  font-weight: 500;
-  font-size: 1.8rem;
-  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
   color: #0d1a2b;
+  margin-left: 1rem;
 }
 
-
-/* Main Content */
+/* =========================
+   CONTEÚDO PRINCIPAL
+========================= */
 .content {
-  width: 90%;
-  max-width: 420px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding-top: 1.5rem;
+  gap: 1.4rem;
 }
 
 .subtitle {
   font-family: var(--title);
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  text-align: center;
   color: #000;
+  text-align: center;
+  margin-bottom: 0.6rem;
 }
 
+/* =========================
+   LISTA DE CARTÕES
+========================= */
 .cardList {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-  width: 100%;
+  gap: 1rem;
 }
 
 .card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 0.8rem 1rem;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #ffffff, #f7f9fc);
+  border-radius: 14px;
+  padding: 1rem 1.3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.12);
 }
 
 .cardNumber {
   font-size: 1rem;
   font-weight: 600;
-  color: #000;
+  color: #0d1a2b;
 }
 
-.editText {
-  font-size: 0.8rem;
-  text-decoration: underline;
-  color: #333;
-  cursor: pointer;
-  text-align: center;
-  margin-top: 0.3rem;
+.cardDate {
+  font-size: 0.85rem;
+  color: #555;
+  display: block;
+  margin-top: 0.2rem;
 }
 
-.addButton {
-  background: #94a6c1;
-  color: #fff;
+.cardActions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.editButton,
+.deleteButton {
+  background: transparent;
   border: none;
-  border-radius: 8px;
-  padding: 0.8rem 1rem;
-  width: 90%;
-  max-width: 280px;
-  font-size: 0.95rem;
   cursor: pointer;
-  transition: background  0.2s ease;
-  margin-bottom: 5%;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.editButton:hover {
+  transform: scale(1.1);
+  color: #3484f3;
+}
+
+.deleteButton:hover {
+  transform: scale(1.1);
+  color: #e63946;
+}
+
+/* =========================
+   BOTÕES
+========================= */
+.addButton {
+  margin-top: 2.2rem;
+  width: 100%;
+  max-width: 340px;
+  background: #3484f3;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
 .addButton:hover {
-  background: #3484f3;
-  box-shadow: 0px 1px 20px 7px rgba(39, 118, 207, 0.1);
+  background: #276ef8;
+  box-shadow: 0 4px 18px rgba(52, 132, 243, 0.35);
+  transform: translateY(-2px);
 }
 
-/* Footer (mobile only) */
+/* =========================
+   FOOTER (MOBILE)
+========================= */
 .footer {
-  background: #000;
+  background: #0d1a2b;
   color: #fff;
   width: 100%;
   text-align: center;
-  padding: 2rem 1rem;
-  margin-top: 2rem;
+  padding: 2.5rem 1rem;
+  margin-top: 3rem;
 }
 
 .footer h2 {
@@ -154,7 +191,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin: 1.5rem 0;
+  margin: 1.2rem 0;
 }
 
 .mockups {
@@ -163,9 +200,53 @@
   gap: 1rem;
 }
 
-/* Responsividade */
+/* =========================
+   RESPONSIVIDADE DESKTOP
+========================= */
 @media (min-width: 768px) {
+  .pageContainer {
+    padding: 10rem 2rem 5rem; /* espaço adicional para header fixo global */
+  }
+
+  .container {
+    max-width: 620px;
+  }
+
+  .headerMobile {
+    display: none;
+  }
+
+  .headerDesktop {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 3rem;
+  }
+
+  .backButton {
+    width: 50px;
+    height: 50px;
+  }
+
+  .headerTitle {
+    font-size: 1.6rem;
+  }
+
+  .card {
+    padding: 1.4rem 1.6rem;
+  }
+
+  .cardNumber {
+    font-size: 1.05rem;
+  }
+
+  .addButton {
+    max-width: 400px;
+    font-size: 1.05rem;
+  }
+
   .footer {
-    display: none; /* some no desktop */
+    display: none; /* oculta footer no desktop */
   }
 }

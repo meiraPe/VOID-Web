@@ -1,20 +1,20 @@
 /* =========================
-   HEADER PRINCIPAL
+  HEADER PRINCIPAL
 ========================= */
 .header {
   position: fixed;
-  top: 1.6rem;    
-  left: 50%;       
-  transform: translateX(-50%); 
-  width: 90%;            
-  max-width: 1800px; 
+  top: 1.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1800px;
   background: #0d1a2b;
   backdrop-filter: blur(6px);
   color: white;
   z-index: 1000;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease, opacity 0.3s ease;
   padding: 0.5rem 1.5rem;
   display: flex;
   justify-content: space-between;
@@ -36,11 +36,11 @@
 
 .hidden {
   opacity: 0;
-  transform: translate(-50%, -120%);
+  transform: translate(-50%, -100%);
 }
 
 /* =========================
-   LOGO
+  LOGO
 ========================= */
 .logo {
   padding: 0.2rem 0;
@@ -50,7 +50,7 @@
 }
 
 /* =========================
-   MENU DE NAVEGAÇÃO
+  MENU DE NAVEGAÇÃO
 ========================= */
 .nav {
   display: flex;
@@ -78,7 +78,7 @@
 }
 
 /* =========================
-   BARRA DE BUSCA + PERFIL
+  BARRA DE BUSCA + PERFIL
 ========================= */
 .right {
   display: flex;
@@ -92,7 +92,7 @@
   background: #fff;
   padding: 0.3rem 1rem;
   border-radius: 6px;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .searchInput {
@@ -104,12 +104,8 @@
 }
 
 /* =========================
-   PERFIL + DROPDOWN
+  PERFIL + DROPDOWN
 ========================= */
-.profileWrapper {
-  position: relative;
-}
-
 .profileImg {
   padding-right: 1rem;
   font-size: 1.2rem;
@@ -122,16 +118,15 @@
   opacity: 0.7;
 }
 
-/* Menu suspenso */
 .dropdown {
   font-family: var(--text);
   position: absolute;
-  top: 120%; /* abaixo do ícone */
+  top: 120%;
   right: 0;
   background: #fff;
   color: #333;
   border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   padding: 0.8rem 1rem;
   display: flex;
   flex-direction: column;
@@ -168,7 +163,6 @@
   color: #a00;
 }
 
-/* Animação de entrada */
 @keyframes fadeDown {
   from {
     opacity: 0;
@@ -181,73 +175,61 @@
 }
 
 /* =========================
-   CATEGORIES PANEL
+  SIDEBAR
 ========================= */
-.categoriesPanel {
-  display: none;
-}
-
-.closeBtn {
-  display: none;
-}
-
-.title {
-  display: none;
-}
-
-.list {
-  display: none;
-}
-
-/* =========================
-   SIDEBAR
-========================= */
-.sidebar {
+.sidebar,
+.sidebarMarcas {
   position: fixed;
   top: 0;
-  left: -300px; 
-  width: 300px;
-  height: 100vh; 
-  background-color: rgba(255, 255, 255, 0.767);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-  z-index: 1001;
-  padding: 1rem;
-  color: black;
-  font-family: "poppins", sans-serif;
-
-
-  transition: transform 0.5s ease; /* tempo e suavidade da animação */
+  right: 0;
+  width: 420px;
+  height: 100vh;
+  background: #fff;
+  color: white;
+  overflow-y: auto;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 3000;
+  padding: 2rem;
 }
 
+/* Entrando */
+.sidebar.open,
+.sidebarMarcas.open {
+  transform: translateX(0);
+  opacity: 1;
+}
 
+/* Saindo */
+.sidebar.closing,
+.sidebarMarcas.closing {
+  transform: translateX(100%);
+  opacity: 0;
+}
 
-.sidebar ul {
+/* === Overlay === */
+.sidebarOverlay,
+.sidebarMarcasOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 150;
+}
+
+.sidebarOverlay.show,
+.sidebarMarcasOverlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.sidebar ul,
+.sidebarMarcas ul {
   list-style: none;
   padding-left: 0;
-}
-
-.sidebar.open {
-  left: 0; /* Slide into view */
-}
-
-.closeBtn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.2rem;
-  cursor: pointer;
-  margin-bottom: 1rem;
-}
-
-/* =========================
-   RESPONSIVIDADE
-========================= */
-@media (max-width: 767px) {
-  .header {
-    display: none;
-  }
 }
 
 .part {
@@ -256,14 +238,26 @@
 }
 
 .part h1 {
-  font-size: 1.3rem;
+  font-family: var(--title);
+  font-weight: 300;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.part h2 {
+  font-family: var(--title);
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0px;
   color: #333;
 }
 
 .part li {
   color: #333;
+  font-family: var(--text);
+  text-decoration: none;
 }
-
 
 .part li:hover {
   text-decoration: underline;
@@ -272,63 +266,69 @@
   color: black;
 }
 
-.close li {
-  list-style: none;
-}
-
 .close {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.sidebarMarcas {
-  position: fixed;
-  top: 0;
-  left: -300px; 
-  width: 300px;
-  height: 100vh; 
-  background-color: rgba(255, 255, 255, 0.767);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-  z-index: 1001;
-  padding: 1rem;
-  color: black;
-  font-family: "poppins", sans-serif;
-  transition: transform 0.5s ease; /* tempo e suavidade da animação */
-  overflow: scroll;
-  scrollbar-color: #333 rgba(255, 255, 255, 0);
-  scrollbar-width: thin;
-}
-
-.sidebarMarcas ul {
+.close li {
   list-style: none;
-  padding-left: 0;
 }
 
-.sidebarMarcas.open {
-  left: 0; /* Slide into view */
+/* === Overlay padrão === */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(3px);
+  z-index: 2500; 
+  animation: fadeIn 0.3s ease forwards;
 }
 
-.sidebarMarcas a {
-  color: #333;
+/* === Animações com Keyframes === */
+@keyframes sidebarSlideIn {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(-4%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-.sidebarMarcas a:hover {
-  text-decoration: underline;
-  cursor: pointer;
-  transition: ease-in-out 0.3s;
-  color: black;
+@keyframes sidebarSlideOut {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 
-.sidebar a {
-  color: #333;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.sidebar a:hover {
-  text-decoration: underline;
-  cursor: pointer;
-  transition: ease-in-out 0.3s;
-  color: black;
+/* === Classes de entrada/saída === */
+.sidebarEnter {
+  animation: sidebarSlideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.sidebarExit {
+  animation: sidebarSlideOut 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+}
+
+@media (max-width: 767px) {
+  .header {
+    display: none;
+  }
 }

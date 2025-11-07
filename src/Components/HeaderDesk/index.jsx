@@ -8,31 +8,21 @@ import { useRouter } from "next/navigation";
 
 export default function HeaderDesk() {
   const router = useRouter();
-  const [showSidebarMarcas, setShowSidebarMarcas] = useState(false);
-  const [showMenu, setShowMenu] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [showBox, setShowBox] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebarMarcas, setShowSidebarMarcas] = useState(false);
+  const [closingSidebar, setClosingSidebar] = useState(false);
+  const [closingMarcas, setClosingMarcas] = useState(false);
+  const [showBox, setShowBox] = useState(false);
   const [usuarioLogado, setUsuarioLogado] = useState(false);
   const menuRef = useRef(null);
 
-  // Verifica se há token no localStorage
+  // --- Verifica se há token salvo ---
   useEffect(() => {
     const token = localStorage.getItem("token");
     setUsuarioLogado(!!token);
   }, []);
 
-  // Controle de scroll para esconder/mostrar header
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowMenu(window.scrollY < lastScrollY);
-      setLastScrollY(window.scrollY);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
-  // Fecha dropdown ao clicar fora
+  // --- Fecha dropdown se clicar fora ---
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -43,45 +33,37 @@ export default function HeaderDesk() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Fecha sidebar ao clicar fora ou apertar ESC
+  // --- Fecha com ESC ---
   useEffect(() => {
-    const handleClickOutsideSidebar = (e) => {
-      if (e.target.classList.contains(styles.sidebarOverlay)) setShowSidebar(false);
+    const handleKey = (e) => {
+      if (e.key === "Escape") {
+        handleCloseSidebar();
+        handleCloseSidebarMarcas();
+      }
     };
-    const handleEscapeKey = (e) => { if (e.key === "Escape") setShowSidebar(false); };
-    if (showSidebar) {
-      document.addEventListener("mousedown", handleClickOutsideSidebar);
-      document.addEventListener("keydown", handleEscapeKey);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutsideSidebar);
-      document.removeEventListener("keydown", handleEscapeKey);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutsideSidebar);
-      document.removeEventListener("keydown", handleEscapeKey);
-    };
-  }, [showSidebar]);
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, []);
 
-  // Fecha sidebar marcas ao clicar fora ou apertar ESC
-  useEffect(() => {
-    const handleClickOutsideSidebar = (e) => {
-      if (e.target.classList.contains(styles.sidebarMarcasOverlay)) setShowSidebarMarcas(false);
-    };
-    const handleEscapeKey = (e) => { if (e.key === "Escape") setShowSidebarMarcas(false); };
-    if (showSidebarMarcas) {
-      document.addEventListener("mousedown", handleClickOutsideSidebar);
-      document.addEventListener("keydown", handleEscapeKey);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutsideSidebar);
-      document.removeEventListener("keydown", handleEscapeKey);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutsideSidebar);
-      document.removeEventListener("keydown", handleEscapeKey);
-    };
-  }, [showSidebarMarcas]);
+  // --- Abertura e fechamento com animação ---
+  const handleCloseSidebar = () => {
+    if (!showSidebar) return;
+    setClosingSidebar(true);
+    setTimeout(() => {
+      setShowSidebar(false);
+      setClosingSidebar(false);
+    }, 400);
+  };
 
-  // Função de logout
+  const handleCloseSidebarMarcas = () => {
+    if (!showSidebarMarcas) return;
+    setClosingMarcas(true);
+    setTimeout(() => {
+      setShowSidebarMarcas(false);
+      setClosingMarcas(false);
+    }, 400);
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("nome");
@@ -93,47 +75,54 @@ export default function HeaderDesk() {
 
   return (
     <>
-      <header className={`${styles.header} ${showMenu ? styles.visible : styles.hidden}`}>
+      <header className={styles.header}>
         <div className={styles.inner}>
-          {/* Logo + Nav */}
           <div className={styles.left}>
             <Link href="/" className={styles.logo}>
               <Image src="/logos/pngBRANCO.png" alt="Logo" width={100} height={40} />
             </Link>
+
             <nav className={styles.nav}>
               <Link
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  setShowSidebarMarcas((prev) => !prev);
-                  setShowSidebar(false);
+                  if (showSidebarMarcas) handleCloseSidebarMarcas();
+                  else {
+                    setShowSidebar(false);
+                    setShowSidebarMarcas(true);
+                  }
                 }}
               >
                 Marcas
               </Link>
+
               <Link
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  setShowSidebar((prev) => !prev);
-                  setShowSidebarMarcas(false);
+                  if (showSidebar) handleCloseSidebar();
+                  else {
+                    setShowSidebarMarcas(false);
+                    setShowSidebar(true);
+                  }
                 }}
               >
                 Categorias
               </Link>
+
               <Link href="/sacola">Sacola</Link>
             </nav>
           </div>
 
-          {/* Busca + Perfil */}
           <div className={styles.right} ref={menuRef}>
             <div className={styles.searchBox}>
-              <Image src="/symbols/Search.svg" alt="Buscar" width={18} height={18} style={{ marginRight: "0.4rem" }} />
+              <Image src="/symbols/Search.svg" alt="Buscar" width={18} height={18} />
               <input type="text" placeholder="Search" className={styles.searchInput} />
             </div>
 
             <Image
-              onClick={() => setShowBox(!showBox)}
+              onClick={() => setShowBox((prev) => !prev)}
               style={{ cursor: "pointer" }}
               className={styles.profileImg}
               src="/symbols/Profile.svg"
@@ -142,7 +131,6 @@ export default function HeaderDesk() {
               height={30}
             />
 
-            {/* Dropdown */}
             {showBox && (
               <div className={styles.dropdown}>
                 {!usuarioLogado ? (
@@ -150,12 +138,14 @@ export default function HeaderDesk() {
                     <Link href="/login">Entrar</Link>
                     <Link href="/signin">Criar Conta</Link>
                     <Link href="/perfil">Meu Perfil</Link>
-                    <Link href="/cartoes">Meus Cartoes</Link>
+                    <Link href="/cartoes">Meus Cartões</Link>
                   </>
                 ) : (
                   <>
                     <Link href="/notificacao">Notificações</Link>
-                    <button className={styles.logoutBtn} onClick={handleLogout}>Sair</button>
+                    <button className={styles.logoutBtn} onClick={handleLogout}>
+                      Sair
+                    </button>
                   </>
                 )}
               </div>
@@ -164,14 +154,25 @@ export default function HeaderDesk() {
         </div>
       </header>
 
-      {/* Sidebar Overlay */}
-      {showSidebar && <div className={styles.sidebarOverlay}></div>}
-      {showSidebarMarcas && <div className={styles.sidebarMarcasOverlay}></div>}
+      {/* === Overlay === */}
+      {(showSidebar || showSidebarMarcas) && (
+        <div className={styles.overlay} onClick={() => {
+          handleCloseSidebar();
+          handleCloseSidebarMarcas();
+        }}></div>
+      )}
 
-      {/* Sidebar Marcas */}
-      {showSidebarMarcas && (
-        <div className={`${styles.sidebarMarcas} ${showSidebarMarcas ? styles.open : ""}`}>
-          <button className={styles.closeBtn} onClick={() => setShowSidebarMarcas(false)}>Fechar</button>
+      {/* === Sidebar Marcas === */}
+      {(showSidebarMarcas || closingMarcas) && (
+        <aside
+          className={`${styles.sidebarMarcas} ${
+            showSidebarMarcas
+              ? styles.sidebarEnter
+              : closingMarcas
+              ? styles.sidebarExit
+              : ""
+          }`}
+        >
           <div className={styles.part}>
             <div className={styles.close}>
               <h1>MARCAS</h1>
@@ -179,125 +180,98 @@ export default function HeaderDesk() {
                 <img
                   src="/symbols/usuario/x-circle.svg"
                   alt=""
+                  onClick={handleCloseSidebarMarcas}
                   style={{ cursor: "pointer" }}
-                  onClick={() => setShowSidebarMarcas(false)}
                 />
               </li>
             </div>
             <div>
-              <h1>A</h1>
-              <ul>
-                <li>Adidas</li>
-                <li>Asics</li>
-                <li>Air Jordan</li>
-                <li>Air Max</li>
-              </ul>
+              <h2>A</h2>
+                <ul>
+                  <li>Adidas</li>
+                  <li>Asics</li>
+                  <li>Air Jordan</li>
+                  <li>Air Max</li>
+                </ul>
             </div>
             <div>
-              <h1>B</h1>
-              <ul>
-                <li>Bape</li>
-                <li>Balenciaga</li>
-              </ul>
+              <h2>B</h2>
+                <ul>
+                  <li>Bape</li>
+                  <li>Balenciaga</li>
+                </ul>
             </div>
+
             <div>
-              <h1>C</h1>
-              <ul>
-                <li>Converse</li>
-                <li>Corteiz</li>
-                <li>Calvin Klein</li>
-              </ul>
+              <h2>C</h2>
+                <ul>
+                  <li>Converse</li>
+                  <li>Corteiz</li>
+                  <li>Calvin Klein</li>
+                </ul>
+            </div>  
+            
+            <div>
+              <h2>N</h2>
+                <ul>
+                  <li><Link href="/marcas">Nike</Link></li>
+                  <li>New Balance</li>
+                </ul>
             </div>
+
             <div>
-              <h1>F</h1>
-              <ul>
-                <li>Fila</li>
-                <li>FeRrari</li>
-              </ul>
+              <h2>P</h2>
+                <ul>
+                  <li>Puma</li>
+                  <li>Prada</li>
+                </ul>
             </div>
+
             <div>
-              <h1>J</h1>
-              <ul>
-                <li>Jordan</li>
-              </ul>
+              <h2>R</h2>
+                <ul>
+                  <li>Reebok</li>
+                  <li>Raf Simons</li>
+                </ul>
             </div>
+
             <div>
-              <h1>N</h1>
-              <ul>
-                <li><Link href="/marcas">Nike</Link></li>
-                <li>New Balance</li>
-              </ul>
-            </div>
-            <div>
-              <h1>O</h1>
-              <ul>
-                <li>Oakley</li>
-              </ul>
-            </div>
-            <div>
-              <h1>P</h1>
-              <ul>
-                <li>Puma</li>
-                <li>Prada</li>
-              </ul>
-            </div>
-            <div>
-              <h1>V</h1>
-              <ul>
-                <li>Vans</li>
-              </ul>
+              <h2>V</h2>
+                <ul>
+                  <li>Vans</li>
+                  <li>Valentino</li>
+                </ul>
             </div>
           </div>
-        </div>
+        </aside>
       )}
 
-      {/* Sidebar Categorias */}
-      {showSidebar && (
-        <div className={`${styles.sidebar} ${showSidebar ? styles.open : ""}`}>
-          <button className={styles.closeBtn} onClick={() => setShowSidebar(false)}>Fechar</button>
-
+      {/* === Sidebar Categorias === */}
+      {(showSidebar || closingSidebar) && (
+        <aside
+          className={`${styles.sidebar} ${
+            showSidebar
+              ? styles.sidebarEnter
+              : closingSidebar
+              ? styles.sidebarExit
+              : ""
+          }`}
+        >
           <div className={styles.part}>
-            <div className={styles.close}><h1>SNEAKERS</h1>
+            <div className={styles.close}>
+              <h1>SNEAKERS</h1>
               <li>
                 <img
                   src="/symbols/usuario/x-circle.svg"
                   alt=""
+                  onClick={handleCloseSidebar}
                   style={{ cursor: "pointer" }}
-                  onClick={() => setShowSidebar(false)}
                 />
               </li>
             </div>
-            <ul>
-              <li>Tênis</li>
-            </ul>
+            <ul><li>Tênis</li></ul>
           </div>
-
-          <div className={styles.part}>
-            <h1>VESTUÁRIO</h1>
-            <ul>
-              <li>Camiseta</li>
-              <li>Calça</li>
-              <li>Boné</li>
-              <li>Moletom</li>
-              <li>Bermuda</li>
-              <li>Corta Vento</li>
-              <li>Meia</li>
-            </ul>
-          </div>
-
-          <div className={styles.part}>
-            <h1>ACESSÓRIOS</h1>
-            <ul>
-              <li>Mochila</li>
-              <li>Chaveiro</li>
-              <li>Relógio</li>
-              <li>Carteira</li>
-              <li>Óculos</li>
-              <li>Anel</li>
-              <li>Colar</li>
-            </ul>
-          </div>
-        </div>
+        </aside>
       )}
     </>
   );
