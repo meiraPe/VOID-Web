@@ -139,6 +139,7 @@ export default function HeaderDesk() {
                     <Link href="/signin">Criar Conta</Link>
                     <Link href="/perfil">Meu Perfil</Link>
                     <Link href="/cartoes">Meus Cartões</Link>
+                    <Link href="/curtidas">Curtidas</Link>
                   </>
                 ) : (
                   <>

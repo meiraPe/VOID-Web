@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { products } from "@/app/data/products";
+import { FaHeart } from "react-icons/fa";
 
 export default function Comprar({ slug }) {
   const router = useRouter();
@@ -44,6 +45,18 @@ export default function Comprar({ slug }) {
     { label: "42", available: false },
   ];
 
+  const [liked, setLiked] = useState(false);
+
+  const toggleLike = () => {
+    setLiked(!liked);
+  };
+
+  const [adicionado, setAdicionado] = useState(false);
+
+  const handleClick = () => {
+    setAdicionado(!adicionado);
+  };
+
   return (
     <div className={styles.container}>
       {/* Header Mobile */}
@@ -79,27 +92,41 @@ export default function Comprar({ slug }) {
         <div className={styles.imageBox}>
           <Image
             src={product.img}
-            alt={product.name}  
+            alt={product.name}
             width={300}
             height={250}
           />
         </div>
 
         <div className={styles.infoBox}>
+
+          <div className={styles.likebtn}>
           <h1>{product.name}</h1>
+          <div className={styles.sacola}>
+            <button
+              onClick={toggleLike}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                outline: "none",
+              }}>
+              <FaHeart
+                size={35}
+                color={liked ? "red" : "gray"}
+                style={{
+                  transition: "color 0.3s ease",
+                }} />
+            </button>
+          </div>
+          </div>
+
           <p className={styles.price}>R$ {product.price}</p>
           <p className={styles.description}>
-            Aproveite este produto exclusivo. <br/> Estoque limitado!
+            Aproveite este produto exclusivo. <br /> Estoque limitado!
           </p>
 
-          <div className={styles.sacola}>
-                <button className={styles.btnSacola}>
-                    
-                    <Image className={styles.arrow} src="/symbols/usuario/shopping-bag.svg" alt="Sacola" width={25} height={25} />
-                    <p>Adicionar a sacola</p>
 
-                </button>
-          </div>
 
           {/* Seletor de tamanho */}
           <div className={styles.sizeSelector}>
@@ -127,6 +154,31 @@ export default function Comprar({ slug }) {
               <p className={styles.errorMsg}>Selecione um tamanho antes de comprar.</p>
             )}
           </div>
+
+          <button
+              onClick={handleClick}
+              className={styles.btnSacola}
+              style={{
+                backgroundColor: adicionado ? "black" : "white",
+                color: adicionado ? "white" : "black",
+                transition: "all 0.3s ease",
+              }}
+            >
+              {!adicionado ? (
+                <>
+                  <Image
+                    className={styles.arrow}
+                    src="/symbols/usuario/shopping-bag.svg"
+                    alt="Sacola"
+                    width={25}
+                    height={25}
+                  />
+                  <p>Adicionar à sacola</p>
+                </>
+              ) : (
+                <p>Adicionado</p>
+              )}
+            </button>
 
           <button className={styles.buyBtn} onClick={handleBuy}>
             Comprar Agora
