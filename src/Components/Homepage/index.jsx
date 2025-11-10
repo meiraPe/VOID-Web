@@ -155,10 +155,18 @@ export default function Home() {
       {/* Marcas */}
       <section className={styles.brandsSection}>
         {marcas.map((marca) => (
-          <Marcas
-            key={marca.id}
-            imagemUrl={marca.imagemUrl}
-          />
+          <div key={marca.id} className={styles.brandItem}>
+            <div className={styles.brandImageWrapper}>
+              <Image
+                src={marca.imagemUrl}
+                alt={marca.nome || "Marca"}
+                width={120}
+                height={120}
+                className={styles.brandImage}
+                unoptimized
+              />
+            </div>
+          </div>
         ))}
       </section>
 
