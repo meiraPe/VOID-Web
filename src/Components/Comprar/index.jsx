@@ -12,6 +12,8 @@ export default function Comprar({ slug }) {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedSize, setSelectedSize] = useState("");
   const [showError, setShowError] = useState(false);
+  const [liked, setLiked] = useState(false);
+  const [adicionado, setAdicionado] = useState(false);
 
   const product = products.find((p) => p.slug === slug);
 
@@ -29,7 +31,6 @@ export default function Comprar({ slug }) {
       setShowError(true);
       return;
     }
-
     setShowPopup(true);
     setTimeout(() => {
       setShowPopup(false);
@@ -45,17 +46,8 @@ export default function Comprar({ slug }) {
     { label: "42", available: false },
   ];
 
-  const [liked, setLiked] = useState(false);
-
-  const toggleLike = () => {
-    setLiked(!liked);
-  };
-
-  const [adicionado, setAdicionado] = useState(false);
-
-  const handleClick = () => {
-    setAdicionado(!adicionado);
-  };
+  const toggleLike = () => setLiked((prev) => !prev);
+  const handleClick = () => setAdicionado((prev) => !prev);
 
   return (
     <div className={styles.container}>
@@ -89,44 +81,33 @@ export default function Comprar({ slug }) {
 
       {/* Conteúdo */}
       <section className={styles.productBox}>
+        {/* Botão de curtir fixo no topo direito */}
+        <button
+          onClick={toggleLike}
+          className={`${styles.favoriteBtn} ${liked ? styles.liked : ""}`}
+          aria-label="Favoritar produto"
+        >
+          <FaHeart size={22} />
+        </button>
+
+        {/* Imagem */}
         <div className={styles.imageBox}>
           <Image
             src={product.img}
             alt={product.name}
-            width={300}
-            height={250}
+            width={450}
+            height={350}
+            priority
           />
         </div>
 
+        {/* Informações */}
         <div className={styles.infoBox}>
-
-          <div className={styles.likebtn}>
-          <h1>{product.name}</h1>
-          <div className={styles.sacola}>
-            <button
-              onClick={toggleLike}
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                outline: "none",
-              }}>
-              <FaHeart
-                size={35}
-                color={liked ? "red" : "gray"}
-                style={{
-                  transition: "color 0.3s ease",
-                }} />
-            </button>
-          </div>
-          </div>
-
+          <h1 className={styles.productName}>{product.name}</h1>
           <p className={styles.price}>R$ {product.price}</p>
           <p className={styles.description}>
             Aproveite este produto exclusivo. <br /> Estoque limitado!
           </p>
-
-
 
           {/* Seletor de tamanho */}
           <div className={styles.sizeSelector}>
@@ -151,35 +132,39 @@ export default function Comprar({ slug }) {
               ))}
             </div>
             {showError && (
-              <p className={styles.errorMsg}>Selecione um tamanho antes de comprar.</p>
+              <p className={styles.errorMsg}>
+                Selecione um tamanho antes de comprar.
+              </p>
             )}
           </div>
 
+          {/* Botão adicionar à sacola */}
           <button
-              onClick={handleClick}
-              className={styles.btnSacola}
-              style={{
-                backgroundColor: adicionado ? "black" : "white",
-                color: adicionado ? "white" : "black",
-                transition: "all 0.3s ease",
-              }}
-            >
-              {!adicionado ? (
-                <>
-                  <Image
-                    className={styles.arrow}
-                    src="/symbols/usuario/shopping-bag.svg"
-                    alt="Sacola"
-                    width={25}
-                    height={25}
-                  />
-                  <p>Adicionar à sacola</p>
-                </>
-              ) : (
-                <p>Adicionado</p>
-              )}
-            </button>
+            onClick={handleClick}
+            className={styles.btnSacola}
+            style={{
+              backgroundColor: adicionado ? "black" : "white",
+              color: adicionado ? "white" : "black",
+              transition: "all 0.3s ease",
+            }}
+          >
+            {!adicionado ? (
+              <>
+                <Image
+                  className={styles.arrow}
+                  src="/symbols/usuario/shopping-bag.svg"
+                  alt="Sacola"
+                  width={25}
+                  height={25}
+                />
+                <p>Adicionar à sacola</p>
+              </>
+            ) : (
+              <p>Adicionado!</p>
+            )}
+          </button>
 
+          {/* Botão comprar */}
           <button className={styles.buyBtn} onClick={handleBuy}>
             Comprar Agora
           </button>
