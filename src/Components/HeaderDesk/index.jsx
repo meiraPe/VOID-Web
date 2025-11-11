@@ -137,13 +137,13 @@ export default function HeaderDesk() {
                   <>
                     <Link href="/login">Entrar</Link>
                     <Link href="/signin">Criar Conta</Link>
-                    <Link href="/perfil">Meu Perfil</Link>
-                    <Link href="/cartoes">Meus Cartões</Link>
-                    <Link href="/curtidas">Curtidas</Link>
                   </>
                 ) : (
                   <>
                     <Link href="/notificacao">Notificações</Link>
+                    <Link href="/perfil">Meu Perfil</Link>
+                    <Link href="/cartoes">Meus Cartões</Link>
+                    <Link href="/favoritos">Favoritos</Link>
                     <button className={styles.logoutBtn} onClick={handleLogout}>
                       Sair
                     </button>

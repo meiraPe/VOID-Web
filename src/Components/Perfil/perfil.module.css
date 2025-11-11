@@ -1,19 +1,21 @@
-
-/* =========================
-   HEADERS
-========================= */
-.headerMobile {
-  margin-top: 100px;
+.container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  width: 100%;
-  margin-bottom: 2rem;
-  margin-top: 7%; 
+  background: #f5f6f8;
+  min-height: 110vh;
+  padding-inline: 2rem;
+  padding-bottom: 6rem;
 }
 
-.headerContainer {
-  padding-inline: 2rem;
+/* HEADER */
+.headerMobile {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin-top: 80px;
+  margin-bottom: 2rem;
 }
 
 .headerLeft {
@@ -26,115 +28,123 @@
   border: none;
   background: #fff;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.315);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.backButton:hover {
+  transform: scale(1.05);
 }
 
 .headerDesktop {
   display: none;
+  align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
 }
 
 .headerTitle {
   font-family: var(--title);
-  font-weight: 500;
   font-size: 1.8rem;
-  text-align: center;
+  font-weight: 400;
   color: #0d1a2b;
 }
 
+/* PERFIL */
+.profileSection {
+  text-align: center;
+  margin-bottom: 3rem;
+}
 
-.profileContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2rem;
-    font-family: 'Raleway', sans-serif;
-    margin-top: 20px;
-    margin-bottom: 30px;
+.avatarContainer {
+  background: #fff;
+  border-radius: 50%;
+  padding: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.userName {
+  font-family: var(--text);
+  color: #0d1a2b;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.userSub {
+  color: #748cab;
+  font-family: var(--text);
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+/* BOTÕES */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 450px;
+}
+
+.optionBtn {
+  background: #fff;
+  color: #0d1a2b;
+  border: 1px solid rgba(13, 26, 43, 0.1);
+  border-radius: 12px;
+  padding: 1rem 1.4rem;
+  font-size: 1rem;
+  font-family: var(--text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.optionBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 26, 43, 0.15);
+}
+
+.logoutBtn {
+  background: rgba(255, 0, 0, 0.08);
+  border: 1px solid rgba(255, 0, 0, 0.25);
+  color: #f55;
+}
+
+.deleteBtn {
+  background: rgba(255, 0, 0, 0.12);
+  border: 1px solid rgba(255, 0, 0, 0.35);
+  color: #c00;
+}
+
+.logoutBtn:hover,
+.deleteBtn:hover {
+  background: rgba(255, 0, 0, 0.18);
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVIDADE */
+@media (min-width: 992px) {
+  .headerMobile {
+    display: none;
   }
-  
-  .profilePicture {
+
+  .headerDesktop {
+    display: flex;
     position: relative;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
-  }
-  
-  .userIcon {
-    font-size: 120px;
-    color: #555;
-  }
-  
-  .editPhotoIcon {
-    position: absolute;
-    bottom: 10px;
-    right: 80px;
-    font-size: 24px;
-    color: #0d1a2b;
-    cursor: pointer;
-  }
-  
-  .profileInfo {
-    width: 90%;
-    max-width: 400px;
-    background: #f9f9f9;
-    border-radius: 8px;
-    padding: 1rem;
-  }
-  
-  .profileInfo p {
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .editIcon {
-    color: #0d1a2b;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  .inputEditar {
-    border: 1px solid #ccc;
-    padding: 5px;
-    border-radius: 4px;
-    margin-left: 10px;
-  }
-  
-  .saveButton {
-    margin-left: 8px;
-    background-color: #a3a3a3;
-    color: white;
-    border: none;
-    padding: 4px 8px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .deleteBtn {
-    color: #ad0a0a;
-    border: #ad0a0a 1px solid;
-    border-radius: 10px;
-    padding: 10px;
-    margin-top: 1rem;
-    cursor: pointer;
+    margin-top: 120px;
+    margin-left: 6rem;
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
   }
-
-  .deleteBtn:hover {
-    color: #6b0707;
-    border: #6b0707 1px solid;
-    background-color: #ffb5b5;
-  }
+}

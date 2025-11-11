@@ -1,0 +1,218 @@
+/* =========================
+   CONTAINER PRINCIPAL
+========================= */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f5f6f8;
+  min-height: 110vh;
+  padding-inline: 2rem;
+  padding-bottom: 6rem;
+}
+
+/* =========================
+   HEADERS
+========================= */
+.headerMobile {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin-top: 80px;
+  margin-bottom: 2rem;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.backButton {
+  border: none;
+  background: #fff;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.backButton:hover {
+  transform: scale(1.05);
+}
+
+.headerDesktop {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.headerTitle {
+  font-family: var(--title);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #0d1a2b;
+}
+
+/* =========================
+   GRID DE PRODUTOS
+========================= */
+.products {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 900px;
+}
+
+.card {
+  position: relative;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+/* Ícone de favorito no topo direito */
+.favoriteBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ffffff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff3b3b;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.favoriteBtn:hover {
+  background: #ffefef;
+  transform: scale(1.05);
+}
+
+.productImg {
+  width: 100%;
+  height: 230px;
+  object-fit: contain;
+  padding: 1rem;
+  background: #fafafa;
+}
+
+/* =========================
+   INFORMAÇÕES DO CARD
+========================= */
+.cardInfo {
+  padding: 1rem 1.2rem 1.4rem;
+  text-align: center;
+}
+
+.productName {
+  font-family: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0d1a2b;
+  margin-bottom: 0.4rem;
+}
+
+.price {
+  font-family: var(--text);
+  color: #748cab;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+}
+
+/* Botão Comprar */
+.buyBtn {
+  display: inline-block;
+  background: linear-gradient(90deg, #0d1a2b, #1e3554);
+  color: white;
+  font-size: 0.9rem;
+  font-family: var(--text);
+  border-radius: 10px;
+  padding: 0.7rem 3rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(13, 26, 43, 0.15);
+}
+
+.buyBtn:hover {
+  background: linear-gradient(90deg, #162a44, #2e4a74);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(13, 26, 43, 0.25);
+}
+
+/* =========================
+   MENSAGEM VAZIA
+========================= */
+.emptyMsg {
+  color: #748cab;
+  font-family: var(--text);
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  
+  /* Centralização total */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  /* Aparência mais moderna */
+  background: #fff;
+  padding: 2rem 3rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  opacity: 0.95;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+@media (min-width: 600px) {
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .headerMobile {
+    display: none;
+  }
+
+  .headerDesktop {    
+    position: relative;          /* mantém dentro do fluxo da página */
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 120px;           /* espaçamento para o header principal */
+    margin-left: 6rem;           /* alinhado à esquerda */
+    width: 100%; 
+  }
+}

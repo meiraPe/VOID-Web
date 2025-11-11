@@ -1,8 +1,8 @@
-import Curtidas from "@/Components/Curtidas";
+import Curtidas from "@/Components/Favoritos";
 import HeaderDesk from "@/Components/HeaderDesk";
 import Footer from "@/Components/Footer";
 import MenuMob from "@/Components/MenuMobile";
-import styles from "./CurtidasPage.module.css";
+import styles from "./FavoitosPage.module.css";
 
 export default function Page() {
   return (

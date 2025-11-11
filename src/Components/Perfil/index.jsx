@@ -1,103 +1,71 @@
-'use client';
-import { useEffect, useState } from 'react';
-import styles from './perfil.module.css';
-import { IonIcon } from '@ionic/react';
-import { personCircleOutline, createOutline } from 'ionicons/icons';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+"use client";
 
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import styles from "./Perfil.module.css";
 
 export default function Perfil() {
-  const [usuarioId, setUsuarioId] = useState(null);
-  const [nome, setNome] = useState('[Sem nome]');
-  const [email, setEmail] = useState('[Sem email]');
-  const [senha, setSenha] = useState('********');
-  const [editandoCampo, setEditandoCampo] = useState(null);
-  const [novoValor, setNovoValor] = useState('');
+  const router = useRouter();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const id = localStorage.getItem('usuario_id');
-    const nomeLS = localStorage.getItem('usuario_nome');
-    const emailLS = localStorage.getItem('usuario_email');
-    setUsuarioId(id);
-    setNome(nomeLS || '[Sem nome]');
-    setEmail(emailLS || '[Sem email]');
-  }, []);
-
-  const handleEditar = (campo) => {
-    setEditandoCampo(campo);
-    if (campo === 'senha') setNovoValor('');
-    else setNovoValor(campo === 'nome' ? nome : email);
-  };
-
-  const handleSalvar = async () => {
-    if (!novoValor.trim()) return alert('Preencha o campo.');
-
-    const dados = {
-      nome: editandoCampo === 'nome' ? novoValor : nome,
-      email: editandoCampo === 'email' ? novoValor : email,
-      senha: editandoCampo === 'senha' ? novoValor : undefined,
-    };
-
     try {
-      const res = await fetch(`http://localhost:3000/api/usuarios/${usuarioId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dados),
-      });
-
-      const resultado = await res.json();
-
-      if (res.ok) {
-        alert(`${editandoCampo} atualizado com sucesso!`);
-        if (editandoCampo === 'nome') {
-          setNome(novoValor);
-          localStorage.setItem('usuario_nome', novoValor);
-        } else if (editandoCampo === 'email') {
-          setEmail(novoValor);
-          localStorage.setItem('usuario_email', novoValor);
-        } else {
-          setSenha('********');
-        }
-        setEditandoCampo(null);
-      } else {
-        alert('Erro: ' + (resultado.mensagem || resultado.erro));
+      const stored = localStorage.getItem("usuario");
+      if (stored) {
+        const usuario = JSON.parse(stored);
+        setUser(usuario);
       }
     } catch (err) {
-      alert('Erro ao conectar com o servidor.');
+      console.error("Erro ao carregar usuário:", err);
     }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("usuario");
+    window.alert("Você saiu da conta.");
+    router.replace("/");
   };
 
-  const handleExcluir = async () => {
-    if (!confirm('Tem certeza que deseja excluir sua conta?')) return;
+  const deletarConta = async () => {
+    if (!user) return;
+
     try {
-      const res = await fetch(`http://localhost:3000/api/usuarios/${usuarioId}`, {
-        method: 'DELETE',
+      const response = await fetch(`http://localhost:3333/usuarios/${user.id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
       });
-      if (res.ok) {
-        alert('Conta excluída com sucesso!');
-        localStorage.clear();
-        window.location.href = '/entrar';
+
+      if (response.ok) {
+        localStorage.removeItem("usuario");
+        window.alert("Conta deletada com sucesso.");
+        router.replace("/");
       } else {
-        const json = await res.json();
-        alert('Erro: ' + (json.mensagem || json.erro));
+        const data = await response.json();
+        window.alert(data.mensagem || "Erro ao deletar conta.");
       }
-    } catch {
-      alert('Erro ao conectar com o servidor.');
+    } catch (error) {
+      console.error("Erro ao deletar conta:", error);
+      window.alert("Ocorreu um erro ao tentar deletar a conta.");
     }
   };
 
-  const router = useRouter();
-    const [showBox, setShowBox] = useState(false);
-  
+  if (!user) return null; // evita flash antes de carregar
 
   return (
-    <div>
-    <div className={styles.headerContainer}>
+    <div className={styles.container}>
+      {/* Header Mobile */}
       <header className={styles.headerMobile}>
         <div className={styles.headerLeft}>
           <button className={styles.backButton} onClick={() => router.back()}>
-            <Image src="/symbols/nav-arrow-left.svg" alt="Voltar" width={20} height={20} />
+            <Image
+              src="/symbols/nav-arrow-left.svg"
+              alt="Voltar"
+              width={20}
+              height={20}
+            />
           </button>
           <span className={styles.headerTitle}>Perfil</span>
         </div>
@@ -106,107 +74,61 @@ export default function Perfil() {
       {/* Header Desktop */}
       <div className={styles.headerDesktop}>
         <button className={styles.backButton} onClick={() => router.back()}>
-          <Image src="/symbols/nav-arrow-left.svg" alt="Voltar" width={20} height={20} />
+          <Image
+            src="/symbols/nav-arrow-left.svg"
+            alt="Voltar"
+            width={20}
+            height={20}
+          />
         </button>
-        <h1 className={styles.headerTitle}>Perfil</h1>
-      </div>
-    </div>
-
-    <div className={styles.profileContainer}>
-      <div className={styles.profilePicture}>
-        <IonIcon icon={personCircleOutline} className={styles.userIcon} />
-        <IonIcon icon={createOutline} className={styles.editPhotoIcon} />
+        <h1 className={styles.headerTitle}>Seu Perfil</h1>
       </div>
 
-      <div className={styles.profileInfo}>
-        {/* Nome */}
-        <p>
-          <strong>Nome:</strong>{' '}
-          {editandoCampo === 'nome' ? (
-            <>
-              <input
-                type="text"
-                value={novoValor}
-                onChange={(e) => setNovoValor(e.target.value)}
-                className={styles.inputEditar}
-              />
-              <button onClick={handleSalvar} className={styles.saveButton}>
-                ✓
-              </button>
-            </>
-          ) : (
-            <>
-              <span>{nome}</span>
-              <IonIcon
-                icon={createOutline}
-                onClick={() => handleEditar('nome')}
-                className={styles.editIcon}
-              />
-            </>
-          )}
-        </p>
+      {/* Avatar e informações */}
+      <div className={styles.profileSection}>
+        <div className={styles.avatarContainer}>
+          <Image
+            src="/symbols/profile.png"
+            alt="Avatar"
+            width={100}
+            height={100}
+            className={styles.avatar}
+          />
+        </div>
+        <h2 className={styles.userName}>Olá, {user.nome}</h2>
+        <p className={styles.userSub}>Membro desde 2025</p>
+      </div>
 
-        {/* Email */}
-        <p>
-          <strong>Email:</strong>{' '}
-          {editandoCampo === 'email' ? (
-            <>
-              <input
-                type="text"
-                value={novoValor}
-                onChange={(e) => setNovoValor(e.target.value)}
-                className={styles.inputEditar}
-              />
-              <button onClick={handleSalvar} className={styles.saveButton}>
-                ✓
-              </button>
-            </>
-          ) : (
-            <>
-              <span>{email}</span>
-              <IonIcon
-                icon={createOutline}
-                onClick={() => handleEditar('email')}
-                className={styles.editIcon}
-              />
-            </>
-          )}
-        </p>
+      {/* Ações */}
+      <div className={styles.actions}>
+        <button
+          className={styles.optionBtn}
+          onClick={() => router.push("/editar-perfil")}
+        >
+          Editar Perfil
+        </button>
 
-        {/* Senha */}
-        <p>
-          <strong>Senha:</strong>{' '}
-          {editandoCampo === 'senha' ? (
-            <>
-              <input
-                type="password"
-                value={novoValor}
-                onChange={(e) => setNovoValor(e.target.value)}
-                className={styles.inputEditar}
-                placeholder="Nova senha"
-              />
-              <button onClick={handleSalvar} className={styles.saveButton}>
-                ✓
-              </button>
-            </>
-          ) : (
-            <>
-              <span>{senha}</span>
-              <IonIcon
-                icon={createOutline}
-                onClick={() => handleEditar('senha')}
-                className={styles.editIcon}
-              />
-            </>
-          )}
-        </p>
+        <button
+          className={styles.optionBtn}
+          onClick={() => router.push("/meus-cartoes")}
+        >
+          Meus Cartões
+        </button>
 
-        <button onClick={handleExcluir} className={styles.deleteBtn}>
-          <ion-icon name="trash-outline" className={styles.deleteicon}></ion-icon>  
-          <strong>EXCLUIR CONTA</strong>
+        <button
+          className={`${styles.optionBtn} ${styles.logoutBtn}`}
+          onClick={handleLogout}
+        >
+          Sair
+        </button>
+
+        <button
+          className={`${styles.optionBtn} ${styles.deleteBtn}`}
+          onClick={deletarConta}
+        >
+          Excluir Conta
         </button>
       </div>
-    </div>
     </div>
   );
 }
