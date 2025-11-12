@@ -26,7 +26,7 @@
 ========================= */
 .headerMobile {
   width: 100%;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 1.8rem;
@@ -57,6 +57,19 @@
   font-weight: 600;
   color: #0d1a2b;
   margin-left: 1rem;
+}
+
+.headerDesktop {
+  display: flex;
+}
+
+.headerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; 
+  padding-left: clamp( 3vw, 1rem); 
+  margin-bottom: 2rem;
+  box-sizing: border-box;
 }
 
 /* =========================
@@ -136,7 +149,7 @@
 
 .editButton:hover {
   transform: scale(1.1);
-  color: #3484f3;
+  color: #022350;
 }
 
 .deleteButton:hover {
@@ -151,7 +164,7 @@
   margin-top: 2.2rem;
   width: 100%;
   max-width: 340px;
-  background: #3484f3;
+  background: #0d1a2b;
   color: #fff;
   font-weight: 600;
   font-size: 1rem;
@@ -163,7 +176,7 @@
 }
 
 .addButton:hover {
-  background: #276ef8;
+  background: #032f88;
   box-shadow: 0 4px 18px rgba(52, 132, 243, 0.35);
   transform: translateY(-2px);
 }
