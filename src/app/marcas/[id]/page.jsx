@@ -31,7 +31,7 @@ export default function MarcaPage() {
         const res = await fetch(`http://localhost:3333/produtos`);
         if (!res.ok) throw new Error("Erro ao buscar produtos");
         const data = await res.json();
-        const filtrados = data.filter((p) => p.marca_id === Number(id));
+        const filtrados = data.filter((p) => p.marcaId == id);
         setProdutos(filtrados);
       } catch (err) {
         console.error("Erro ao buscar produtos:", err);
@@ -77,7 +77,7 @@ export default function MarcaPage() {
               {produtos.map((p) => (
                 <div className={styles.card} key={p.id}>
                   <Image
-                    src={p.imagem || "/placeholder.png"}
+                    src={p.imagem1Url || "/placeholder.png"}
                     alt={p.nome}
                     width={250}
                     height={250}
