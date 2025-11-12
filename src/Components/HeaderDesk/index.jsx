@@ -90,6 +90,41 @@ export default function HeaderDesk() {
     router.push("/login");
   };
 
+  // --- Excluir conta ---
+  const handleDeleteAccount = async () => {
+    if (!usuario?.id) {
+      alert("Erro: usuário não encontrado.");
+      return;
+    }
+
+    const confirmar = confirm(
+      "Tem certeza que deseja excluir sua conta? Esta ação é irreversível."
+    );
+    if (!confirmar) return;
+
+    try {
+      const resposta = await fetch(`http://localhost:3333/usuarios/${usuario.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${usuario.token}`,
+        },
+      });
+
+      if (resposta.ok) {
+        alert("Conta excluída com sucesso.");
+        localStorage.removeItem("usuario");
+        router.push("/login");
+      } else {
+        const erro = await resposta.json();
+        alert("Erro ao excluir conta: " + (erro.error || "Erro desconhecido."));
+      }
+    } catch (erro) {
+      console.error("Erro ao excluir conta:", erro);
+      alert("Erro ao excluir conta. Tente novamente mais tarde.");
+    }
+  };
+
   return (
     <>
       <header className={styles.header}>
@@ -175,11 +210,29 @@ export default function HeaderDesk() {
                     <Link href="/editPerfil">Editar Perfil</Link>
                     <Link href="/cartoes">Meus Cartões</Link>
                     <Link href="/favoritos">Favoritos</Link>
+
                     <button
                       className={styles.logoutBtn}
                       onClick={handleLogout}
                     >
                       Sair
+                    </button>
+
+                    {/* --- Novo botão de excluir conta --- */}
+                    <button
+                      className={styles.deleteBtn}
+                      onClick={handleDeleteAccount}
+                      style={{
+                        marginTop: "10px",
+                        backgroundColor: "#ff4444",
+                        color: "white",
+                        border: "none",
+                        padding: "8px 10px",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Excluir conta
                     </button>
                   </>
                 )}
