@@ -149,8 +149,11 @@ export default function Cartoes() {
   // RENDER
   // -----------------------------
   return (
+
+    
+    
     <div className={styles.pageContainer}>
-      <div className={styles.headerContainer}>
+    <div className={styles.headerContainer}>
         <header className={styles.headerMobile}>
           <div className={styles.headerLeft}>
             <button className={styles.backButton} onClick={() => router.back()}>
