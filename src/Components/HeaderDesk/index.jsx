@@ -14,12 +14,29 @@ export default function HeaderDesk() {
   const [closingMarcas, setClosingMarcas] = useState(false);
   const [showBox, setShowBox] = useState(false);
   const [usuarioLogado, setUsuarioLogado] = useState(false);
+  const [usuario, setUsuario] = useState(null);
   const menuRef = useRef(null);
 
-  // --- Verifica se há token salvo ---
+  // --- Verifica se o usuário está logado ---
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setUsuarioLogado(!!token);
+    try {
+      const usuarioStr = localStorage.getItem("usuario");
+      if (!usuarioStr) {
+        setUsuarioLogado(false);
+        return;
+      }
+
+      const usuarioObj = JSON.parse(usuarioStr);
+      if (usuarioObj?.token) {
+        setUsuario(usuarioObj);
+        setUsuarioLogado(true);
+      } else {
+        setUsuarioLogado(false);
+      }
+    } catch (err) {
+      console.error("Erro ao carregar dados do usuário:", err);
+      setUsuarioLogado(false);
+    }
   }, []);
 
   // --- Fecha dropdown se clicar fora ---
@@ -64,10 +81,10 @@ export default function HeaderDesk() {
     }, 400);
   };
 
+  // --- Logout ---
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("nome");
-    localStorage.removeItem("email");
+    localStorage.removeItem("usuario");
+    setUsuario(null);
     setUsuarioLogado(false);
     setShowBox(false);
     router.push("/login");
@@ -79,7 +96,12 @@ export default function HeaderDesk() {
         <div className={styles.inner}>
           <div className={styles.left}>
             <Link href="/" className={styles.logo}>
-              <Image src="/logos/pngBRANCO.png" alt="Logo" width={100} height={40} />
+              <Image
+                src="/logos/pngBRANCO.png"
+                alt="Logo"
+                width={100}
+                height={40}
+              />
             </Link>
 
             <nav className={styles.nav}>
@@ -117,8 +139,17 @@ export default function HeaderDesk() {
 
           <div className={styles.right} ref={menuRef}>
             <div className={styles.searchBox}>
-              <Image src="/symbols/Search.svg" alt="Buscar" width={18} height={18} />
-              <input type="text" placeholder="Search" className={styles.searchInput} />
+              <Image
+                src="/symbols/Search.svg"
+                alt="Buscar"
+                width={18}
+                height={18}
+              />
+              <input
+                type="text"
+                placeholder="Search"
+                className={styles.searchInput}
+              />
             </div>
 
             <Image
@@ -141,10 +172,13 @@ export default function HeaderDesk() {
                 ) : (
                   <>
                     <Link href="/notificacao">Notificações</Link>
-                    <Link href="/perfil">Meu Perfil</Link>
+                    <Link href="/editPerfil">Editar Perfil</Link>
                     <Link href="/cartoes">Meus Cartões</Link>
                     <Link href="/favoritos">Favoritos</Link>
-                    <button className={styles.logoutBtn} onClick={handleLogout}>
+                    <button
+                      className={styles.logoutBtn}
+                      onClick={handleLogout}
+                    >
                       Sair
                     </button>
                   </>
@@ -157,10 +191,13 @@ export default function HeaderDesk() {
 
       {/* === Overlay === */}
       {(showSidebar || showSidebarMarcas) && (
-        <div className={styles.overlay} onClick={() => {
-          handleCloseSidebar();
-          handleCloseSidebarMarcas();
-        }}></div>
+        <div
+          className={styles.overlay}
+          onClick={() => {
+            handleCloseSidebar();
+            handleCloseSidebarMarcas();
+          }}
+        ></div>
       )}
 
       {/* === Sidebar Marcas === */}
@@ -186,62 +223,66 @@ export default function HeaderDesk() {
                 />
               </li>
             </div>
+
             <div>
               <h2>A</h2>
-                <ul>
-                  <li>Adidas</li>
-                  <li>Asics</li>
-                  <li>Air Jordan</li>
-                  <li>Air Max</li>
-                </ul>
+              <ul>
+                <li>Adidas</li>
+                <li>Asics</li>
+                <li>Air Jordan</li>
+                <li>Air Max</li>
+              </ul>
             </div>
+
             <div>
               <h2>B</h2>
-                <ul>
-                  <li>Bape</li>
-                  <li>Balenciaga</li>
-                </ul>
+              <ul>
+                <li>Bape</li>
+                <li>Balenciaga</li>
+              </ul>
             </div>
 
             <div>
               <h2>C</h2>
-                <ul>
-                  <li>Converse</li>
-                  <li>Corteiz</li>
-                  <li>Calvin Klein</li>
-                </ul>
-            </div>  
-            
+              <ul>
+                <li>Converse</li>
+                <li>Corteiz</li>
+                <li>Calvin Klein</li>
+              </ul>
+            </div>
+
             <div>
               <h2>N</h2>
-                <ul>
-                  <li><Link href="/marcas">Nike</Link></li>
-                  <li>New Balance</li>
-                </ul>
+              <ul>
+                <li>
+                  <Link href="/marcas">Nike</Link>
+                </li>
+                <li>New Balance</li>
+              </ul>
             </div>
 
             <div>
               <h2>P</h2>
-                <ul>
-                  <li>Puma</li>
-                  <li>Prada</li>
-                </ul>
+              <ul>
+                <li>Puma</li>
+                <li>Prada</li>
+              </ul>
             </div>
 
             <div>
               <h2>R</h2>
-                <ul>
-                  <li>Reebok</li>
-                  <li>Raf Simons</li>
-                </ul>
+              <ul>
+                <li>Reebok</li>
+                <li>Raf Simons</li>
+              </ul>
             </div>
 
             <div>
               <h2>V</h2>
-                <ul>
-                  <li>Vans</li>
-                  <li>Valentino</li>
-                </ul>
+              <ul>
+                <li>Vans</li>
+                <li>Valentino</li>
+              </ul>
             </div>
           </div>
         </aside>
@@ -270,7 +311,9 @@ export default function HeaderDesk() {
                 />
               </li>
             </div>
-            <ul><li>Tênis</li></ul>
+            <ul>
+              <li>Tênis</li>
+            </ul>
           </div>
         </aside>
       )}

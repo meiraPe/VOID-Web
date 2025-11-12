@@ -1,8 +1,8 @@
-import Perfil from "@/Components/Perfil";
+import EditPerfil from "@/Components/EditPerfil";
 import MenuMob from "../../Components/MenuMobile";
 import HeaderDesk from "@/Components/HeaderDesk";
 import Footer from "@/Components/Footer"
-import styles from "./PerfilPage.module.css"
+import styles from "./EditPerfilPage.module.css"
 
 export default function Page() {
   return (
@@ -10,13 +10,13 @@ export default function Page() {
      <div className={styles.mobile}>
         <MenuMob />
 
-        <Perfil />
+        <EditPerfil />
       </div>
 
       <div className={styles.desktop}>
         <HeaderDesk />
 
-        <Perfil />
+        <EditPerfil />
 
         <Footer/>
       </div>

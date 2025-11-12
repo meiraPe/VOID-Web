@@ -1,28 +1,49 @@
 "use client";
 
-import styles from './Homepage.module.css';
-import Image from 'next/image';
-import Link from 'next/link';
-import Marcas from '@/Components/Marcas';
-import Sneakers from '../Sneakers';
-import { useMarcaStore } from '../../stores/useMarcaStore.js';
-import { useProdutoStore } from '../../stores/useProdutoStore.js';
-import { useEffect } from 'react';
+import styles from "./Homepage.module.css";
+import Image from "next/image";
+import Link from "next/link";
+import Marcas from "@/Components/Marcas";
+import Sneakers from "../Sneakers";
+import { useMarcaStore } from "../../stores/useMarcaStore.js";
+import { useProdutoStore } from "../../stores/useProdutoStore.js";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const { marcas, setMarcas } = useMarcaStore();
   const { produtos, setProdutos } = useProdutoStore();
 
-  // Marcas
+  const [usuario, setUsuario] = useState(null);
+  const [token, setToken] = useState(null);
+
+  // 🔹 Carregar dados do usuário ao montar a página
+  useEffect(() => {
+    try {
+      const usuarioStr = localStorage.getItem("usuario");
+      if (usuarioStr) {
+        const usuarioObj = JSON.parse(usuarioStr);
+        setUsuario(usuarioObj);
+        setToken(usuarioObj.token);
+        console.log("Usuário na Home:", usuarioObj);
+        console.log("Token na Home:", usuarioObj.token);
+      } else {
+        console.log("Nenhum usuário encontrado no localStorage.");
+      }
+    } catch (error) {
+      console.error("Erro ao ler usuário:", error);
+    }
+  }, []);
+
+  // 🔹 Buscar Marcas
   useEffect(() => {
     async function listMarcas() {
       try {
-        const response = await fetch('http://localhost:3333/marcas');
+        const response = await fetch("http://localhost:3333/marcas");
         if (response.ok) {
           const data = await response.json();
           setMarcas(data);
         } else {
-          console.log('Erro ao listar marcas');
+          console.log("Erro ao listar marcas");
         }
       } catch (error) {
         console.log(error);
@@ -31,16 +52,16 @@ export default function Home() {
     listMarcas();
   }, [setMarcas]);
 
-  // Produtos
+  // 🔹 Buscar Produtos
   useEffect(() => {
     async function listProdutos() {
       try {
-        const response = await fetch('http://localhost:3333/produtos');
+        const response = await fetch("http://localhost:3333/produtos");
         if (response.ok) {
           const data = await response.json();
           setProdutos(data);
         } else {
-          console.log('Erro ao listar produtos');
+          console.log("Erro ao listar produtos");
         }
       } catch (error) {
         console.log(error);
@@ -51,7 +72,6 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      
       {/* Header Home Mobile */}
       <header className={styles.headerGradient}></header>
 
@@ -102,19 +122,22 @@ export default function Home() {
         </div>
 
         <div className={styles.textBox}>
-          <h1>OS MELHORES<br /> PRODUTOS VOCÊ <br/> ENCONTRA AQUI!</h1>
+          <h1>
+            OS MELHORES
+            <br /> PRODUTOS VOCÊ <br /> ENCONTRA AQUI!
+          </h1>
 
           <Link href="/marcas">
-              <button className={styles.shopNowBtn}>
-                Ver Mais
-                <Image
-                  src="/symbols/arrow-right-white.svg"
-                  alt="Seta para direita"
-                  width={30}
-                  height={30}
-                />
-              </button>
-            </Link>
+            <button className={styles.shopNowBtn}>
+              Ver Mais
+              <Image
+                src="/symbols/arrow-right-white.svg"
+                alt="Seta para direita"
+                width={30}
+                height={30}
+              />
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -135,7 +158,8 @@ export default function Home() {
 
           <div className={styles.textOverlay}>
             <h1 className={styles.bannerTitle}>
-              OS MELHORES<br /> PRODUTOS VOCÊ <br/> ENCONTRA AQUI!
+              OS MELHORES
+              <br /> PRODUTOS VOCÊ <br /> ENCONTRA AQUI!
             </h1>
             <Link href="/products">
               <button className={styles.shopNowBtn}>
@@ -170,13 +194,12 @@ export default function Home() {
         ))}
       </section>
 
-      {/* Sneakers em Destaque Section */}
+      {/* Sneakers em Destaque */}
       <div className={styles.featuredSection}>
         <h2 className={styles.sectionTitle}>
           <span>Sneakers</span> em Destaque
         </h2>
 
-        {/* Products Grid */}
         <section className={styles.productsGrid}>
           {produtos.map((produto) => (
             <Sneakers
@@ -186,18 +209,38 @@ export default function Home() {
               nome={produto.nome}
             />
           ))}
-      </section>
+        </section>
       </div>
 
       {/* Rodapé */}
       <footer className={styles.footer}>
         <h2>COMPRE E VENDA COM MAIOR COMODIDADE</h2>
         <div className={styles.stores}>
-          <Link href="#"><Image src="/placeholders/googleplay.png" alt="Google Play" width={140} height={42} /></Link>
-          <Link href="#"><Image src="/placeholders/appstore.png" alt="Apple Store" width={140} height={42} /></Link>
+          <Link href="#">
+            <Image
+              src="/placeholders/googleplay.png"
+              alt="Google Play"
+              width={140}
+              height={42}
+            />
+          </Link>
+          <Link href="#">
+            <Image
+              src="/placeholders/appstore.png"
+              alt="Apple Store"
+              width={140}
+              height={42}
+            />
+          </Link>
         </div>
         <div className={styles.mockups}>
-          <Image src="/placeholders/mockup1.png" alt="App Mockup 1" width={300} height={190} priority />
+          <Image
+            src="/placeholders/mockup1.png"
+            alt="App Mockup 1"
+            width={300}
+            height={190}
+            priority
+          />
         </div>
       </footer>
     </div>
