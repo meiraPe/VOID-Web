@@ -207,41 +207,51 @@ export default function Cartoes() {
         )}
 
         {/* MODAL FORM */}
-        {formVisible && (
-          <div className={styles.modalOverlay}>
-            <div className={styles.modalBox}>
-              <h3>{editMode ? "Editar Cartão" : "Adicionar Cartão"}</h3>
-              <input
-                type="text"
-                placeholder="Número do Cartão"
-                value={numero}
-                onChange={(e) => setNumero(e.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="Validade (MM/AA)"
-                value={validade}
-                onChange={(e) => setValidade(e.target.value)}
-              />
-              {!editMode && (
-                <input
-                  type="password"
-                  placeholder="CVV"
-                  value={cvv}
-                  onChange={(e) => setCvv(e.target.value)}
-                />
-              )}
-              <div className={styles.modalButtons}>
-                <button onClick={fecharForm} className={styles.cancelButton}>
-                  Cancelar
-                </button>
-                <button onClick={salvarCartao} className={styles.saveButton}>
-                  Salvar
-                </button>
+          {formVisible && (
+            <div className={styles.modalOverlay}>
+              <div className={styles.modalBox}>
+                <h3 className={styles.modalTitle}>
+                  {editMode ? "Editar Cartão" : "Adicionar Cartão"}
+                </h3>
+
+                <div className={styles.modalFields}>
+                  <input
+                    type="text"
+                    placeholder="Número do Cartão"
+                    value={numero}
+                    onChange={(e) => setNumero(e.target.value)}
+                    className={styles.inputField}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Validade (MM/AA)"
+                    value={validade}
+                    onChange={(e) => setValidade(e.target.value)}
+                    className={styles.inputField}
+                  />
+                  {!editMode && (
+                    <input
+                      type="password"
+                      placeholder="CVV"
+                      value={cvv}
+                      onChange={(e) => setCvv(e.target.value)}
+                      className={styles.inputField}
+                    />
+                  )}
+                </div>
+
+                <div className={styles.modalButtons}>
+                  <button onClick={fecharForm} className={styles.cancelButton}>
+                    Cancelar
+                  </button>
+                  <button onClick={salvarCartao} className={styles.saveButton}>
+                    Salvar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+
 
         {/* MODAL CONFIRMAR REMOÇÃO */}
         {confirmRemove && (
