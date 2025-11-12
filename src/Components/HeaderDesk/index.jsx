@@ -15,31 +15,50 @@ export default function HeaderDesk() {
   const [showBox, setShowBox] = useState(false);
   const [usuarioLogado, setUsuarioLogado] = useState(false);
   const [usuario, setUsuario] = useState(null);
+  const [marcas, setMarcas] = useState([]);
   const menuRef = useRef(null);
 
-  // --- Verifica se o usuário está logado ---
+  // === Carregar usuário logado ===
   useEffect(() => {
     try {
       const usuarioStr = localStorage.getItem("usuario");
-      if (!usuarioStr) {
-        setUsuarioLogado(false);
-        return;
-      }
+      if (!usuarioStr) return;
 
       const usuarioObj = JSON.parse(usuarioStr);
       if (usuarioObj?.token) {
         setUsuario(usuarioObj);
         setUsuarioLogado(true);
-      } else {
-        setUsuarioLogado(false);
       }
     } catch (err) {
       console.error("Erro ao carregar dados do usuário:", err);
-      setUsuarioLogado(false);
     }
   }, []);
 
-  // --- Fecha dropdown se clicar fora ---
+  // === Buscar marcas do backend ===
+  useEffect(() => {
+    const fetchMarcas = async () => {
+      try {
+        const response = await fetch("http://localhost:3333/marcas");
+        if (!response.ok) throw new Error("Erro ao carregar marcas");
+        const data = await response.json();
+
+        // Ordenar e agrupar por letra inicial
+        const agrupadas = data.reduce((acc, marca) => {
+          const letra = marca.nome.charAt(0).toUpperCase();
+          if (!acc[letra]) acc[letra] = [];
+          acc[letra].push(marca);
+          return acc;
+        }, {});
+        setMarcas(agrupadas);
+      } catch (err) {
+        console.error("Erro ao buscar marcas:", err);
+      }
+    };
+
+    fetchMarcas();
+  }, []);
+
+  // === Fechar dropdown ao clicar fora ===
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -50,7 +69,7 @@ export default function HeaderDesk() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // --- Fecha com ESC ---
+  // === Fechar com ESC ===
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === "Escape") {
@@ -62,7 +81,7 @@ export default function HeaderDesk() {
     return () => window.removeEventListener("keydown", handleKey);
   }, []);
 
-  // --- Abertura e fechamento com animação ---
+  // === Fechamento animado ===
   const handleCloseSidebar = () => {
     if (!showSidebar) return;
     setClosingSidebar(true);
@@ -81,7 +100,7 @@ export default function HeaderDesk() {
     }, 400);
   };
 
-  // --- Logout ---
+  // === Logout ===
   const handleLogout = () => {
     localStorage.removeItem("usuario");
     setUsuario(null);
@@ -90,7 +109,7 @@ export default function HeaderDesk() {
     router.push("/login");
   };
 
-  // --- Excluir conta ---
+  // === Excluir conta ===
   const handleDeleteAccount = async () => {
     if (!usuario?.id) {
       alert("Erro: usuário não encontrado.");
@@ -211,14 +230,10 @@ export default function HeaderDesk() {
                     <Link href="/cartoes">Meus Cartões</Link>
                     <Link href="/favoritos">Favoritos</Link>
 
-                    <button
-                      className={styles.logoutBtn}
-                      onClick={handleLogout}
-                    >
+                    <button className={styles.logoutBtn} onClick={handleLogout}>
                       Sair
                     </button>
 
-                    {/* --- Novo botão de excluir conta --- */}
                     <button
                       className={styles.deleteBtn}
                       onClick={handleDeleteAccount}
@@ -256,13 +271,12 @@ export default function HeaderDesk() {
       {/* === Sidebar Marcas === */}
       {(showSidebarMarcas || closingMarcas) && (
         <aside
-          className={`${styles.sidebarMarcas} ${
-            showSidebarMarcas
+          className={`${styles.sidebarMarcas} ${showSidebarMarcas
               ? styles.sidebarEnter
               : closingMarcas
-              ? styles.sidebarExit
-              : ""
-          }`}
+                ? styles.sidebarExit
+                : ""
+            }`}
         >
           <div className={styles.part}>
             <div className={styles.close}>
@@ -270,73 +284,39 @@ export default function HeaderDesk() {
               <li>
                 <img
                   src="/symbols/usuario/x-circle.svg"
-                  alt=""
+                  alt="Fechar"
                   onClick={handleCloseSidebarMarcas}
                   style={{ cursor: "pointer" }}
                 />
               </li>
             </div>
 
-            <div>
-              <h2>A</h2>
-              <ul>
-                <li>Adidas</li>
-                <li>Asics</li>
-                <li>Air Jordan</li>
-                <li>Air Max</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2>B</h2>
-              <ul>
-                <li>Bape</li>
-                <li>Balenciaga</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2>C</h2>
-              <ul>
-                <li>Converse</li>
-                <li>Corteiz</li>
-                <li>Calvin Klein</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2>N</h2>
-              <ul>
-                <li>
-                  <Link href="/marcas">Nike</Link>
-                </li>
-                <li>New Balance</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2>P</h2>
-              <ul>
-                <li>Puma</li>
-                <li>Prada</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2>R</h2>
-              <ul>
-                <li>Reebok</li>
-                <li>Raf Simons</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2>V</h2>
-              <ul>
-                <li>Vans</li>
-                <li>Valentino</li>
-              </ul>
-            </div>
+            {Object.keys(marcas).length === 0 ? (
+              <p style={{ padding: "20px", opacity: 0.7 }}>
+                Nenhuma marca disponível.
+              </p>
+            ) : (
+              Object.entries(marcas)
+                .sort(([a], [b]) => a.localeCompare(b))
+                .map(([letra, lista]) => (
+                  <div key={letra}>
+                    <h2>{letra}</h2>
+                    <ul>
+                      {lista.map((marca) => (
+                        <li key={marca.id}>
+                          <Link
+                            href={`/marcas/${marca.id}`}
+                            onClick={() => handleCloseSidebarMarcas()}
+                            className={styles.marcaLink}
+                          >
+                            {marca.nome}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))
+            )}
           </div>
         </aside>
       )}
@@ -344,13 +324,12 @@ export default function HeaderDesk() {
       {/* === Sidebar Categorias === */}
       {(showSidebar || closingSidebar) && (
         <aside
-          className={`${styles.sidebar} ${
-            showSidebar
+          className={`${styles.sidebar} ${showSidebar
               ? styles.sidebarEnter
               : closingSidebar
-              ? styles.sidebarExit
-              : ""
-          }`}
+                ? styles.sidebarExit
+                : ""
+            }`}
         >
           <div className={styles.part}>
             <div className={styles.close}>
@@ -358,7 +337,7 @@ export default function HeaderDesk() {
               <li>
                 <img
                   src="/symbols/usuario/x-circle.svg"
-                  alt=""
+                  alt="Fechar"
                   onClick={handleCloseSidebar}
                   style={{ cursor: "pointer" }}
                 />
