@@ -320,34 +320,45 @@ export default function HeaderDesk() {
         </aside>
       )}
 
-      {/* === Sidebar Categorias === */}
-      {(showSidebar || closingSidebar) && (
-        <aside
-          className={`${styles.sidebar} ${showSidebar
-              ? styles.sidebarEnter
-              : closingSidebar
-                ? styles.sidebarExit
-                : ""
-            }`}
-        >
-          <div className={styles.part}>
-            <div className={styles.close}>
-              <h1>SNEAKERS</h1>
-              <li>
-                <img
-                  src="/symbols/usuario/x-circle.svg"
-                  alt="Fechar"
-                  onClick={handleCloseSidebar}
-                  style={{ cursor: "pointer" }}
-                />
-              </li>
-            </div>
-            <ul>
-              <li>Tênis</li>
-            </ul>
-          </div>
-        </aside>
-      )}
+{/* === Sidebar Categorias === */}
+{(showSidebar || closingSidebar) && (
+  <aside
+    className={`${styles.sidebar} ${
+      showSidebar
+        ? styles.sidebarEnter
+        : closingSidebar
+        ? styles.sidebarExit
+        : ""
+    }`}
+  >
+    <div className={styles.part}>
+      <div className={styles.close}>
+        <h1>SNEAKERS</h1>
+        <li>
+          <img
+            src="/symbols/usuario/x-circle.svg"
+            alt="Fechar"
+            onClick={handleCloseSidebar}
+            style={{ cursor: "pointer" }}
+          />
+        </li>
+      </div>
+
+      <ul>
+        <li>Tênis</li>
+        <li>Corrida</li>
+        <li>Street</li>
+        <li>Casual</li>
+        <li>Skate</li>
+        <li>Basquete</li>
+        <li>Trilhas</li>
+        <li>Treino</li>
+        <li>Lifestyle</li>
+      </ul>
+    </div>
+  </aside>
+)}
+
     </>
   );
 }
