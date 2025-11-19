@@ -127,7 +127,7 @@ export default function Favoritos() {
                   R$ {fav.produto.preco.toFixed(2)}
                 </p>
                 <Link
-                  href={`/comprar/${fav.produto.id}`}
+                  href={`/produtos/${fav.produto.id}`}
                   className={styles.buyBtn}
                 >
                   Comprar

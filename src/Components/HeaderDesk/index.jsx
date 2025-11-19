@@ -225,7 +225,6 @@ export default function HeaderDesk() {
                   </>
                 ) : (
                   <>
-                    <Link href="/notificacao">Notificações</Link>
                     <Link href="/editPerfil">Editar Perfil</Link>
                     <Link href="/cartoes">Meus Cartões</Link>
                     <Link href="/favoritos">Favoritos</Link>

@@ -127,7 +127,7 @@ export default function Home() {
             <br /> PRODUTOS VOCÊ <br /> ENCONTRA AQUI!
           </h1>
 
-          <Link href="/marcas">
+          <Link href="/marcas/1">
             <button className={styles.shopNowBtn}>
               Ver Mais
               <Image
@@ -161,7 +161,7 @@ export default function Home() {
               OS MELHORES
               <br /> PRODUTOS VOCÊ <br /> ENCONTRA AQUI!
             </h1>
-            <Link href="/products">
+            <Link href="/produtos">
               <button className={styles.shopNowBtn}>
                 Ver Mais
                 <Image

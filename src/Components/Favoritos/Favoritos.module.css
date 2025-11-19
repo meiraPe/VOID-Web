@@ -147,7 +147,7 @@
 /* Botão Comprar */
 .buyBtn {
   display: inline-block;
-  background: linear-gradient(90deg, #0d1a2b, #1e3554);
+  background: #0d1a2b;
   color: white;
   font-size: 0.9rem;
   font-family: var(--text);
@@ -159,7 +159,7 @@
 }
 
 .buyBtn:hover {
-  background: linear-gradient(90deg, #162a44, #2e4a74);
+  opacity: 0.8;
   transform: translateY(-3px);
   box-shadow: 0 6px 14px rgba(13, 26, 43, 0.25);
 }

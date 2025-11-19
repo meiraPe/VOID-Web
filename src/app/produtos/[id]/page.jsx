@@ -3,8 +3,12 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
-import { FaHeart } from "react-icons/fa";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+
+// Ícones
+import { FaHeart, FaCheckCircle } from "react-icons/fa";
+import { PiShoppingBagBold } from "react-icons/pi";
+import { IoFlashSharp, IoChevronBack, IoChevronForward } from "react-icons/io5";
+
 import styles from "./ProdutoPage.module.css";
 import HeaderDesk from "@/Components/HeaderDesk";
 import Footer from "@/Components/Footer";
@@ -18,26 +22,20 @@ export default function ProdutoPage() {
   const [usuarioId, setUsuarioId] = useState(null);
   const [isFavorito, setIsFavorito] = useState(false);
 
-  // Estado do carrossel
+  // Carrossel
   const [slideIndex, setSlideIndex] = useState(0);
 
-  // TOAST
-  const [toastMessage, setToastMessage] = useState("");
-  const [showToast, setShowToast] = useState(false);
+  // POPUP
+  const [popupVisible, setPopupVisible] = useState(false);
+  const [popupText, setPopupText] = useState("");
 
-  function triggerToast(msg) {
-    setToastMessage(msg);
-    setShowToast(true);
-
-    setTimeout(() => {
-      setShowToast(false);
-
-      if (msg === "Compra realizada com sucesso") {
-        setTimeout(() => router.push("/"), 300);
-      }
-    }, 1600);
+  function triggerPopup(msg) {
+    setPopupText(msg);
+    setPopupVisible(true);
+    setTimeout(() => setPopupVisible(false), 1400);
   }
 
+  // Obtém usuário e produto
   useEffect(() => {
     const storedUser = localStorage.getItem("usuario");
     if (storedUser) {
@@ -49,6 +47,7 @@ export default function ProdutoPage() {
       try {
         const res = await fetch(`http://localhost:3333/produtos/${id}`);
         if (!res.ok) throw new Error("Erro ao buscar produto");
+
         const data = await res.json();
         setProduto(data);
       } catch (err) {
@@ -69,6 +68,7 @@ export default function ProdutoPage() {
       try {
         const res = await fetch(`http://localhost:3333/favoritos/${usuarioId}`);
         const data = await res.json();
+
         const existe = data.some((fav) => fav.produtoId === Number(id));
         setIsFavorito(existe);
       } catch (err) {
@@ -79,9 +79,10 @@ export default function ProdutoPage() {
     verificarFavorito();
   }, [usuarioId, id]);
 
+  // FAVORITAR / REMOVER FAVORITO
   async function toggleFavorito() {
     if (!usuarioId) {
-      triggerToast("Faça login para favoritar");
+      triggerPopup("Faça login para favoritar");
       return;
     }
 
@@ -90,73 +91,102 @@ export default function ProdutoPage() {
         await fetch(`http://localhost:3333/favoritos`, {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ usuarioId, produtoId: produto.id })
+          body: JSON.stringify({ usuarioId, produtoId: produto.id }),
         });
+
         setIsFavorito(false);
+        triggerPopup("Removido dos favoritos");
       } else {
         await fetch(`http://localhost:3333/favoritos`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ usuarioId, produtoId: produto.id })
+          body: JSON.stringify({ usuarioId, produtoId: produto.id }),
         });
+
         setIsFavorito(true);
+        triggerPopup("Adicionado aos favoritos");
       }
     } catch (error) {
       console.error("Erro:", error);
-      triggerToast("Erro ao atualizar favorito");
+      triggerPopup("Erro ao atualizar favorito");
     }
   }
 
-  function adicionarNaSacola() {
+  // ADICIONAR NA SACOLA
+  async function adicionarNaSacola() {
     if (!usuarioId) {
-      triggerToast("Você precisa estar logado");
+      triggerPopup("Você precisa estar logado");
       return;
     }
 
-    triggerToast("Adicionado à sacola!");
+    try {
+      const res = await fetch(`http://localhost:3333/sacolas/${usuarioId}/itens`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            produtoId: produto.id,
+            quantidade: 1,
+          }),
+        }
+      );
+
+      if (!res.ok) throw new Error("Erro ao adicionar na sacola.");
+
+      triggerPopup("Adicionado à sacola!");
+
+      // Aguarda o popup antes de ir para sacola
+      setTimeout(() => {
+        router.push("/sacola");
+      }, 500);
+    } catch (error) {
+      console.error("Erro ao adicionar na sacola:", error);
+      triggerPopup("Erro ao adicionar à sacola");
+    }
   }
 
+  // COMPRAR AGORA
   function comprarAgora() {
-    if (!usuarioId) {
-      triggerToast("Você precisa estar logado");
-      return;
-    }
-
-    triggerToast("Compra realizada com sucesso");
+    if (!usuarioId) return triggerPopup("Você precisa estar logado");
+    triggerPopup("Compra realizada!");
   }
 
-  const imagens = [produto?.imagem1Url, produto?.imagem2Url].filter(Boolean);
-
-  const handleNext = () => {
-    setSlideIndex((prev) => (prev + 1) % imagens.length);
-  };
-
-  const handlePrev = () => {
-    setSlideIndex((prev) => (prev - 1 + imagens.length) % imagens.length);
-  };
-
+  // STATES DE LOAD
   if (loading) return <p className={styles.loading}>Carregando produto...</p>;
+
   if (!produto) return <p className={styles.error}>Produto não encontrado.</p>;
+
+  const imagens = [produto.imagem1Url, produto.imagem2Url].filter(Boolean);
 
   return (
     <>
       <HeaderDesk />
 
-      {/* HEADER INTERNO */}
       <div className={styles.headerDesktop}>
         <button className={styles.backButton} onClick={() => router.back()}>
-          <Image src="/symbols/nav-arrow-left.svg" alt="Voltar" width={20} height={20} />
+          <Image
+            src="/symbols/nav-arrow-left.svg"
+            alt="Voltar"
+            width={20}
+            height={20}
+          />
         </button>
         <h1 className={styles.headerTitle}>Voltar</h1>
       </div>
 
       <main className={styles.container}>
         <div className={styles.productBox}>
-          {/* IMAGEM + CARROSSEL */}
+          {/* IMAGENS + CARROSSEL */}
           <div className={styles.imageSection}>
-
             {imagens.length > 1 && (
-              <button className={styles.carouselBtnLeft} onClick={handlePrev}>
+              <button
+                className={styles.carouselBtnLeft}
+                onClick={() =>
+                  setSlideIndex(
+                    (prev) => (prev - 1 + imagens.length) % imagens.length
+                  )
+                }
+              >
                 <IoChevronBack size={28} />
               </button>
             )}
@@ -171,7 +201,12 @@ export default function ProdutoPage() {
             />
 
             {imagens.length > 1 && (
-              <button className={styles.carouselBtnRight} onClick={handleNext}>
+              <button
+                className={styles.carouselBtnRight}
+                onClick={() =>
+                  setSlideIndex((prev) => (prev + 1) % imagens.length)
+                }
+              >
                 <IoChevronForward size={28} />
               </button>
             )}
@@ -180,32 +215,44 @@ export default function ProdutoPage() {
           {/* INFORMAÇÕES */}
           <div className={styles.infoSection}>
             <div className={styles.nameRow}>
-              <h1 className={styles.productName}>{produto?.nome}</h1>
+              <h1 className={styles.productName}>{produto.nome}</h1>
 
-              <div className={styles.favoriteIcon} onClick={toggleFavorito}>
+              <button className={styles.favoriteIcon} onClick={toggleFavorito}>
                 <FaHeart color={isFavorito ? "red" : "gray"} size={22} />
-              </div>
+              </button>
             </div>
-            <p className={styles.desc}>{produto.descricao || "Sem descrição."}</p>
+
+            <p className={styles.desc}>{produto.descricao}</p>
+
             <span className={styles.price}>R$ {produto.preco.toFixed(2)}</span>
 
+            {/* BOTÕES */}
             <div className={styles.buttonGroup}>
-              <button className={`${styles.actionButton} ${styles.buyBtn}`}>
-                Adicionar ao Carrinho
+              <button
+                className={`${styles.actionButton} ${styles.sacolaBtn}`}
+                onClick={adicionarNaSacola}
+              >
+                <PiShoppingBagBold size={22} />
+                <span>Adicionar à Sacola</span>
               </button>
 
-              <button className={`${styles.actionButton} ${styles.buyNowBtn}`}>
-                Comprar Agora
+              <button
+                className={`${styles.actionButton} ${styles.buyNowBtn}`}
+                onClick={comprarAgora}
+              >
+                <IoFlashSharp size={22} />
+                <span>Comprar Agora</span>
               </button>
-            </div>  
+            </div>
           </div>
         </div>
       </main>
 
-      {/* TOAST */}
-      {showToast && (
-        <div className={styles.toast}>
-          {toastMessage}
+      {/* POPUP */}
+      {popupVisible && (
+        <div className={styles.popup}>
+          <FaCheckCircle className={styles.popupIcon} />
+          <p className={styles.popupText}>{popupText}</p>
         </div>
       )}
 
