@@ -377,3 +377,25 @@
     display: none;
   }
 }
+
+.vazio {
+  color: #748cab;
+  font-family: var(--text);
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  
+  /* Centralização total */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  /* Aparência mais moderna */
+  background: #fff;
+  padding: 2rem 3rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  opacity: 0.95;
+}
+
