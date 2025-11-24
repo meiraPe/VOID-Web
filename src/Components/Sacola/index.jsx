@@ -12,34 +12,33 @@ export default function Sacola() {
 
   // Buscar sacola do usuário logado
   useEffect(() => {
-  async function carregarSacola() {
-    try {
-      const usuario = JSON.parse(localStorage.getItem("usuario"));
-      if (!usuario || !usuario.id) {
-        router.push("/login");
-        return;
+    async function carregarSacola() {
+      try {
+        const usuario = JSON.parse(localStorage.getItem("usuario"));
+        if (!usuario || !usuario.id) {
+          router.push("/login");
+          return;
+        }
+
+        const res = await fetch(
+          `http://localhost:3333/sacolas/${usuario.id}`
+        );
+
+        if (!res.ok) throw new Error("Erro ao buscar sacola");
+
+        const dados = await res.json();
+
+        setItensSacola(dados.itens || []);
+
+      } catch (err) {
+        console.error("Erro ao carregar sacola:", err);
+      } finally {
+        setCarregando(false);
       }
-
-      const res = await fetch(
-        `http://localhost:3333/sacolas/${usuario.id}/itens`
-      );
-
-      if (!res.ok) throw new Error("Erro ao buscar sacola");
-
-      const dados = await res.json();
-
-      // Backend provavelmente retorna um array direto
-      setItensSacola(dados || []);
-
-    } catch (err) {
-      console.error("Erro ao carregar sacola:", err);
-    } finally {
-      setCarregando(false);
     }
-  }
 
-  carregarSacola();
-}, [router]);
+    carregarSacola();
+  }, [router]);
 
   // Remover item da sacola
   async function removerItem(itemId) {
